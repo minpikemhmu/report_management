@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Outlet extends Model
 {
-    use HasFactory;
+    use HasFactory; 
 }
