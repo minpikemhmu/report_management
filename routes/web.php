@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('customer.create');
+Auth::routes();
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 });
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
