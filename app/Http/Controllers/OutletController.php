@@ -74,7 +74,6 @@ class OutletController extends Controller
      */
     public function update(Request $request, Outlet $outlet)
     {
-        // dd($request);
         $outlet->update([
             'outlet_id' => $request->input('outletId'),
             'name' => $request->input('outletName'),

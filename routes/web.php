@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaStaffController;
 use App\Http\Controllers\OutletController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,6 @@ Auth::routes();
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('outlets', OutletController::class);
+    Route::resource('bastaffs', BaStaffController::class);
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
