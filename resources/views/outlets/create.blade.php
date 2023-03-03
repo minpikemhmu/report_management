@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label for="outletId">Outlet ID</label>
                 <input name="outletId" type="text" class="form-control" id="outletId" aria-describedby="textHelp"
-                    placeholder="Enter Outlet ID to edit">
+                    placeholder="Enter New Outlet ID">
             </div>
 
 
