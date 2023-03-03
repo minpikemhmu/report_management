@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="{{asset('template/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -129,7 +132,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="{{route('customers.index')}}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Customers</span></a>
             </li>
@@ -367,7 +370,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    @yield('content');
+                    @yield('content')
 
                 </div>
                 <!-- /.container-fluid -->
@@ -432,6 +435,13 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('template/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('template/js/demo/chart-pie-demo.js')}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{asset('template/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('template/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('template/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 
