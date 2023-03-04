@@ -32,7 +32,7 @@ class StoreCustomerRequest extends FormRequest
             'address'                  => "required|string",
             'phone_number'             => "required|numeric|unique:customers,phone_number,NULL,id,deleted_at,NULL|digits_between:8,11",
             'customer_type'            => "required|integer|exists:customer_types,id",
-            'region'                   => "required|integer|exists:regions,id",
+            'total_frequency'          => "required|integer",
             'division'                 => "required|integer|exists:division_states,id",
             'township'                 => "required|integer|exists:townships,id",
             'city'                     => "required|integer|exists:cities,id",

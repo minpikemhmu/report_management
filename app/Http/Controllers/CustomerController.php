@@ -10,7 +10,7 @@ use App\Models\Township;
 use App\Models\City;
 use App\Models\CustomerType;
 use App\Http\Requests\StoreCustomerRequest;
-use App\Http\Requests\UpdateDoctorRequest;
+use App\Http\Requests\UpdateCustomerRequest;
 use App\Services\CustomerService;
 
 class CustomerController extends Controller
@@ -38,11 +38,10 @@ class CustomerController extends Controller
     public function create()
     {
         $customer_types= CustomerType::all();
-        $regions = Region::all();
         $divisions = DivisionState::all();
         $townships = Township::all();
         $cities = City::all();
-        return view('customer.create',compact('customer_types', 'regions', 'divisions', 'townships', 'cities'));
+        return view('customer.create',compact('customer_types', 'divisions', 'townships', 'cities'));
     }
 
     /**
@@ -77,11 +76,10 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         $customer_types= CustomerType::all();
-        $regions = Region::all();
         $divisions = DivisionState::all();
         $townships = Township::all();
         $cities = City::all();
-        return view('customer.edit',compact('customer', 'customer_types', 'regions', 'divisions', 'townships', 'cities'));
+        return view('customer.edit',compact('customer', 'customer_types', 'divisions', 'townships', 'cities'));
     }
 
     /**
@@ -91,7 +89,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDoctorRequest $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $this->service->update($request, $customer);
         return redirect()->route('customers.index', $customer->id)->with("successMsg",'Existing Customer is UPDATED in your data');

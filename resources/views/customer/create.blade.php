@@ -62,6 +62,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="total_frequency">Total Frequency</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="total_frequency"
+                            name="total_frequency"
+                            value="{{ old('total_frequency') }}"
+                        />
+                        <div class="form-control-feedback text-danger"> {{$errors->first('total_frequency') }} </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+
+                    <div class="form-group">
                         <label for="customer_type">Customer Type</label>
                         <select
                             class="form-control"
@@ -74,22 +88,6 @@
                             @endforeach
                         </select>
                         <div class="form-control-feedback text-danger"> {{$errors->first('customer_type') }} </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
-                    <div class="form-group">
-                        <label for="region">Region</label>
-                        <select
-                            class="form-control"
-                            id="region"
-                            name="region"
-                        >
-                            <option selected value="">Select the Region</option>
-                            @foreach($regions as $row)
-                                <option value="{{$row->id}}">{{$row->name}}</option>
-                            @endforeach
-                        </select>
-                        <div class="form-control-feedback text-danger"> {{$errors->first('region') }} </div>
                     </div>
 
                     <div class="form-group">

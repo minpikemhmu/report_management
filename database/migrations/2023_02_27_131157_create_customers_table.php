@@ -23,10 +23,6 @@ return new class extends Migration
             ->nullable()
             ->on('division_states')
             ->cascadeOnDelete();
-            $table->foreignId('region_id')
-            ->nullable()
-            ->on('regions')
-            ->cascadeOnDelete();
             $table->foreignId('township_id')
             ->nullable()
             ->on('townships')
@@ -39,6 +35,7 @@ return new class extends Migration
             ->nullable()
             ->on('customer_types')
             ->cascadeOnDelete();
+            $table->integer('total_frequency');
             $table->timestamps();
             $table->softDeletes();
         });
