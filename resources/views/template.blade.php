@@ -38,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Admin Portal</div>
             </a>
 
             <!-- Divider -->
@@ -135,6 +135,18 @@
                 <a class="nav-link" href="{{route('customers.index')}}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Customers</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('outlets.index') }}">
+                    <i class="fas fa-fw fa-user"></i>   
+                    <span>Outlets</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('bastaffs.index') }}">
+                    <i class="fas fa-fw fa-user"></i>   
+                    <span>BA Staffs</span></a>
             </li>
 
             <!-- Divider -->

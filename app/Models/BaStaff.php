@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BaStaff extends Model
 {
     use HasFactory;
+
+    protected $table = 'ba_staffs';
+
+    protected $fillable = ['ba_code', 'name', 'division_state_id', 'supervisor_id', 'city_id', 'outlet_id', 'channel_id', 'subchannel_id'];
 }
