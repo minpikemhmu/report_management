@@ -39,7 +39,34 @@ class CustomerService
             'region_id'             => $request->region,
             'township_id'           => $request->township,
             'city_id'               => $request->city,
-            'customer_type'         => $request->customer_type,
+            'customer_type_id'      => $request->customer_type,
+        ]);
+    }
+
+    public function update(Request $request, Customer $customer)
+    {
+        try {
+            DB::beginTransaction();
+            $this->updateCustomer($request, $customer);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+        }
+    }
+
+    
+    private function updateCustomer($request, Customer $customer): void
+    {
+        $customer->update([
+            'name'              => $request->name ?? $customer->name,
+            'dksh_customer_id'  => $request->customer_id ?? $customer->dksh_customer_id,
+            'address'           => $request->address ?? $customer->address,
+            'phone_number'      => $request->phone_number ?? $customer->phone_number,
+            'division_state_id' => $request->division ?? $customer->division_state_id,
+            'region_id'         => $request->region ?? $customer->region_id,
+            'township_id'       => $request->township ?? $customer->township_id,
+            'city_id'           => $request->city ?? $customer->city_id,
+            'customer_type_id'  => $request->customer_type ?? $customer->customer_type_id,
         ]);
     }
 }

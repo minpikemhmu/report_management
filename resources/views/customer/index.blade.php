@@ -61,20 +61,29 @@
                                             <th>Township</th>
                                             <th>City</th>
                                             <th>Customer Type</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $no=1; @endphp
                                         @foreach($customers as $row)
-                                            <td></td>
-                                            <td>{{$row->name}}</td>
-                                            <td>{{$row->dksh_customer_id}}</td>
-                                            <td>{{$row->phone_number}}</td>
-                                            <td>{{$row->address}}</td>
-                                            <td>{{$row->region->name}}</td>
-                                            <td>{{$row->division_state->name}}</td>
-                                            <td>{{$row->township->name}}</td>
-                                            <td>{{$row->city->name}}</td>
-                                            <td>{{}}</td>
+                                            <tr>
+                                                <td>{{$no++}}</td>
+                                                <td>{{$row->name}}</td>
+                                                <td>{{$row->dksh_customer_id}}</td>
+                                                <td>{{$row->phone_number}}</td>
+                                                <td>{{$row->address}}</td>
+                                                <td>{{$row->region->name}}</td>
+                                                <td>{{$row->division_state->name}}</td>
+                                                <td>{{$row->township->name}}</td>
+                                                <td>{{$row->city->name}}</td>
+                                                <td>{{$row->customer_type->name}}</td>
+                                                <td>
+                                                    <div class="t-flex-center">
+                                                        <a class="btn" href="{{route('customers.edit',$row->id)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -86,5 +95,9 @@
 </div>
 @endsection
 @section('script')
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function(){ $('.myalert').hide(); showDiv2() },3000);
+    })
+</script>
 @endsection

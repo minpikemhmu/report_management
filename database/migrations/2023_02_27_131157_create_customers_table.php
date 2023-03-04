@@ -35,7 +35,7 @@ return new class extends Migration
             ->nullable()
             ->on('cities')
             ->cascadeOnDelete();
-            $table->foreignId('customer_type')
+            $table->foreignId('customer_type_id')
             ->nullable()
             ->on('customer_types')
             ->cascadeOnDelete();

@@ -9,12 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Customer extends Model
 {
     use HasFactory; 
-    protected $fillable = ['name', 'dksh_customer_id', 'address', 'phone_number', 'division_state_id', 'region_id', 'township_id', 'city_id', 'customer_type'];
-
-    public function type(): BelongsTo
-    {
-        return $this->belongsTo(CustomerType::class);
-    }
+    protected $fillable = ['name', 'dksh_customer_id', 'address', 'phone_number', 'division_state_id', 'region_id', 'township_id', 'city_id', 'customer_type_id'];
 
     public function region(): BelongsTo
     {
@@ -35,4 +30,10 @@ class Customer extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    public function customer_type(): BelongsTo
+    {
+        return $this->belongsTo(CustomerType::class, 'customer_type_id');
+    }
+
 }

@@ -10,6 +10,7 @@ use App\Models\Township;
 use App\Models\City;
 use App\Models\CustomerType;
 use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateDoctorRequest;
 use App\Services\CustomerService;
 
 class CustomerController extends Controller
@@ -53,7 +54,7 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         $this->service->storeCustomer($request);
-        return redirect()->route('customers.index');
+        return redirect()->route('customers.index')->with("successMsg",'New Customer is ADDED in your data');
     }
 
     /**
@@ -75,7 +76,12 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $customer_types= CustomerType::all();
+        $regions = Region::all();
+        $divisions = DivisionState::all();
+        $townships = Township::all();
+        $cities = City::all();
+        return view('customer.edit',compact('customer', 'customer_types', 'regions', 'divisions', 'townships', 'cities'));
     }
 
     /**
@@ -85,9 +91,10 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(UpdateDoctorRequest $request, Customer $customer)
     {
-        //
+        $this->service->update($request, $customer);
+        return redirect()->route('customers.index', $customer->id)->with("successMsg",'Existing Customer is UPDATED in your data');
     }
 
     /**
