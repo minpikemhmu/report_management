@@ -20,7 +20,7 @@
                                 </button>
                             </div>
                         @endif
-                        <div><a href="{{ route('customers.create') }}" type="button" class="btn"
+                        <div><a href="{{ route('bastaffs.create') }}" type="button" class="btn"
                                 style="background-color: #72F573">
                                 <i class="fa-solid fa-circle-plus txt-white mr-3"></i><span class="txt-white">Add new
                                     BA Staff</span></a>
