@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Outlets\StoreOutletRequest;
+use App\Http\Requests\Outlets\UpdateOutletRequest;
 use App\Models\Outlet;
+use App\Services\OutletService;
 use Illuminate\Http\Request;
 
 class OutletController extends Controller
 {
+    public function __construct(private OutletService $outletService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *  
@@ -34,12 +40,9 @@ class OutletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOutletRequest $request)
     {
-        Outlet::create([
-            'outlet_id' => $request->input('outletId'),
-            'name' => $request->input('outletName'),
-        ]);
+        $this->outletService->storeOutlet($request);
         return redirect()->route('outlets.index');
     }
 
@@ -72,12 +75,9 @@ class OutletController extends Controller
      * @param  \App\Models\Outlet  $outlet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Outlet $outlet)
+    public function update(UpdateOutletRequest $request, Outlet $outlet)
     {
-        $outlet->update([
-            'outlet_id' => $request->input('outletId'),
-            'name' => $request->input('outletName'),
-        ]);
+        $this->outletService->update($request, $outlet);
         return redirect()->route('outlets.index');
     }
 
