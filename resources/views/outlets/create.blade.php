@@ -16,14 +16,14 @@
                         <div class="form-group">
                             <label for="outlet_id">Outlet ID</label>
                             <input name="outlet_id" type="text" class="form-control" id="outlet_id"
-                                aria-describedby="textHelp" placeholder="Enter New Outlet ID">
+                                aria-describedby="textHelp" placeholder="Enter New Outlet ID" value="{{ old('outlet_id') }}">
                             <div class="form-control-feedback text-danger"> {{ $errors->first('outlet_id') }} </div>
                         </div>
 
                         <div class="form-group">
                             <label for="name">Outlet Name</label>
                             <input name="name" type="text" class="form-control" id="name"
-                                placeholder="Outlet Name">
+                                placeholder="Outlet Name" value="{{ old('name') }}">
                             <div class="form-control-feedback text-danger"> {{ $errors->first('name') }} </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>

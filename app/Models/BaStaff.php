@@ -11,5 +11,5 @@ class BaStaff extends Model
 
     protected $table = 'ba_staffs';
 
-    protected $fillable = ['ba_code', 'name', 'division_state_id', 'supervisor_id', 'city_id', 'outlet_id', 'channel_id', 'subchannel_id'];
+    protected $fillable = ['ba_code', 'name', 'supervisor_id', 'city_id', 'outlet_id', 'channel_id', 'subchennel_id'];
 }
