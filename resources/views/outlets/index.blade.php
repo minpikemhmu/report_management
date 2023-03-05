@@ -65,7 +65,11 @@
                                             <td>{{ $outlet->id }}</td>
                                             <td>{{ $outlet->outlet_id }}</td>
                                             <td>{{ $outlet->name }}</td>
-                                            <td><a href="{{ route('outlets.edit', $outlet) }}">Edit</a></td>
+                                            <td>
+                                                <div class="t-flex-center">
+                                                    <a  class="btn" href="{{ route('outlets.edit', $outlet) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -94,10 +98,21 @@
                         <td>{{ $outlet->id }}</td>
                         <td>{{ $outlet->outlet_id }}</td>
                         <td>{{ $outlet->name }}</td>
-                        <td><a href="{{ route('outlets.edit', $outlet) }}">Edit</a></td>
+                        <td>
+                            <div class="t-flex-center">
+                                <a  class="btn" href="{{ route('outlets.edit', $outlet) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div> --}}
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function(){ $('.myalert').hide(); showDiv2() },3000);
+    })
+</script>
 @endsection

@@ -43,7 +43,7 @@ class OutletController extends Controller
     public function store(StoreOutletRequest $request)
     {
         $this->outletService->storeOutlet($request);
-        return redirect()->route('outlets.index');
+        return redirect()->route('outlets.index')->with("successMsg",'New Outlet is ADDED in your data');
     }
 
     /**
@@ -78,7 +78,7 @@ class OutletController extends Controller
     public function update(UpdateOutletRequest $request, Outlet $outlet)
     {
         $this->outletService->update($request, $outlet);
-        return redirect()->route('outlets.index');
+        return redirect()->route('outlets.index')->with("successMsg",'Existing Outlet is UPDATED in your data');
     }
 
     /**

@@ -82,7 +82,11 @@
                                             </td>
                                             <td>{{ $baStaff->subchennel_id ? $subchannel[$baStaff->subchennel_id - 1]->name : null }}
                                             </td>
-                                            <td><a href="{{ route('bastaffs.edit', $baStaff) }}">Edit</a></td>
+                                            <td>
+                                                <div class="t-flex-center">
+                                                    <a class="btn" href="{{ route('bastaffs.edit', $baStaff) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -93,4 +97,11 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function(){ $('.myalert').hide(); showDiv2() },3000);
+    })
+</script>
 @endsection

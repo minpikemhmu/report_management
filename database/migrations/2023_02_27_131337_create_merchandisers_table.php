@@ -15,7 +15,26 @@ return new class extends Migration
     {
         Schema::create('merchandisers', function (Blueprint $table) {
             $table->id();
+            $table->string('mer_code');
+            $table->string('name');
+            $table->foreignId('region_id')
+            ->nullable()
+            ->on('regions')
+            ->cascadeOnDelete();
+            $table->foreignId('merchant_team_id')
+            ->nullable()
+            ->on('merchant_teams')
+            ->cascadeOnDelete();
+            $table->foreignId('merchant_area_id')
+            ->nullable()
+            ->on('merchant_areas')
+            ->cascadeOnDelete();
+            $table->foreignId('channel_id')
+            ->nullable()
+            ->on('channels')
+            ->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

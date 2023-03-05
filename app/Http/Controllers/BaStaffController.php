@@ -59,7 +59,7 @@ class BaStaffController extends Controller
     public function store(StoreBaStaffRequest $request)
     {
         $this->baStaffService->storeBaStaff($request);
-        return redirect()->route('bastaffs.index');
+        return redirect()->route('bastaffs.index')->with("successMsg",'New BA Staff is ADDED in your data');
     }
 
     /**
@@ -101,7 +101,7 @@ class BaStaffController extends Controller
     {
         $baStaff = BaStaff::find($id);
         $this->baStaffService->update($request, $baStaff);
-        return redirect()->route('bastaffs.index');
+        return redirect()->route('bastaffs.index')->with("successMsg",'Existing BA Staff is UPDATED in your data');
     }
 
     /**

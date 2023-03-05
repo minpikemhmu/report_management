@@ -17,10 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('ba_code');
             $table->string('name');
-            $table->foreignId('division_state_id')
-            ->nullable()
-            ->on('division_states')
-            ->cascadeOnDelete();
             $table->foreignId('supervisor_id')
             ->nullable()
             ->on('supervisors')

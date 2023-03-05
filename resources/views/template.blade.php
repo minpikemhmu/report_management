@@ -138,6 +138,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{route('merchandiser.index')}}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Merchandiser</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('outlets.index') }}">
                     <i class="fas fa-fw fa-user"></i>   
                     <span>Outlets</span></a>
