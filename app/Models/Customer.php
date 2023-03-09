@@ -18,7 +18,7 @@ class Customer extends Model
 
     public function township(): BelongsTo
     {
-        return $this->belongsTo(township::class);
+        return $this->belongsTo(Township::class);
     }
 
     public function city(): BelongsTo
