@@ -26,11 +26,11 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => "required|string",
             'product_code' => "required|string|unique:products,product_code,except,id", 
-            'brn_code' => 'required|string|unique:products,brn_code,except,id', 
+            'brn_code' => 'nullable|string|unique:products,brn_code,except,id', 
             'product_brands_id' => "required|integer|exists:product_brands,id", 
-            'product_category_id' => "required|integer|exists:product_categories,id", 
-            'product_sub_category_id' => "required|integer|exists:product_sub_categories,id",
-            'size' => "required|string",
+            'product_category_id' => "nullable|integer|exists:product_categories,id", 
+            'product_sub_category_id' => "nullable|integer|exists:product_sub_categories,id",
+            'size' => "nullable|string",
         ];
     }
 }

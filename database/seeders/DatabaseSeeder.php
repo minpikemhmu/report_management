@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             CustomerTypeSeeder::class,
             MerchantTypeSeeder::class,
+            MerchantAreaSeeder::class,
+            MerchantTeamSeeder::class,
             OutletSeeder::class,
             SupervisorSeeder::class,
             ProductBrandSeeder::class,

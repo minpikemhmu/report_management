@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('product_code');
-            $table->string('brn_code');
+            $table->string('brn_code')->nullable();
             $table->foreignId('product_brands_id')->on('product_brands')->cascadeOnDelete();
-            $table->foreignId('product_category_id')->on('product_categories')->cascadeOnDelete();
-            $table->foreignId('product_sub_category_id')->on('product_sub_categories')->cascadeOnDelete();
-            $table->string('size');
+            $table->foreignId('product_category_id')->on('product_categories')->cascadeOnDelete()->nullable();
+            $table->foreignId('product_sub_category_id')->on('product_sub_categories')->cascadeOnDelete()->nullable();
+            $table->string('size')->nullable();
             $table->timestamps();
         });
     }
