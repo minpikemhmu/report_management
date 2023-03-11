@@ -155,6 +155,24 @@
                     <span>BA Staffs</span></a>
             </li>
 
+            <!-- Nav Item - Product Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Product</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Product Components:</h6>
+                        <a class="collapse-item" href="{{ route('products.index') }}">Product</a>
+                        <a class="collapse-item" href="{{ route('product_brands.index') }}">Product Brand</a>
+                        <a class="collapse-item" href="{{ route('product_categories.index') }}">Product Category</a>
+                        <a class="collapse-item" href="{{ route('product_sub_cateogories.index') }}">Product Sub Category</a>
+                    </div>
+                </div>
+            </li> 
+
             <!-- Divider -->
             <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 

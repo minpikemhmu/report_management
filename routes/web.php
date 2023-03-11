@@ -5,6 +5,11 @@ use App\Http\Controllers\OutletController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MerchandiserController;
+use App\Http\Controllers\ProductBrandController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductSubCategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +30,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('bastaffs', BaStaffController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('merchandiser', MerchandiserController::class);
+    Route::resource('product_brands', ProductBrandController::class);
+    Route::resource('product_categories', ProductCategoryController::class);
+    Route::resource('product_sub_cateogories', ProductSubCategoryController::class);
+    Route::resource('products', ProductController::class);
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

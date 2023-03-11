@@ -25,7 +25,10 @@ class DatabaseSeeder extends Seeder
             CustomerTypeSeeder::class,
             MerchantTypeSeeder::class,
             OutletSeeder::class,
-            SupervisorSeeder::class
+            SupervisorSeeder::class,
+            ProductBrandSeeder::class,
+            ProductCategorySeeder::class,
+            ProductSubCategorySeeder::class
         ]);
     }
 }
