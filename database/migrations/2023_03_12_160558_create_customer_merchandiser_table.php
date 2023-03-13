@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customer_merchandiser', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('merchandser_id')
+            $table->foreignId('merchandiser_id')
             ->nullable()
             ->on('merchandisers')
             ->cascadeOnDelete();
