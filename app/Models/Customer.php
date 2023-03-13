@@ -31,4 +31,9 @@ class Customer extends Model
         return $this->belongsTo(CustomerType::class, 'customer_type_id');
     }
 
+    public function merchandisers()
+    {
+        return $this->belongsToMany(Merchandiser::class);
+    }
+
 }

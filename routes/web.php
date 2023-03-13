@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductBrandController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductSubCategoryController;
+use App\Http\Controllers\MerchandiserAssignController;
 
 
 /*
@@ -34,5 +35,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('product_categories', ProductCategoryController::class);
     Route::resource('product_sub_cateogories', ProductSubCategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('assignMerchandiser', MerchandiserAssignController::class);
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -23,6 +23,9 @@
     <!-- Custom styles for this page -->
     <link href="{{asset('template/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
+    <!-- Select 2 -->
+    <link href="{{ asset('template/css/select2.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -153,6 +156,12 @@
                 <a class="nav-link" href="{{ route('bastaffs.index') }}">
                     <i class="fas fa-fw fa-user"></i>   
                     <span>BA Staffs</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('assignMerchandiser.index') }}">
+                    <i class="fas fa-fw fa-user"></i>   
+                    <span>Merchandiser Assign</span></a>
             </li>
 
             <!-- Nav Item - Product Collapse Menu -->
@@ -349,6 +358,9 @@
 
     <!-- Page level custom scripts -->
     <script src="{{asset('template/js/demo/datatables-demo.js')}}"></script>
+
+    <!-- Select 2 -->
+    <script src="{{ asset('template/js/select2.min.js') }}"></script>
     @yield('script')
 </body>
 
