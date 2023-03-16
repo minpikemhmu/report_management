@@ -9,7 +9,7 @@
         <div class="card mx-auto mb-5 mt-3">
             <div class="row m-3">
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <span class="">Update a Product</span>
+                    <span class="">Edit Existing Product</span>
                     <form method="POST" action="{{ route('products.update', $product) }}">
                         @csrf
                         @method('PUT')

@@ -33,6 +33,7 @@ class UpdateMerchandiserRequest extends FormRequest
             'team'                     => "required|integer",
             'area'                     => "required|integer",
             'channel'                  => "required|integer",
+            'password'                 => "string|between:8,50|nullable"
         ];
     }
 }

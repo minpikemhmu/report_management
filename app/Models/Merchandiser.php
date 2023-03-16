@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Merchandiser extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'name', 'mer_code', 'region_id', 'merchant_team_id', 'merchant_area_id', 'channel_id'];
+    protected $fillable = [ 'name', 'mer_code', 'password', 'region_id', 'merchant_team_id', 'merchant_area_id', 'channel_id'];
 
     public function region(): BelongsTo
     {

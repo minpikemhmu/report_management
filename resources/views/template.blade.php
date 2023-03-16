@@ -135,16 +135,31 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
+                    aria-expanded="true" aria-controls="collapseStaff">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Staff</span>
+                </a>
+                <div id="collapseStaff" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Product Components:</h6>
+                        <a class="collapse-item" href="{{ route('bastaffs.index') }}">BA Staffs</a>
+                        <a class="collapse-item" href="{{route('merchandiser.index')}}">Merchandiser</a>
+                    </div>
+                </div>
+            </li> 
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('customers.index')}}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Customers</span></a>
             </li>
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{{route('merchandiser.index')}}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Merchandiser</span></a>
-            </li>
+            </li> -->
 
             {{-- Remove by client requirement _ 16Mar23 --}}
             {{-- <li class="nav-item">
@@ -153,11 +168,11 @@
                     <span>Outlets</span></a>
             </li> --}}
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('bastaffs.index') }}">
                     <i class="fas fa-fw fa-user"></i>   
                     <span>BA Staffs</span></a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('assignMerchandiser.index') }}">

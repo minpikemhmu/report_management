@@ -9,7 +9,7 @@
         <div class="card mx-auto mb-5 mt-3">
             <div class="row m-3">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <span class="">Edit an Product Key Category</span>
+                    <span class="">Edit Existing Product Key Category</span>
                     <form method="POST" action="{{ route('product_key_cateogories.update', $productKeyCategory) }}">
                         @csrf
                         @method('PUT')

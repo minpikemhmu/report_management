@@ -49,6 +49,22 @@
                         </select>
                         <div class="form-control-feedback text-danger"> {{$errors->first('region') }} </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="channel">Channel</label>
+                        <select
+                            class="form-control"
+                            id="channel"
+                            name="channel"
+                        >
+                            <option selected value="">Select the Channel</option>
+                            @foreach($channels as $row)
+                                <option value="{{$row->id}}">{{$row->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="form-control-feedback text-danger"> {{$errors->first('channel') }} </div>
+                    </div>
+  
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
 
@@ -68,6 +84,24 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="password" style="color: #212121">Password</label>
+                        <div class="flx-h50-c-center">
+
+                            <div class="input-group fg-if-width mr-3">
+                                <input class="form-control py-3 bdr-gray br-8p fc-21" type="password" id="password"
+                                    name="password" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text btn_eye">
+                                        <i class="fas fa-eye" id="show_eye"></i>
+                                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-control-feedback text-danger"> {{ $errors->first('password') }} </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="area">Merchandiser Area</label>
                         <select
                             class="form-control"
@@ -82,22 +116,8 @@
                         <div class="form-control-feedback text-danger"> {{$errors->first('area') }} </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="channel">Channel</label>
-                        <select
-                            class="form-control"
-                            id="channel"
-                            name="channel"
-                        >
-                            <option selected value="">Select the Channel</option>
-                            @foreach($channels as $row)
-                                <option value="{{$row->id}}">{{$row->name}}</option>
-                            @endforeach
-                        </select>
-                        <div class="form-control-feedback text-danger"> {{$errors->first('channel') }} </div>
-                    </div>
 
-                    <button class="btn btn-primary mb-2" type="submit" >
+                    <button class="btn btn-primary mt-4" type="submit" >
                             create
                     </button>
                     </form>

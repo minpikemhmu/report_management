@@ -9,7 +9,7 @@
         <div class="card mx-auto mb-5 mt-3">
             <div class="row m-3">
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <span class="">Update BA Staff</span>
+                    <span class="">Edit Existing BA Staff</span>
                     <form method="POST" action="{{ route('bastaffs.update', $baStaff) }}">
                         @csrf
                         @method('PUT')
