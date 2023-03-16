@@ -80,7 +80,8 @@ class ProductController extends Controller
         $product_brands = ProductBrand::all();
         $product_categories = ProductCategory::all();
         $product_sub_categories = ProductSubCategory::all();
-        return view('products.edit', compact('product', 'product_brands', 'product_categories', 'product_sub_categories'));
+        $product_key_categories = ProductKeyCategory::all();
+        return view('products.edit', compact('product', 'product_brands', 'product_categories', 'product_key_categories','product_sub_categories'));
     }
 
     /**
