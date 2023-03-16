@@ -28,9 +28,10 @@ class UpdateBaStaffRequest extends FormRequest
             'name' => "string",
             'supervisor_id' => "integer|exists:supervisors,id",
             'city_id' => "integer|exists:cities,id",
-            'outlet_id' => "integer|exists:outlets,id",
+            'customer_id' => "integer|exists:customers,id",
             'channel_id' => "integer|exists:channels,id",
             'subchennel_id' => "integer|exists:sub_channels,id",
+            'password' => "string|between:8,50|nullable"
         ];
     }
 }

@@ -32,10 +32,12 @@
                         <div class="form-group">
                             <label for="supervisor_id">Supervisor</label>
                             <select class="form-control" id="supervisor_id" name="supervisor_id">
-                                
-                                <option {{ !$baStaff->supervisor_id ? "selected" : "" }} value="">Choose the Supervisor</option>
+
+                                <option {{ !$baStaff->supervisor_id ? 'selected' : '' }} value="">Choose the
+                                    Supervisor</option>
                                 @foreach ($supervisor as $row)
-                                    <option {{ $baStaff->supervisor_id == $row->id  ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                                    <option {{ $baStaff->supervisor_id == $row->id ? 'selected' : '' }}
+                                        value="{{ $row->id }}">{{ $row->name }}</option>
                                 @endforeach
                             </select>
                             <div class="form-control-feedback text-danger"> {{ $errors->first('supervisor_id') }} </div>
@@ -44,9 +46,10 @@
                         <div class="form-group">
                             <label for="city_id">City</label>
                             <select class="form-control" id="city_id" name="city_id">
-                                <option {{ !$baStaff->city_id ? "selected" : "" }} value="">Choose the City</option>
+                                <option {{ !$baStaff->city_id ? 'selected' : '' }} value="">Choose the City</option>
                                 @foreach ($city as $row)
-                                    <option {{ $baStaff->city_id == $row->id  ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                                    <option {{ $baStaff->city_id == $row->id ? 'selected' : '' }}
+                                        value="{{ $row->id }}">{{ $row->name }}</option>
                                 @endforeach
                             </select>
                             <div class="form-control-feedback text-danger"> {{ $errors->first('city_id') }} </div>
@@ -57,22 +60,26 @@
                     <span class="">&nbsp;</span>
 
                     <div class="form-group">
-                        <label for="outlet_id">Outlet</label>
-                        <select class="form-control" id="outlet_id" name="outlet_id">
-                            <option {{ !$baStaff->outlet_id ? "selected" : "" }} value="">Choose the Outlet</option>
-                            @foreach ($outlet as $row)
-                                <option {{ $baStaff->outlet_id == $row->id  ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                        <label for="customer_id">Customer</label>
+                        <select class="form-control" id="customer_id" name="customer_id">
+                            <option {{ !$baStaff->customer_id ? 'selected' : '' }} value="">Choose the Customer
+                            </option>
+                            @foreach ($customers as $row)
+                                <option {{ $baStaff->customer_id == $row->id ? 'selected' : '' }}
+                                    value="{{ $row->id }}">{{ $row->name }}</option>
                             @endforeach
                         </select>
-                        <div class="form-control-feedback text-danger"> {{ $errors->first('outlet_id') }} </div>
+                        <div class="form-control-feedback text-danger"> {{ $errors->first('customer_id') }} </div>
                     </div>
 
                     <div class="form-group">
                         <label for="channel_id">Channel</label>
                         <select class="form-control" id="channel_id" name="channel_id">
-                            <option {{ !$baStaff->channel_id ? "selected" : "" }} value="">Choose the Channel</option>
+                            <option {{ !$baStaff->channel_id ? 'selected' : '' }} value="">Choose the Channel
+                            </option>
                             @foreach ($channel as $row)
-                                <option {{ $baStaff->channel_id == $row->id  ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                                <option {{ $baStaff->channel_id == $row->id ? 'selected' : '' }}
+                                    value="{{ $row->id }}">{{ $row->name }}</option>
                             @endforeach
                         </select>
                         <div class="form-control-feedback text-danger"> {{ $errors->first('channel_id') }} </div>
@@ -81,12 +88,36 @@
                     <div class="form-group">
                         <label for="subchennel_id">Sub Channel</label>
                         <select class="form-control" id="subchennel_id" name="subchennel_id">
-                            <option {{ !$baStaff->subchennel_id ? "selected" : "" }} value="">Choose the Sub Channel</option>
+                            <option {{ !$baStaff->subchennel_id ? 'selected' : '' }} value="">Choose the Sub Channel
+                            </option>
                             @foreach ($subchannel as $row)
-                                <option {{ $baStaff->subchennel_id == $row->id  ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                                <option {{ $baStaff->subchennel_id == $row->id ? 'selected' : '' }}
+                                    value="{{ $row->id }}">{{ $row->name }}</option>
                             @endforeach
                         </select>
                         <div class="form-control-feedback text-danger"> {{ $errors->first('subchennel_id') }} </div>
+                    </div>
+
+                    <div>
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password" style="color: #212121">Password</label>
+                            <div class="flx-h50-c-center">
+
+                                <div class="input-group fg-if-width mr-3">
+                                    <input class="form-control py-3 bdr-gray br-8p fc-21" type="password" id="password"
+                                        name="password" placeholder="Click here to give new password"/>
+                                        {{-- value="{{ old('password', $baStaff->password ?? '') }} --}}
+                                    <div class="input-group-append">
+                                        <span class="input-group-text btn_eye">
+                                            <i class="fas fa-eye" id="show_eye"></i>
+                                            <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-control-feedback text-danger"> {{ $errors->first('password') }} </div>
+                        </div>
                     </div>
 
                     <div>&nbsp;</div>
@@ -106,3 +137,26 @@
         </div>
     </div>
 @endsection
+
+@push('script2')
+    <script>
+        $(document).ready(function() {
+            $('.btn_eye').click(function() {
+                var x = document.getElementById("password");
+
+                var show_eye = document.getElementById("show_eye");
+                var hide_eye = document.getElementById("hide_eye");
+                hide_eye.classList.remove("d-none");
+                if (x.type === "password") {
+                    x.type = "text";
+                    show_eye.style.display = "none";
+                    hide_eye.style.display = "block";
+                } else {
+                    x.type = "password";
+                    show_eye.style.display = "block";
+                    hide_eye.style.display = "none";
+                }
+            })
+        });
+    </script>
+@endpush
