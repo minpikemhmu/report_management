@@ -74,9 +74,9 @@
                                             <td>{{ $baStaff->supervisor_id ? $supervisor[$baStaff->supervisor_id - 1]->name : null }}
                                             </td>
                                             <td>{{ $baStaff->city_id ? $city[$baStaff->city_id - 1]->name : null }}</td>
-                                            <td>{{ $baStaff->outlet_id ? $outlet[$baStaff->outlet_id - 1]->outlet_id : null }}
+                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->id : null }}
                                             </td>
-                                            <td>{{ $baStaff->outlet_id ? $outlet[$baStaff->outlet_id - 1]->name : null }}
+                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->name : null }}
                                             </td>
                                             <td>{{ $baStaff->channel_id ? $channel[$baStaff->channel_id - 1]->name : null }}
                                             </td>

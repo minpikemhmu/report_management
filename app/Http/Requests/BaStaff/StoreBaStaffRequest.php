@@ -28,9 +28,10 @@ class StoreBaStaffRequest extends FormRequest
             'name' => "required|string",
             'supervisor_id' => "required|integer|exists:supervisors,id",
             'city_id' => "required|integer|exists:cities,id",
-            'outlet_id' => "required|integer|exists:outlets,id",
+            'customer_id' => "required|integer|exists:customers,id",
             'channel_id' => "required|integer|exists:channels,id",
             'subchennel_id' => "required|integer|exists:sub_channels,id",
+            'password' => "required|string|between:8,50"
         ];
     }
 }
