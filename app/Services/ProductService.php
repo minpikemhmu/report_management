@@ -58,6 +58,7 @@ class ProductService
       'brn_code' => $request->brn_code ?? $product->brn_code,
       'product_brands_id' => $request->product_brands_id ?? $product->product_brands_id,
       'product_category_id' => $request->product_category_id ?? $product->product_category_id,
+      'product_key_category_id' => $request->product_key_category_id ?? $product->product_key_category_id,
       'product_sub_category_id' => $request->product_sub_category_id ?? $product->product_sub_category_id,
       'size' => $request->size ?? $product->size,
     ]);
