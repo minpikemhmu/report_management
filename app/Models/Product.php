@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'product_code', 'brn_code', 'product_brands_id', 'product_category_id', 'product_sub_category_id', 'size'];
+    protected $fillable = ['name', 'product_code', 'brn_code', 'product_brands_id', 'product_category_id', 'product_key_category_id', 'product_sub_category_id', 'size'];
 
     /**
      * Get the productbrand that owns the Product
@@ -40,5 +40,15 @@ class Product extends Model
     public function productsubcategory(): BelongsTo
     {
         return $this->belongsTo(ProductSubCategory::class, 'product_sub_category_id');
+    }
+    
+    /**
+     * Get the productkeycategory that owns the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function productkeycategory(): BelongsTo
+    {
+        return $this->belongsTo(ProductKeyCategory::class, 'product_key_category_id');
     }
 }

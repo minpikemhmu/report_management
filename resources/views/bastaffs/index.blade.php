@@ -57,8 +57,8 @@
                                         <th>BA Name</th>
                                         <th>Supervisor</th>
                                         <th>City</th>
-                                        <th>Outlet ID</th>
-                                        <th>Outlet Name</th>
+                                        <th>Customer ID</th>
+                                        <th>Customer Name</th>
                                         <th>Key Channel</th>
                                         <th>Sub Channel</th>
                                         <th>Editor</th>
@@ -74,7 +74,7 @@
                                             <td>{{ $baStaff->supervisor_id ? $supervisor[$baStaff->supervisor_id - 1]->name : null }}
                                             </td>
                                             <td>{{ $baStaff->city_id ? $city[$baStaff->city_id - 1]->name : null }}</td>
-                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->id : null }}
+                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->dksh_customer_id : null }}
                                             </td>
                                             <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->name : null }}
                                             </td>
