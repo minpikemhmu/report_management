@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Repoet Management System</title>
+    <title>Report Management System</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('template/vendor/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
