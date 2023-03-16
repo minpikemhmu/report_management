@@ -41,14 +41,15 @@ class Product extends Model
     {
         return $this->belongsTo(ProductSubCategory::class, 'product_sub_category_id');
     }
-    
+
     /**
-     * Get the productkeycategory that owns the Product
+     * Get the productKeyCategory that owns the Product
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function productkeycategory(): BelongsTo
+    public function productKeyCategory(): BelongsTo
     {
         return $this->belongsTo(ProductKeyCategory::class, 'product_key_category_id');
     }
+
 }

@@ -37,6 +37,7 @@
                                         <th>Product BNR Code</th>
                                         <th>Product Brand</th>
                                         <th>Product Category</th>
+                                        <th>Product Key Category</th>
                                         <th>Product Sub Category</th>
                                         <th>Product Size</th>
                                         <th>Editor</th>
@@ -51,6 +52,7 @@
                                             <td>{{ $product->brn_code }}</td>
                                             <td>{{ $product->product_brands_id ? $product_brands[$product->product_brands_id - 1]->name : null }}</td>
                                             <td>{{ $product->product_category_id ? $product_categories[$product->product_category_id - 1]->name : null }}</td>
+                                            <td>{{ $product->productKeyCategory->name ?? null }}</td>
                                             <td>{{ $product->product_sub_category_id ? $product_sub_categories[$product->product_sub_category_id - 1]->name : null }}</td>
                                             <td>{{ $product->size }}</td>
                                             <td>

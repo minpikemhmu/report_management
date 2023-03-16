@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('product_key_category_id')->after('product_category_id');
+            $table->foreignId('product_key_category_id')->on('product_key_category_id')->cascadeOnDelete()->nullable();
         });
     }
 

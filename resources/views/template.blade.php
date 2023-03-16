@@ -178,6 +178,7 @@
                         <a class="collapse-item" href="{{ route('products.index') }}">Product</a>
                         <a class="collapse-item" href="{{ route('product_brands.index') }}">Product Brand</a>
                         <a class="collapse-item" href="{{ route('product_categories.index') }}">Product Category</a>
+                        <a class="collapse-item" href="{{ route('product_key_cateogories.index') }}">Product Key Category</a>
                         <a class="collapse-item" href="{{ route('product_sub_cateogories.index') }}">Product Sub Category</a>
                     </div>
                 </div>
