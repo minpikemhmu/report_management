@@ -73,6 +73,17 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="product_key_category_id">Product Key Category</label>
+                        <select class="form-control" id="product_key_category_id" name="product_key_category_id">
+                            <option selected value="">Choose the Product Key Category</option>
+                            @foreach ($product_key_categories as $row)
+                                <option {{ old('product_key_category_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="form-control-feedback text-danger"> {{ $errors->first('product_key_category_id') }} </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="size">Product Size</label>
                         <input name="size" type="text" class="form-control" id="size"
                             placeholder="Enter New Product Size" value="{{ old('size') }}">

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\ProductBrand;
 use App\Models\ProductCategory;
+use App\Models\ProductKeyCategory;
 use App\Models\ProductSubCategory;
 use App\Services\ProductService;
 
@@ -39,8 +40,9 @@ class ProductController extends Controller
         // $products = Product::all();
         $product_brands = ProductBrand::all();
         $product_categories = ProductCategory::all();
+        $product_key_categories = ProductKeyCategory::all();
         $product_sub_categories = ProductSubCategory::all();
-        return view('products.create', compact('product_brands', 'product_categories', 'product_sub_categories'));
+        return view('products.create', compact('product_brands', 'product_categories', 'product_key_categories', 'product_sub_categories'));
     }
 
     /**
