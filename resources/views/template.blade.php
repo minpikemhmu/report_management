@@ -146,11 +146,12 @@
                     <span>Merchandiser</span></a>
             </li>
 
-            <li class="nav-item">
+            {{-- Remove by client requirement _ 16Mar23 --}}
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('outlets.index') }}">
                     <i class="fas fa-fw fa-user"></i>   
                     <span>Outlets</span></a>
-            </li>
+            </li> --}}
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('bastaffs.index') }}">
@@ -295,13 +296,13 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            {{-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
-            </footer>
+            </footer> --}}
             <!-- End of Footer -->
 
         </div>
@@ -362,6 +363,7 @@
     <!-- Select 2 -->
     <script src="{{ asset('template/js/select2.min.js') }}"></script>
     @yield('script')
+    @stack('script2')
 </body>
 
 </html>

@@ -7,6 +7,7 @@ use App\Http\Requests\BaStaff\UpdateBaStaffRequest;
 use App\Models\BaStaff;
 use App\Models\Channel;
 use App\Models\City;
+use App\Models\Customer;
 use App\Models\Outlet;
 use App\Models\SubChannel;
 use App\Models\Supervisor;
@@ -28,10 +29,11 @@ class BaStaffController extends Controller
         $baStaffs = BaStaff::all();
         $supervisor=Supervisor::all();
         $city=City::all();
-        $outlet=Outlet::all();
+        // $outlet=Outlet::all();
+        $customers=Customer::all();
         $channel=Channel::all();
         $subchannel=SubChannel::all();
-        return view('bastaffs.index', compact('baStaffs', 'supervisor', 'city', 'outlet', 'channel', 'subchannel'));
+        return view('bastaffs.index', compact('baStaffs', 'supervisor', 'city', 'customers', 'channel', 'subchannel'));
     }
 
     /**
@@ -44,10 +46,11 @@ class BaStaffController extends Controller
         $baStaffs = BaStaff::all();
         $supervisor=Supervisor::all();
         $city=City::all();
-        $outlet=Outlet::all();
+        // $outlet=Outlet::all();
+        $customers=Customer::all();
         $channel=Channel::all();
         $subchannel=SubChannel::all();
-        return view('bastaffs.create', compact('baStaffs', 'supervisor', 'city', 'outlet', 'channel', 'subchannel'));
+        return view('bastaffs.create', compact('baStaffs', 'supervisor', 'city', 'customers', 'channel', 'subchannel'));
     }
 
     /**
@@ -84,10 +87,11 @@ class BaStaffController extends Controller
         $baStaff=BaStaff::find($id);
         $supervisor=Supervisor::all();
         $city=City::all();
-        $outlet=Outlet::all();
+        // $outlet=Outlet::all();
+        $customers=Customer::all();
         $channel=Channel::all();
         $subchannel=SubChannel::all();
-        return view('bastaffs.edit', compact('baStaff', 'supervisor', 'city', 'outlet', 'channel', 'subchannel'));        
+        return view('bastaffs.edit', compact('baStaff', 'supervisor', 'city', 'customers', 'channel', 'subchannel'));        
     }
 
     /**
