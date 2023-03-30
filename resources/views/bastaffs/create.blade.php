@@ -80,15 +80,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="subchennel_id">Sub Channel</label>
-                        <select class="form-control" id="subchennel_id" name="subchennel_id">
+                        <label for="subchannel_id">Sub Channel</label>
+                        <select class="form-control" id="subchannel_id" name="subchannel_id">
                             <option selected value="">Choose the Sub Channel</option>
                             @foreach ($subchannel as $row)
-                                <option {{ old('subchennel_id') ? 'selected' : '' }} value="{{ $row->id }}">
+                                <option {{ old('subchannel_id') ? 'selected' : '' }} value="{{ $row->id }}">
                                     {{ $row->name }}</option>
                             @endforeach
                         </select>
-                        <div class="form-control-feedback text-danger"> {{ $errors->first('subchennel_id') }} </div>
+                        <div class="form-control-feedback text-danger"> {{ $errors->first('subchannel_id') }} </div>
                     </div>
 
                     {{-- <div class="form-group">

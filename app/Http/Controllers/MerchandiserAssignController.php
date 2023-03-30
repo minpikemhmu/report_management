@@ -104,6 +104,7 @@ class MerchandiserAssignController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $assign_client = DB::table('customer_merchandiser')->where('id', $id)->delete();
+        return redirect()->back()->with("successMsg",'Existion Assign Delete successfully!!');
     }
 }

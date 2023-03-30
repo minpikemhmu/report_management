@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,20 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware('api.token')->group(function () {
+    Route::prefix('merchandiser')->group(function () {
+        // auth
+        Route::post('login', [AuthApiController::class, 'login']);
+        // checking for bearer token
+        Route::middleware('auth:sanctum')->group(function () {
+        });
+    });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::prefix('bastaff')->group(function () {
+        // auth
+        Route::post('login', [AuthApiController::class, 'login']);
+        // checking for bearer token
+        Route::middleware('auth:sanctum')->group(function () {
+        });
+    });
 });

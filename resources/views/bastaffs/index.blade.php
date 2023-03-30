@@ -80,7 +80,7 @@
                                             </td>
                                             <td>{{ $baStaff->channel_id ? $channel[$baStaff->channel_id - 1]->name : null }}
                                             </td>
-                                            <td>{{ $baStaff->subchennel_id ? $subchannel[$baStaff->subchennel_id - 1]->name : null }}
+                                            <td>{{ $baStaff->subchannel_id ? $subchannel[$baStaff->subchannel_id - 1]->name : null }}
                                             </td>
                                             <td>
                                                 <div class="t-flex-center">

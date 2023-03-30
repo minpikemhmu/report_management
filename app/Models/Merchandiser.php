@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Request;
 
 class Merchandiser extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
     protected $fillable = [ 'name', 'mer_code', 'password', 'region_id', 'merchant_team_id', 'merchant_area_id', 'channel_id'];
 
     public function region(): BelongsTo

@@ -74,7 +74,11 @@
                                             <td>{{$day}}</td>
                                             <td>
                                                 <div class="t-flex-center">
-                                                    <a class="btn" href="{{route('assignMerchandiser.edit',$row->id)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <form action="{{ route('assignMerchandiser.destroy',$row->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn" type="submit"><i class="fa-solid fa-trash"></i></button>
+                                                </form>
                                                 </div>
                                             </td>
                                         </tr>

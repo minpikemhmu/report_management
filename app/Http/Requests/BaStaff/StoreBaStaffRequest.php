@@ -30,7 +30,7 @@ class StoreBaStaffRequest extends FormRequest
             'city_id' => "required|integer|exists:cities,id",
             'customer_id' => "required|integer|exists:customers,id",
             'channel_id' => "required|integer|exists:channels,id",
-            'subchennel_id' => "required|integer|exists:sub_channels,id",
+            'subchannel_id' => "required|integer|exists:sub_channels,id",
             'password' => "required|string|between:8,50"
         ];
     }

@@ -36,7 +36,7 @@ class BaStaffService
       'city_id' => $request->city_id,
       'customer_id' => $request->customer_id,
       'channel_id' => $request->channel_id,
-      'subchennel_id' => $request->subchennel_id,
+      'subchannel_id' => $request->subchannel_id,
       'password' => Hash::make($request->password),
     ]);
   }
@@ -64,7 +64,7 @@ class BaStaffService
       // 'outlet_id' => $request->outlet_id  ?? $baStaff->outlet_id,
       'customer_id' => $request->customer_id  ?? $baStaff->customer_id,
       'channel_id' => $request->channel_id ?? $baStaff->channel_id,
-      'subchennel_id' => $request->subchennel_id ?? $baStaff->subchennel_id,
+      'subchannel_id' => $request->subchannel_id ?? $baStaff->subchannel_id,
       'password' => $request->password ? Hash::make($request->password) : $baStaff->password,
     ]);
   }
