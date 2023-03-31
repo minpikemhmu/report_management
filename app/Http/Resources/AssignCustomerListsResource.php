@@ -25,6 +25,7 @@ class AssignCustomerListsResource extends JsonResource
             'city'                 => $this->city->name,
             'customer_type'        => $this->customer_type->name,
             'assign_date'          => $this->pivot->assign_date,
+            'assign_day'           => date('l', strtotime($this->pivot->assign_date)),
         ];
     }
 }

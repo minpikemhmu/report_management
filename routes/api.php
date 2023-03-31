@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\MerchandiserController;
+use App\Http\Controllers\Api\ReportTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::middleware('api.token')->group(function () {
         Route::post('login', [AuthApiController::class, 'login']);
         // checking for bearer token
         Route::middleware('auth:sanctum')->group(function () {
+            Route::get('report_type',[ReportTypeController::class, 'index']);
         });
     });
 });
