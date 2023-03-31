@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\MerchandiserController;
+use App\Http\Controllers\Api\ReportTypeController;
 use App\Http\Controllers\Api\Product\ProductApiController;
 
 /*
@@ -21,6 +23,7 @@ Route::middleware('api.token')->group(function () {
         Route::post('login', [AuthApiController::class, 'login']);
         // checking for bearer token
         Route::middleware('auth:sanctum')->group(function () {
+            Route::get('assignCustomerLists',  [MerchandiserController::class, 'assignCustomerLists']);
         });
     });
 
@@ -29,6 +32,7 @@ Route::middleware('api.token')->group(function () {
         Route::post('login', [AuthApiController::class, 'login']);
         // checking for bearer token
         Route::middleware('auth:sanctum')->group(function () {
+            Route::get('report_type',[ReportTypeController::class, 'index']);
             Route::prefix('product')->group(function() {
 
                 // Get Product Based on Filter(s)

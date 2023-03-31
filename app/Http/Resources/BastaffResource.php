@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CustomerResource;
 
 class BastaffResource extends JsonResource
 {
@@ -20,7 +21,7 @@ class BastaffResource extends JsonResource
             'code'                 => $this->ba_code,
             'supervisor_id'        => $this->supervisor_id,
             'supervisor_name'      => $this->supervisor->name,
-            'customer'             => $this->customer,
+            'customer'             => new CustomerResource($this->customer),
 
             'city_id'              => $this->city_id,
             'city_name'            => $this->city->name,

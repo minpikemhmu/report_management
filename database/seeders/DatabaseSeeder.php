@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             SupervisorSeeder::class,
             ProductBrandSeeder::class,
             ProductCategorySeeder::class,
-            ProductSubCategorySeeder::class
+            ProductSubCategorySeeder::class,
+            BaReportTypeSeeder::class
         ]);
     }
 }
