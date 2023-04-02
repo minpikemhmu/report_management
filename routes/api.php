@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\MerchandiserController;
 use App\Http\Controllers\Api\ReportTypeController;
+use App\Http\Controllers\Api\Product\ProductApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,16 @@ Route::middleware('api.token')->group(function () {
         // checking for bearer token
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('report_type',[ReportTypeController::class, 'index']);
+            Route::prefix('product')->group(function() {
+
+                // Get Product Based on Filter(s)
+                Route::get('/products', [ProductApiController::class, 'index']);
+                // Get All Product Brands
+                Route::get('/products/product_brands', [ProductApiController::class, 'getAllProductBrands']);
+            });
         });
     });
+
+    
+
 });
