@@ -61,7 +61,7 @@ class LoginRequest extends FormRequest
             ->first();
 
         if (!$merchandiser) {
-            throw new NotFoundResourceException("Register First");
+            throw new NotFoundResourceException("Please Register First");
         }
 
         $this->checkPassword($merchandiser, $this->password);
@@ -77,7 +77,7 @@ class LoginRequest extends FormRequest
             ->first();
 
         if (!$bastaff) {
-            throw new NotFoundResourceException("Register First");
+            throw new NotFoundResourceException("Please Register First");
         }
 
         $this->checkPassword($bastaff, $this->password);
