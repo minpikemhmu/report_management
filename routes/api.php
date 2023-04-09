@@ -6,6 +6,9 @@ use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\MerchandiserController;
 use App\Http\Controllers\Api\ReportTypeController;
 use App\Http\Controllers\Api\Product\ProductApiController;
+use App\Http\Controllers\Api\GondolorTypeController;
+use App\Http\Controllers\Api\TripTypeController;
+use App\Http\Controllers\Api\OutskirtTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,9 @@ Route::middleware('api.token')->group(function () {
         // checking for bearer token
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('assignCustomerLists',  [MerchandiserController::class, 'assignCustomerLists']);
+            Route::get('gondolorTypeLists',  [GondolorTypeController::class, 'index']);
+            Route::get('tripTypeLists',  [TripTypeController::class, 'index']);
+            Route::get('outskirtTypeLists',  [OutskirtTypeController::class, 'index']);
         });
     });
 

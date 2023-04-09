@@ -31,7 +31,10 @@ class DatabaseSeeder extends Seeder
             ProductBrandSeeder::class,
             ProductCategorySeeder::class,
             ProductSubCategorySeeder::class,
-            BaReportTypeSeeder::class
+            BaReportTypeSeeder::class,
+            GondolarTypeSeeder::class,
+            OutskirtTypeSeeder::class,
+            TripTypeSeeder::class,
         ]);
     }
 }
