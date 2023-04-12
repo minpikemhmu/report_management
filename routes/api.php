@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Product\ProductApiController;
 use App\Http\Controllers\Api\GondolorTypeController;
 use App\Http\Controllers\Api\TripTypeController;
 use App\Http\Controllers\Api\OutskirtTypeController;
+use App\Http\Controllers\Api\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::middleware('api.token')->group(function () {
             Route::get('gondolorTypeLists',  [GondolorTypeController::class, 'index']);
             Route::get('tripTypeLists',  [TripTypeController::class, 'index']);
             Route::get('outskirtTypeLists',  [OutskirtTypeController::class, 'index']);
+            Route::post('storeMerchandiseReport', [ReportController::class,'storeMerchandiseReport']);
         });
     });
 
