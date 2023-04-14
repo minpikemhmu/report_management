@@ -54,6 +54,9 @@ class ReportController extends Controller
         if(isset($request->remark)){
             $report->remark  = $request->remark;
         }
+        if(isset($request->plus_code)){
+            $report->plus_code  = $request->plus_code;
+        }
         $report->save();
         return response(["code"    => "200",
         "status"           => "SUCCESS", 

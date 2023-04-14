@@ -42,6 +42,7 @@ return new class extends Migration
             $table->text('outlet_photo_before')->nullable();
             $table->text('outlet_photo_after')->nullable();
             $table->string('remark')->nullable();
+            $table->string('plus_code')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

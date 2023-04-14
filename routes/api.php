@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\GondolorTypeController;
 use App\Http\Controllers\Api\TripTypeController;
 use App\Http\Controllers\Api\OutskirtTypeController;
 use App\Http\Controllers\Api\ReportController;
-
+use App\Http\Controllers\ImageUploadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +22,10 @@ use App\Http\Controllers\Api\ReportController;
 |
 */
 Route::middleware('api.token')->group(function () {
+
+    Route::post('upload-image', [ImageUploadController::class, 'uploadImage']);
+    Route::delete('delete-images', [ImageUploadController::class, 'deleteImages']);
+
     Route::prefix('merchandiser')->group(function () {
         // auth
         Route::post('login', [AuthApiController::class, 'login']);
