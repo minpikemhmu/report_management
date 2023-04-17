@@ -16,6 +16,8 @@ class ProductApiController extends Controller
     use ResponserTraits;
     public function index(Request $request)
     {
+        $productName = isset($request['product_name']) ? $request['product_name'] : '';
+
         $productsQuery = Product::query();
 
         if ($request->has('product_brands_id')) {
@@ -33,6 +35,8 @@ class ProductApiController extends Controller
         if ($request->has('product_sub_category_id')) {
             $productsQuery->where('product_sub_category_id', $request->product_sub_category_id);
         }
+
+        $productsQuery->where('name', 'LIKE', "%$productName%");
 
         $products = $productsQuery->get();
 
