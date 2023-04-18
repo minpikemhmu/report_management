@@ -27,8 +27,6 @@ class ImageUploadController extends Controller
 
         $upload_image = $this->imageUploadService->uploadBase64($data['image'], new Image());
 
-        dd($upload_image);
-
         $to_image = $request->toImage($upload_image);
 
         $to_image->save();
