@@ -44,6 +44,8 @@ class MerchandiserReportRequest extends FormRequest
             'outlet_photo_before'                 => "nullable|string",
             'outlet_photo_after'                  => "nullable|string",
             'remark'                              => "nullable|string",
+            'latitude'                            => "nullable|string",
+            'longitude'                           => "nullable|string", 
         ];
     }
 }

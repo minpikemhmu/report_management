@@ -54,8 +54,11 @@ class ReportController extends Controller
         if(isset($request->remark)){
             $report->remark  = $request->remark;
         }
-        if(isset($request->plus_code)){
-            $report->plus_code  = $request->plus_code;
+        if(isset($request->latitude)){
+            $report->latitude  = $request->latitude;
+        }
+        if(isset($request->longitude)){
+            $report->longitude  = $request->longitude;
         }
         $report->save();
         return response(["code"    => "200",
