@@ -86,7 +86,7 @@ class ReportController extends Controller
             $report->longitude  = $request->longitude;
         }
         $report->save();
-        return response(["code"    => "200",
+        return response(["code"    => 200,
         "status"           => "SUCCESS", 
         "message"          => "Store SuccessFul",
         "data"             => $report,
