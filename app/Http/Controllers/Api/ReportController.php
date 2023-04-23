@@ -12,6 +12,7 @@ use App\Http\Requests\ImageUploadRequest;
 use App\Models\Image;
 use App\Services\ImageUploadService;
 use App\Traits\ResponserTraits;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -22,6 +23,7 @@ class ReportController extends Controller
         $this->imageUploadService = $imageUploadService;
     }
     public function storeMerchandiseReport(MerchandiserReportRequest $request){
+        Log::info($request->all());
         $report                    = new MerchandiseReport;
         $report->merchandiser_id   = $request->merchandiser_id;
         $report->customer_id       = $request->customer_id;
