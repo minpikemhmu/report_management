@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\MerchandiseReport;
 use Carbon\Carbon;
 use App\Http\Requests\MerchandiserReportRequest;
+use App\Http\Requests\ImageDeleteRequest;
+use App\Http\Requests\ImageUploadRequest;
+use App\Models\Image;
+use App\Services\ImageUploadService;
+use App\Traits\ResponserTraits;
 
 class ReportController extends Controller
 {
+    use ResponserTraits;
+
+    public function __construct(ImageUploadService $imageUploadService)
+    {
+        $this->imageUploadService = $imageUploadService;
+    }
     public function storeMerchandiseReport(MerchandiserReportRequest $request){
         $report                    = new MerchandiseReport;
         $report->merchandiser_id   = $request->merchandiser_id;
@@ -46,10 +57,22 @@ class ReportController extends Controller
             $report->backlit_size_centimeters_weight  = $request->backlit_size_centimeters_weight;
         }
         if(isset($request->outlet_photo_before)){
-            $report->outlet_photo_before  = $request->outlet_photo_before;
+            $upload_image = $this->imageUploadService->uploadBase64($request->outlet_photo_before, new Image());
+
+            $to_image = $request->toImage($upload_image);
+
+            $to_image->save();
+
+            $report->outlet_photo_before  = $upload_image;
         }
         if(isset($request->outlet_photo_after)){
-            $report->outlet_photo_after  = $request->outlet_photo_after;
+            $upload_image = $this->imageUploadService->uploadBase64($request->outlet_photo_after, new Image());
+
+            $to_image = $request->toImage($upload_image);
+
+            $to_image->save();
+
+            $report->outlet_photo_after  = $upload_image;
         }
         if(isset($request->remark)){
             $report->remark  = $request->remark;

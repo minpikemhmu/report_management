@@ -6,6 +6,7 @@ use App\Enums\Gender;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
+use App\Models\Image;
 
 class MerchandiserReportRequest extends FormRequest
 {
@@ -47,5 +48,14 @@ class MerchandiserReportRequest extends FormRequest
             'latitude'                            => "nullable|string",
             'longitude'                           => "nullable|string", 
         ];
+    }
+
+    public function toImage(string $image_url): Image
+    {
+        $image = new Image();
+        $image->image_url = $image_url;
+        $image->thumbnail_url = $image_url;
+
+        return $image;
     }
 }
