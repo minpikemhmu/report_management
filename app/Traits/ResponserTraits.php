@@ -47,7 +47,7 @@ trait ResponserTraits
 
     public function responseSuccessWithPaginate($message = 'successful', $data = []): JsonResponse
     {
-        $combine = $data->nextPageUrl() ? $data->nextPageUrl().'&limit='.$data->perPage() : null;
+        // $combine = $data->nextPageUrl() ? $data->nextPageUrl().'&limit='.$data->perPage() : null;
 
         return response()->json([
             'code'  => Response::HTTP_OK,
@@ -60,7 +60,7 @@ trait ResponserTraits
                 'pageName' => $data->getPageName(),
                 'path' => $data->path(),
                 'lastPage' => $data->lastPage(),
-                'nextPageUrl' =>  $combine,
+                'nextPageUrl' =>  $data->nextPageUrl(),
             ]
         ]);
     }

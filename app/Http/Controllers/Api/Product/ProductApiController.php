@@ -9,14 +9,27 @@ use App\Models\Product;
 use App\Models\ProductBrand;
 use Illuminate\Http\Request;
 use App\Traits\ResponserTraits;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductApiController extends Controller
 {
     use ResponserTraits;
+    public function paginate(?int $perPage = 15): LengthAwarePaginator
+    {
+        dd(request('product_name'));
+        return  $this->model()
+            ->latest()
+            ->where('name', 'like', '%' . request('product_name') ?? '' . '%')
+            ->paginate($perPage)
+            ->withQueryString();
+    }
+
     public function index(Request $request)
     {
         $productName = isset($request['product_name']) ? $request['product_name'] : '';
+        $limit = isset($request['limit']) ? $request['limit'] : '';
 
         $productsQuery = Product::query();
 
@@ -38,9 +51,9 @@ class ProductApiController extends Controller
 
         $productsQuery->where('name', 'LIKE', "%$productName%");
 
-        $products = $productsQuery->get();
+        $products = $productsQuery->paginate($limit)->withQueryString();
 
-        return $this->responseSuccess('success', ProductResource::collection($products));
+        return $this->responseSuccessWithPaginate('success', ProductResource::collection($products));
     }
 
     public function getAllProductBrands(Request $request)
