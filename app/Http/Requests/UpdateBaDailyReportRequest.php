@@ -26,7 +26,7 @@ class UpdateBaDailyReportRequest extends FormRequest
         return [
             'ba_report_date' => 'sometimes|required|date',
             'bastaff_id' => 'sometimes|required|exists:ba_staffs,id',
-            'outlet_id' => 'sometimes|required|exists:outlets,id',
+            'customer_id' => 'sometimes|required|exists:customers,id',
             'ba_report_type_id' => 'sometimes|required|exists:ba_report_types,id',
             'products.*.product_id' => 'sometimes|required|exists:products,id',
             'products.*.count' => 'sometimes|required|numeric|min:1',

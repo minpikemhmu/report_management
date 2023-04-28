@@ -11,7 +11,7 @@ class BaDailyReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ba_report_date', 'bastaff_id', 'outlet_id', 'ba_report_type_id', 'products'];
+    protected $fillable = ['ba_report_date', 'bastaff_id', 'customer_id', 'ba_report_type_id', 'products'];
 
     /**
      * Get the baStaff that owns the BaDailyReport
@@ -24,13 +24,13 @@ class BaDailyReport extends Model
     }
 
     /**
-     * Get the outlet that owns the BaDailyReport
+     * Get the customer that owns the BaDailyReport
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function outlet(): BelongsTo
+    public function customer(): BelongsTo
     {
-        return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
 
     /**

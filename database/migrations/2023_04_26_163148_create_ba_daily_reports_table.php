@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->date('ba_report_date');
             $table->foreignId('bastaff_id')->constrained('ba_staffs');
-            $table->foreignId('outlet_id')->constrained();
-            $table->foreignId('ba_report_type_id')->constrained();
-            $table->json('products')->nullable();
+            $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('ba_report_type_id')->constrained('ba_report_types');
+            // $table->json('products')->nullable();
             $table->timestamps();
         });
     }

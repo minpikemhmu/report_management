@@ -26,7 +26,7 @@ class StoreBaDailyReportRequest extends FormRequest
         return [
             'ba_report_date' => 'required|date',
             'bastaff_id' => 'required|exists:ba_staffs,id',
-            'outlet_id' => 'required|exists:outlets,id',
+            'customer_id' => 'required|exists:customers,id',
             'ba_report_type_id' => 'required|exists:ba_report_types,id',
             'products' => 'nullable|array',
             'products.*.product_id' => 'required_with:products|exists:products,id',
