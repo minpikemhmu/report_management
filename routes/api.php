@@ -10,7 +10,11 @@ use App\Http\Controllers\Api\GondolorTypeController;
 use App\Http\Controllers\Api\TripTypeController;
 use App\Http\Controllers\Api\OutskirtTypeController;
 use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\BA\BaDailyReportController;
+// use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\ImageUploadController;
+use App\Models\BaDailyReport;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -51,6 +55,10 @@ Route::middleware('api.token')->group(function () {
                 Route::get('/products', [ProductApiController::class, 'index']);
                 // Get All Product Brands
                 Route::get('/products/product_brands', [ProductApiController::class, 'getAllProductBrands']);
+            });
+            Route::prefix('ba-daily-report')->group(function() {
+                // Store a BA Daily Report
+                Route::post('store', [BaDailyReportController::class, 'store']);
             });
         });
     });

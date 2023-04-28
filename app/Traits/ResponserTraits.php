@@ -17,11 +17,11 @@ trait ResponserTraits
         ], Response::HTTP_OK);
     }
 
-    public function responseCreated($data = []): JsonResponse
+    public function responseCreated($message = 'successfully created' ,$data = []): JsonResponse
     {
         return response()->json([
             'code'  => Response::HTTP_CREATED,
-            'message' => 'successfully created',
+            'message' => $message,
             'data' => $data,
             'errors' => []
         ], Response::HTTP_CREATED);
