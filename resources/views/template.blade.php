@@ -12,16 +12,16 @@
     <title>Report Management System</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('template/vendor/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('template/vendor/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="{{asset('template/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
     <!-- Select 2 -->
     <link href="{{ asset('template/css/select2.min.css') }}" rel="stylesheet">
@@ -37,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -49,7 +49,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('dashboard')}}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -140,23 +140,24 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Staff</span>
                 </a>
-                <div id="collapseStaff" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseStaff" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Product Components:</h6>
                         <a class="collapse-item" href="{{ route('bastaffs.index') }}">BA Staffs</a>
-                        <a class="collapse-item" href="{{route('merchandiser.index')}}">Merchandiser</a>
+                        <a class="collapse-item" href="{{ route('merchandiser.index') }}">Merchandiser</a>
                     </div>
                 </div>
-            </li> 
+            </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('customers.index')}}">
+                <a class="nav-link" href="{{ route('customers.index') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Customers</span></a>
             </li>
 
             <!-- <li class="nav-item">
-                <a class="nav-link" href="{{route('merchandiser.index')}}">
+                <a class="nav-link" href="{{ route('merchandiser.index') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Merchandiser</span></a>
             </li> -->
@@ -170,13 +171,13 @@
 
             <!-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('bastaffs.index') }}">
-                    <i class="fas fa-fw fa-user"></i>   
+                    <i class="fas fa-fw fa-user"></i>
                     <span>BA Staffs</span></a>
             </li> -->
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('assignMerchandiser.index') }}">
-                    <i class="fas fa-fw fa-user"></i>   
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Merchandiser Assign</span></a>
             </li>
 
@@ -193,11 +194,32 @@
                         <a class="collapse-item" href="{{ route('products.index') }}">Product</a>
                         <a class="collapse-item" href="{{ route('product_brands.index') }}">Product Brand</a>
                         <a class="collapse-item" href="{{ route('product_categories.index') }}">Product Category</a>
-                        <a class="collapse-item" href="{{ route('product_key_cateogories.index') }}">Product Key Category</a>
-                        <a class="collapse-item" href="{{ route('product_sub_cateogories.index') }}">Product Sub Category</a>
+                        <a class="collapse-item" href="{{ route('product_key_cateogories.index') }}">Product Key
+                            Category</a>
+                        <a class="collapse-item" href="{{ route('product_sub_cateogories.index') }}">Product Sub
+                            Category</a>
                     </div>
                 </div>
-            </li> 
+            </li>
+
+            <!-- Nav Item - Reports Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Reports</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">BA Reports:</h6>
+                        <a class="collapse-item" href="{{ route('ba_daily_reports.index') }}">BA Daily Reports</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Merchandiser Reports:</h6>
+                        <a class="collapse-item" href="#">Merchandiser Reports</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Divider -->
             <!-- <hr class="sidebar-divider d-none d-md-block"> -->
@@ -283,15 +305,16 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    {{ __('Logout') }}
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
 
@@ -353,28 +376,28 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('template/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('template/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('template/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('template/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('template/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{ asset('template/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('template/js/demo/chart-pie-demo.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('template/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('template/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('template/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('template/js/demo/datatables-demo.js')}}"></script>
+    <script src="{{ asset('template/js/demo/datatables-demo.js') }}"></script>
 
     <!-- Select 2 -->
     <script src="{{ asset('template/js/select2.min.js') }}"></script>

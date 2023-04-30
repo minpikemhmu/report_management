@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Product extends Model
 {
@@ -50,6 +52,26 @@ class Product extends Model
     public function productKeyCategory(): BelongsTo
     {
         return $this->belongsTo(ProductKeyCategory::class, 'product_key_category_id');
+    }
+
+    /**
+     * Get all of the baDailyReportProducts for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function baDailyReportProducts(): HasMany
+    {
+        return $this->hasMany(BaDailyReportProduct::class);
+    }
+
+    /**
+     * Get all of the baDailyReports for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function baDailyReports(): HasManyThrough
+    {
+        return $this->hasManyThrough(BaDailyReport::class, BaDailyReportProduct::class, 'product_id', 'id', 'id', 'ba_daily_report_id');
     }
 
 }
