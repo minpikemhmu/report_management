@@ -29,7 +29,7 @@ class UpdateBaDailyReportRequest extends FormRequest
             'customer_id' => 'sometimes|required|exists:customers,id',
             'ba_report_type_id' => 'sometimes|required|exists:ba_report_types,id',
             'products.*.product_id' => 'sometimes|required|exists:products,id',
-            'products.*.count' => 'sometimes|required|numeric|min:1',
+            'products.*.count' => 'sometimes|required|string|min:1',
         ];
     }
 }

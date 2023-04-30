@@ -90,6 +90,10 @@ class ReportController extends Controller
         "status"           => "SUCCESS", 
         "message"          => "Store SuccessFul",
         "data"             => $report,
-]); 
+        ]); 
+    }
+
+    public function reportHistory(){
+        dd("hi");
     }
 }

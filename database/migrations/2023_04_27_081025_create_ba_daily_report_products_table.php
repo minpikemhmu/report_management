@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ba_daily_report_id')->on('ba_daily_reports')->cascadeOnDelete();
             $table->foreignId('product_id')->on('products')->cascadeOnDelete();
-            $table->integer('count');
+            $table->string('count');
             $table->timestamps();
         });
     }

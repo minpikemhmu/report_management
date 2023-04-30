@@ -30,7 +30,7 @@ class StoreBaDailyReportRequest extends FormRequest
             'ba_report_type_id' => 'required|exists:ba_report_types,id',
             'products' => 'nullable|array',
             'products.*.product_id' => 'required_with:products|exists:products,id',
-            'products.*.count' => 'required_with:products|integer|min:1',
+            'products.*.count' => 'required_with:products|string|min:1',
         ];
     }
 
