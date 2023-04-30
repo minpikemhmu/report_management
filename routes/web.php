@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\BaStaffController;
 use App\Http\Controllers\OutletController;
 use Illuminate\Support\Facades\Route;
@@ -37,5 +38,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('product_key_cateogories', ProductKeyCategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('assignMerchandiser', MerchandiserAssignController::class);
+    Route::resource('ba_daily_reports', BaDailyReportController::class);
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -19,7 +19,7 @@ class BaDailyReportProduct extends Model
 
     public function report()
     {
-        return $this->belongsTo(BaDailyReport::class, 'ba_daily_report_id');
+        return $this->belongsTo(BaDailyReport::class, 'ba_daily_report_id', 'id');
     }
 
     public function product()

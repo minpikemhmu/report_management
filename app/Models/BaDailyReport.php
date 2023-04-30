@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BaDailyReport extends Model
 {
@@ -51,5 +52,15 @@ class BaDailyReport extends Model
     public function products(): HasManyThrough
     {
         return $this->hasManyThrough(Product::class, BaDailyReportProduct::class, 'ba_daily_report_id', 'id', 'id', 'product_id');
+    }
+
+    /**
+     * Get all of the baDailyReportProducts for the BaDailyReport
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function baDailyReportProducts(): HasMany
+    {
+        return $this->hasMany(BaDailyReportProduct::class);
     }
 }
