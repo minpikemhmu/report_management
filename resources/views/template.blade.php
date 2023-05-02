@@ -140,10 +140,10 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Staff</span>
                 </a>
-                <div id="collapseStaff" class="collapse" aria-labelledby="headingTwo"
+                <div id="collapseStaff" class="collapse" aria-labelledby="headingStaff"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Product Components:</h6>
+                        <h6 class="collapse-header">Staff Components:</h6>
                         <a class="collapse-item" href="{{ route('bastaffs.index') }}">BA Staffs</a>
                         <a class="collapse-item" href="{{ route('merchandiser.index') }}">Merchandiser</a>
                     </div>
@@ -204,12 +204,12 @@
 
             <!-- Nav Item - Reports Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports"
+                    aria-expanded="true" aria-controls="collapseReports">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Reports</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                <div id="collapseReports" class="collapse" aria-labelledby="headingReports"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">BA Reports:</h6>
