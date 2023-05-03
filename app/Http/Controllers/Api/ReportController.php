@@ -13,6 +13,8 @@ use App\Models\Image;
 use App\Services\ImageUploadService;
 use App\Traits\ResponserTraits;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Resources\MerchandiserReportResource;
 
 class ReportController extends Controller
 {
@@ -93,7 +95,16 @@ class ReportController extends Controller
         ]); 
     }
 
-    public function reportHistory(){
-        dd("hi");
+    public function reportHistory(Request $request)
+    {
+        $limit = isset($request['limit']) ? $request['limit'] : 15;
+        $start_date = isset($request['start_date']) ? $request['start_date'] : '';
+        $end_date = isset($request['end_date']) ? $request['end_date'] : '';
+        if ($start_date && $end_date) {
+            $merchandise_report = MerchandiseReport::where('merchandiser_id',auth()->user()->id)->orderBy('created_at', 'desc')->whereBetween('created_at', [$start_date, $end_date])->paginate($limit)->withQueryString();;  
+        }else{
+            $merchandise_report = MerchandiseReport::where('merchandiser_id',auth()->user()->id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString();;  
+        }
+        return $this->responseSuccessWithPaginate('success', MerchandiserReportResource::collection($merchandise_report));
     }
 }

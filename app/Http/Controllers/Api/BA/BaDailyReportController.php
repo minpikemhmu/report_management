@@ -133,15 +133,9 @@ class BaDailyReportController extends Controller
         $endDate = $request->input('end_date');
 
         if (!isset($startDate) && !isset($endDate)) {
-            // If there is no startDate and endDate in request, then all get all BaDailyReport based on bastaff_id
-            // If there is no bastaff_id then it will return all BaDailyReport
-            $reports = BaDailyReport::when($baStaffId, function ($query) use ($baStaffId) {
-                return $query->whereHas('bastaff', function ($query) use ($baStaffId) {
-                    $query->where('id', $baStaffId);
-                });
-            })->paginate($limit)->withQueryString();
+            $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString();
 
-            return  $this->responseSuccessWithPaginate('Get Ba Daily Report Success!', BaDailyReportResource::collection($reports));
+            return  $this->responseSuccessWithPaginate('success', BaDailyReportResource::collection($reports));
         } elseif (!isset($startDate) && isset($endDate)) {
 
             $startDate = $defaultStartDate;
@@ -150,12 +144,8 @@ class BaDailyReportController extends Controller
             $endDate = $defaultEndDate;
         }
 
-        $reports = BaDailyReport::when($baStaffId, function ($query) use ($baStaffId) {
-            return $query->whereHas('bastaff', function ($query) use ($baStaffId) {
-                $query->where('id', $baStaffId);
-            });
-        })->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
+        $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
 
-        return  $this->responseSuccessWithPaginate('Get Ba Daily Report Success by Date!', BaDailyReportResource::collection($reports));
+        return  $this->responseSuccessWithPaginate('success', BaDailyReportResource::collection($reports));
     }
 }

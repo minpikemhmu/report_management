@@ -17,7 +17,7 @@ class BaDailyReportProductResource extends JsonResource
         return [
             'id' => $this->id,
             'ba_daily_report_id' =>$this->ba_daily_report_id,
-            'product_id'=> $this->product_id,
+            'product_name'=> $this->product->name,
             'count' => $this->count
         ];
     }
