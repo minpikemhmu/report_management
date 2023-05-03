@@ -7,16 +7,28 @@ use App\Http\Requests\StoreBaDailyReportRequest;
 use App\Http\Requests\UpdateBaDailyReportRequest;
 use App\Http\Resources\BaReportTypeResource;
 use App\Traits\ResponserTraits;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BaDailyReportResource;
 use App\Services\BaDailyReportService;
+use Illuminate\Http\Request;
 
 
 class BaDailyReportController extends Controller
 {
     use ResponserTraits;
+
     public function __construct(private BaDailyReportService $service)
     {
+    }
+
+    public function paginate(?int $perPage = 15): LengthAwarePaginator
+    {
+        dd(request('product_name'));
+        return  $this->model()
+            ->latest()
+            ->paginate($perPage)
+            ->withQueryString();
     }
 
     /**
@@ -50,7 +62,7 @@ class BaDailyReportController extends Controller
         // Store the daily report
         $baDailyReport = $this->service->store($request);
         $getResponseBaDailyReport = BaDailyReport::find($baDailyReport->id);
-        
+
         return $this->responseCreated("Successfully created a BA Daily Report", new BaDailyReportResource($getResponseBaDailyReport));
     }
 
@@ -97,5 +109,45 @@ class BaDailyReportController extends Controller
     public function destroy(BaDailyReport $baDailyReport)
     {
         //
+    }
+
+    public function getAllBaDailyReportByFilters(Request $request)
+    {
+        $limit = isset($request['limit']) ? $request['limit'] : '';
+
+        // default start date = with client needs & end date = today
+        $defaultStartDateString = '2020-01-01';
+        $defaultStartDateBeforeFormat = strtotime($defaultStartDateString);
+        $defaultStartDate = date('Y-m-d', $defaultStartDateBeforeFormat);
+        $defaultEndDate = date('Y-m-d');
+
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        if (!isset($startDate) && !isset($endDate)) {
+            // If there is no startDate and endDate in request, then all get all BaDailyReport based on bastaff_id
+            // If there is no bastaff_id then it will return all BaDailyReport
+            $reports = BaDailyReport::when($request->has('bastaff_id'), function ($query) use ($request) {
+                return $query->whereHas('bastaff', function ($query) use ($request) {
+                    $query->where('id', $request->input('bastaff_id'));
+                });
+            })->paginate($limit)->withQueryString();
+
+            return  $this->responseSuccessWithPaginate('Get Ba Daily Report Success!', BaDailyReportResource::collection($reports));
+        } elseif (!isset($startDate) && isset($endDate)) {
+
+            $startDate = $defaultStartDate;
+        } elseif (isset($startDate) && !isset($endDate)) {
+
+            $endDate = $defaultEndDate;
+        }
+
+        $reports = BaDailyReport::when($request->has('bastaff_id'), function ($query) use ($request) {
+            return $query->whereHas('bastaff', function ($query) use ($request) {
+                $query->where('id', $request->input('bastaff_id'));
+            });
+        })->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
+
+        return  $this->responseSuccessWithPaginate('Get Ba Daily Report Success by Date!', BaDailyReportResource::collection($reports));
     }
 }

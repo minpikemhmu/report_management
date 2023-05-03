@@ -60,6 +60,7 @@ Route::middleware('api.token')->group(function () {
             Route::prefix('ba-daily-report')->group(function() {
                 // Store a BA Daily Report
                 Route::post('store', [BaDailyReportController::class, 'store']);
+                Route::get('history', [BaDailyReportController::class, 'getAllBaDailyReportByFilters']);
             });
         });
     });
