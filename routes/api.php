@@ -40,7 +40,9 @@ Route::middleware('api.token')->group(function () {
             Route::get('tripTypeLists',  [TripTypeController::class, 'index']);
             Route::get('outskirtTypeLists',  [OutskirtTypeController::class, 'index']);
             Route::post('storeMerchandiseReport', [ReportController::class,'storeMerchandiseReport']);
-            Route::get('reportHistory', [ReportController::class,'reportHistory']);
+            Route::prefix('merchandiser-daily-report')->group(function() {
+                Route::get('history', [ReportController::class,'reportHistory']);
+            });
         });
     });
 

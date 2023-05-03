@@ -27,9 +27,9 @@ class BaDailyReportResource extends JsonResource
         return [
             'id' => $this->id,
             'ba_report_date' => $this->ba_report_date,
-            'bastaff_id' => $this->bastaff_id,
-            'customer_id' => $this->customer_id,
-            'ba_report_type_id' => $this->ba_report_type_id,
+            'bastaff_name' => $this->baStaff->name,
+            'customer_name' => $this->customer->name,
+            'ba_report_type' => $this->baReportType->name,
             'products' => $productResources,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
