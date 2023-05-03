@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductSubCategoryController;
 use App\Http\Controllers\MerchandiserAssignController;
 use App\Http\Controllers\ProductKeyCategoryController;
+use App\Http\Controllers\MerchandiserDailyReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('products', ProductController::class);
     Route::resource('assignMerchandiser', MerchandiserAssignController::class);
     Route::resource('ba_daily_reports', BaDailyReportController::class);
+    Route::resource('mr_daily_reports', MerchandiserDailyReportController::class);
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
