@@ -115,6 +115,14 @@ class BaDailyReportController extends Controller
     {
         $limit = isset($request['limit']) ? $request['limit'] : '';
 
+        $user = auth()->user();
+
+        $baStaffId = null;
+        if ($user instanceof \App\Models\BaStaff) {
+            $baStaffId = $user->id;
+        }
+
+
         // default start date = with client needs & end date = today
         $defaultStartDateString = '2020-01-01';
         $defaultStartDateBeforeFormat = strtotime($defaultStartDateString);
@@ -127,9 +135,9 @@ class BaDailyReportController extends Controller
         if (!isset($startDate) && !isset($endDate)) {
             // If there is no startDate and endDate in request, then all get all BaDailyReport based on bastaff_id
             // If there is no bastaff_id then it will return all BaDailyReport
-            $reports = BaDailyReport::when($request->has('bastaff_id'), function ($query) use ($request) {
-                return $query->whereHas('bastaff', function ($query) use ($request) {
-                    $query->where('id', $request->input('bastaff_id'));
+            $reports = BaDailyReport::when($baStaffId, function ($query) use ($baStaffId) {
+                return $query->whereHas('bastaff', function ($query) use ($baStaffId) {
+                    $query->where('id', $baStaffId);
                 });
             })->paginate($limit)->withQueryString();
 
@@ -142,9 +150,9 @@ class BaDailyReportController extends Controller
             $endDate = $defaultEndDate;
         }
 
-        $reports = BaDailyReport::when($request->has('bastaff_id'), function ($query) use ($request) {
-            return $query->whereHas('bastaff', function ($query) use ($request) {
-                $query->where('id', $request->input('bastaff_id'));
+        $reports = BaDailyReport::when($baStaffId, function ($query) use ($baStaffId) {
+            return $query->whereHas('bastaff', function ($query) use ($baStaffId) {
+                $query->where('id', $baStaffId);
             });
         })->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
 
