@@ -50,10 +50,10 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->product_code }}</td>
                                             <td>{{ $product->brn_code }}</td>
-                                            <td>{{ $product->product_brands_id ? $product_brands[$product->product_brands_id - 1]->name : null }}</td>
-                                            <td>{{ $product->product_category_id ? $product_categories[$product->product_category_id - 1]->name : null }}</td>
+                                            <td>{{ $product->productbrand->name?? null }}</td>
+                                            <td>{{ $product->productcategory->name?? null }}</td>
                                             <td>{{ $product->productKeyCategory->name ?? null }}</td>
-                                            <td>{{ $product->product_sub_category_id ? $product_sub_categories[$product->product_sub_category_id - 1]->name : null }}</td>
+                                            <td>{{ $product->productsubcategory->name?? null }}</td>
                                             <td>{{ $product->size }}</td>
                                             <td>
                                                 <div class="t-flex-center">

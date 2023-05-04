@@ -71,16 +71,16 @@
                                             <td>{{ $baStaff->ba_code }}</td>
                                             <td>{{ $baStaff->name }}</td>
                                             {{-- <td>{{ $baStaff->division_state_id }}</td> --}}
-                                            <td>{{ $baStaff->supervisor_id ? $supervisor[$baStaff->supervisor_id - 1]->name : null }}
+                                            <td>{{ $baStaff->supervisor->name}}
                                             </td>
-                                            <td>{{ $baStaff->city_id ? $city[$baStaff->city_id - 1]->name : null }}</td>
-                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->dksh_customer_id : null }}
+                                            <td>{{ $baStaff->city->name}}</td>
+                                            <td>{{ $baStaff->customer->dksh_customer_id}}
                                             </td>
-                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->name : null }}
+                                            <td>{{ $baStaff->customer->name}}
                                             </td>
-                                            <td>{{ $baStaff->channel_id ? $channel[$baStaff->channel_id - 1]->name : null }}
+                                            <td>{{ $baStaff->channel->name}}
                                             </td>
-                                            <td>{{ $baStaff->subchannel_id ? $subchannel[$baStaff->subchannel_id - 1]->name : null }}
+                                            <td>{{ $baStaff->subchannel->name}}
                                             </td>
                                             <td>
                                                 <div class="t-flex-center">

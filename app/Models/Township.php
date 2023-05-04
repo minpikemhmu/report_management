@@ -10,7 +10,7 @@ class Township extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'division_state_id', 'region_id'];
+    protected $fillable = ['name', 'division_state_id', 'region_id', 'city_id'];
 
     /**
      * Get the divisionstate that owns the township
@@ -30,5 +30,15 @@ class Township extends Model
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
+    }
+
+    /**
+     * Get the township that owns the city
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }

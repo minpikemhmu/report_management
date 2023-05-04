@@ -10,19 +10,8 @@ class City extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'township_id', 'division_state_id', 'region_id'];
-
-    /**
-     * Get the township that owns the city
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function township(): BelongsTo
-    {
-        return $this->belongsTo(Township::class);
-    }
-
-    
+    protected $fillable = ['name', 'division_state_id', 'region_id'];
+   
     /**
      * Get the divisionstate that owns the township
      *
