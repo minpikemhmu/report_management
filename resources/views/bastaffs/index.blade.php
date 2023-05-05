@@ -6,7 +6,19 @@
                 <h2>BA Staff Management</h2>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row">
+            <div>
+                <form action="{{route('baStaffImport')}}" method="POST" enctype="multipart/form-data" class="d-flex gap-0">
+                    @csrf
+                    <div class="form-group flex-grow-1">
+                        <label for="file">Excel File</label>
+                        <input type="file" name="file" id="file">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm mb-4 flex-grow-1">Import</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex align-items-center justify-content-between">

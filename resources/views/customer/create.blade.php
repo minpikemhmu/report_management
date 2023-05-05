@@ -12,7 +12,7 @@
                     <form method="POST" action="{{route('customers.store')}}">
                      @csrf
                     <div class="form-group">
-                        <label for="customer">Customer name</label>
+                        <label for="customer">Customer Name</label>
                         <input
                             type="text"
                             class="form-control"
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label for="division">Division</label>
                         <select
-                            class="form-control"
+                            class="form-control selectedDivision"
                             id="division"
                             name="division"
                         >
@@ -106,25 +106,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="township">Township</label>
-                        <select
-                            class="form-control"
-                            id="township"
-                            name="township"
-                        >
-                            <option selected value="">Select the Township</option>
-                            @foreach($townships as $row)
-                                <option value="{{$row->id}}">{{$row->name}}</option>
-                            @endforeach
-                        </select>
-                        <div class="form-control-feedback text-danger"> {{$errors->first('township') }} </div>
-                    </div>
-
-
-                    <div class="form-group">
                         <label for="city">City</label>
                         <select
-                            class="form-control"
+                            class="form-control selectedCity"
                             id="city"
                             name="city"
                         >
@@ -136,6 +120,21 @@
                         <div class="form-control-feedback text-danger"> {{$errors->first('city') }} </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="township">Township</label>
+                        <select
+                            class="form-control selectedTownship"
+                            id="township"
+                            name="township"
+                        >
+                            <option selected value="">Select the Township</option>
+                            @foreach($townships as $row)
+                                <option value="{{$row->id}}">{{$row->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="form-control-feedback text-danger"> {{$errors->first('township') }} </div>
+                    </div>
+
                     <button class="btn btn-primary mt-4" type="submit" >
                             create
                     </button>
@@ -144,4 +143,67 @@
              </div>
       </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".selectedDivision").change(function(){
+            var selected_division_id = $(this).val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('getCityByDivision') }}",
+                data: {
+                    'division_id': selected_division_id,
+                },
+                type: 'GET',
+                dataType: 'json',
+                global: false,
+                async: false,
+                success: function(result) {
+                    if (result) {
+                        var html ="";
+                        html+=`<option value="">Select the City</option>`
+                        result.forEach(element => {
+                            html+=`
+                            <option value="${element.id}">${element.name}</option>
+                            `
+                        });
+                        $(".selectedCity").html(html);
+                    }
+                }
+            })
+        })
+
+        $(".selectedCity").change(function(){
+            var selected_city_id = $(this).val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('getTownshipByCity') }}",
+                data: {
+                    'city_id': selected_city_id,
+                },
+                type: 'GET',
+                dataType: 'json',
+                global: false,
+                async: false,
+                success: function(result) {
+                    if (result) {
+                        var html ="";
+                        html+=`<option value="">Select the Township</option>`
+                        result.forEach(element => {
+                            html+=`
+                            <option value="${element.id}">${element.name}</option>
+                            `
+                        });
+                        $(".selectedTownship").html(html);
+                    }
+                }
+            })
+        })
+    })
+</script>
 @endsection 
