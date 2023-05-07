@@ -24,6 +24,10 @@ return new class extends Migration
             ->nullable()
             ->on('regions')
             ->cascadeOnDelete();
+            $table->foreignId('city_id')
+            ->nullable()
+            ->on('cities')
+            ->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -6,7 +6,19 @@
                 <h2>BA Staff Management</h2>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row">
+            <div>
+                <form action="{{route('baStaffImport')}}" method="POST" enctype="multipart/form-data" class="d-flex gap-0">
+                    @csrf
+                    <div class="form-group flex-grow-1">
+                        <label for="file">Excel File</label>
+                        <input type="file" name="file" id="file">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm mb-4 flex-grow-1">Import</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
@@ -71,16 +83,16 @@
                                             <td>{{ $baStaff->ba_code }}</td>
                                             <td>{{ $baStaff->name }}</td>
                                             {{-- <td>{{ $baStaff->division_state_id }}</td> --}}
-                                            <td>{{ $baStaff->supervisor_id ? $supervisor[$baStaff->supervisor_id - 1]->name : null }}
+                                            <td>{{ $baStaff->supervisor->name}}
                                             </td>
-                                            <td>{{ $baStaff->city_id ? $city[$baStaff->city_id - 1]->name : null }}</td>
-                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->dksh_customer_id : null }}
+                                            <td>{{ $baStaff->city->name}}</td>
+                                            <td>{{ $baStaff->customer->dksh_customer_id}}
                                             </td>
-                                            <td>{{ $baStaff->customer_id ? $customers[$baStaff->customer_id - 1]->name : null }}
+                                            <td>{{ $baStaff->customer->name}}
                                             </td>
-                                            <td>{{ $baStaff->channel_id ? $channel[$baStaff->channel_id - 1]->name : null }}
+                                            <td>{{ $baStaff->channel->name}}
                                             </td>
-                                            <td>{{ $baStaff->subchannel_id ? $subchannel[$baStaff->subchannel_id - 1]->name : null }}
+                                            <td>{{ $baStaff->subchannel->name}}
                                             </td>
                                             <td>
                                                 <div class="t-flex-center">
