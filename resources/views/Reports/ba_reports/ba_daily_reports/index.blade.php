@@ -31,6 +31,13 @@
                                         <th>BA Report Type</th>
                                         <th>BA Code</th>
                                         <th>BA Name</th>
+
+                                        <th>Region</th>
+                                        <th>Supervisor</th>
+                                        <th>City</th>
+                                        <th>Key Channel</th>
+                                        <th>Sub Channel</th>
+
                                         <th>Customer Name</th>
                                         <th>Customer ID</th>
                                         <th>Product ID</th>
@@ -48,6 +55,13 @@
                                                 <td>{{ $baDailyReport->baReportType->name }}</td>
                                                 <td>{{ $baDailyReport->baStaff->ba_code }}</td>
                                                 <td>{{ $baDailyReport->baStaff->name }}</td>
+
+                                                <th>{{ $baDailyReport->baStaff->supervisor->region->name }}</th>
+                                                <th>{{ $baDailyReport->baStaff->supervisor->name }}</th>
+                                                <th>{{ $baDailyReport->baStaff->city->name }}</th>
+                                                <th>{{ $baDailyReport->baStaff->channel->name }}</th>
+                                                <th>{{ $baDailyReport->baStaff->subchannel->name }}</th>
+
                                                 <td>{{ $baDailyReport->customer->name }}</td>
                                                 <td>{{ $baDailyReport->customer->dksh_customer_id }}</td>
                                                 <td>{{ $baDailyReportProduct->product->id }}</td>

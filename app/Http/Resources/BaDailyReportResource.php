@@ -22,12 +22,18 @@ class BaDailyReportResource extends JsonResource
         $productResources = $reportProducts->map(function ($product) {
             return new BaDailyReportProductResource($product);
         });
-        // dd($productResources);
 
         return [
             'id' => $this->id,
             'ba_report_date' => $this->ba_report_date,
             'bastaff_name' => $this->baStaff->name,
+
+            'supervisor' => $this->baStaff->supervisor->name,
+            'region' => $this->baStaff->supervisor->region->name,
+            'city' => $this->baStaff->city->name,
+            'key_channel' => $this->baStaff->channel->name,
+            'sub_channel' => $this->baStaff->subchannel->name,
+
             'customer_name' => $this->customer->name,
             'ba_report_type' => $this->baReportType->name,
             'products' => $productResources,
