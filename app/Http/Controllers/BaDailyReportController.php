@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BaDailyReportExport;
 use App\Models\BaDailyReport;
 use Illuminate\Http\Request;
 use App\http\Resources\BaDailyReportCollection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BaDailyReportController extends Controller
 {
@@ -85,5 +87,18 @@ class BaDailyReportController extends Controller
     public function destroy(BaDailyReport $baDailyReport)
     {
         //
+    }
+
+    public function baDailyReportExport(Request $request)
+    {
+        $reports = json_decode($request->dataArray);
+        if (sizeof($reports) == 0) {
+            return response()->json([
+                'message' => 'There is no data'
+            ]);
+        } else {
+            $success_export = new BaDailyReportExport(collect($reports));
+            return Excel::download($success_export, 'ba_daily_report.csv');
+        }
     }
 }
