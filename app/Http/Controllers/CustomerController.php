@@ -38,9 +38,9 @@ class CustomerController extends Controller
     public function create()
     {
         $customer_types= CustomerType::all();
-        $divisions = DivisionState::all();
-        $townships = Township::all();
-        $cities = City::all();
+        $divisions = DivisionState::orderby('name')->get();
+        $townships = Township::orderby('name')->get();
+        $cities = City::orderby('name')->get();
         return view('customer.create',compact('customer_types', 'divisions', 'townships', 'cities'));
     }
 
@@ -76,9 +76,9 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         $customer_types= CustomerType::all();
-        $divisions = DivisionState::all();
-        $townships = Township::all();
-        $cities = City::all();
+        $divisions = DivisionState::orderby('name')->get();
+        $townships = Township::orderby('name')->get();
+        $cities = City::orderby('name')->get();
         return view('customer.edit',compact('customer', 'customer_types', 'divisions', 'townships', 'cities'));
     }
 

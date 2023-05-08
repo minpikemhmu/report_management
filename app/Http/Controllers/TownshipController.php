@@ -84,7 +84,7 @@ class TownshipController extends Controller
     }
 
     public function getTownshipByCity(Request $request){
-        $townships = Township::where('division_state_id', $request->city_id)->get();
+        $townships = Township::where('city_id', $request->city_id)->orderby('name')->get();
         return $townships;
     }
 }

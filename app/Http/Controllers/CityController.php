@@ -84,7 +84,7 @@ class CityController extends Controller
     }
 
     public function getCityByDivision(Request $request){
-        $cities = City::where('division_state_id', $request->division_id)->get();
+        $cities = City::where('division_state_id', $request->division_id)->orderby('name')->get();
         return $cities;
     }
 }

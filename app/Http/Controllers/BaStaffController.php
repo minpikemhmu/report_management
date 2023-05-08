@@ -28,7 +28,7 @@ class BaStaffController extends Controller
     {
         $baStaffs = BaStaff::all();
         $supervisor=Supervisor::all();
-        $city=City::all();
+        $city=City::orderby('name')->get();
         // $outlet=Outlet::all();
         $customers=Customer::all();
         $channel=Channel::all();
@@ -45,7 +45,7 @@ class BaStaffController extends Controller
     {
         $baStaffs = BaStaff::all();
         $supervisor=Supervisor::all();
-        $city=City::all();
+        $city=City::orderby('name')->get();
         // $outlet=Outlet::all();
         $customers=Customer::all();
         $channel=Channel::all();
@@ -86,7 +86,7 @@ class BaStaffController extends Controller
     {
         $baStaff=BaStaff::find($id);
         $supervisor=Supervisor::all();
-        $city=City::all();
+        $city=City::orderby('name')->get();
         // $outlet=Outlet::all();
         $customers=Customer::all();
         $channel=Channel::all();
