@@ -11,6 +11,22 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
                         <h6 class="mt-2 font-weight-bold float-left ut-title">BA Daily Reports Table</h6>
+
+                        <div id="date-range-filter" class="d-flex">
+                            <div class="input-group mr-4">
+                                <label for="min">
+                                    Start Date: 
+                                    <input class="form-control input-sm" type="text" id="min" name="min">
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <label for="max">
+                                    End Date: 
+                                    <input class="form-control input-sm" type="text" id="max" name="max">
+                                </label>
+                            </div>
+                        </div>
+
                         <div id="dt-buttons-gp" class="dt-buttons">
                             {{-- <a href="#" type="button" class="btn dbtn_export " style="background-color: #72F573">
                                 <i class="fa-solid fa-file-export export-i-white mr-2"></i><span
@@ -29,6 +45,16 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
+                            {{-- <div id="date-range-filter" class="d-flex">
+                                <div class="mr-5">
+                                    <label for="min">Start Date: </label>
+                                    <input type="text" id="min" name="min">
+                                </div>
+                                <div>
+                                    <label for="max">End Date: </label>
+                                    <input type="text" id="max" name="max">
+                                </div>
+                            </div> --}}
                             <table class="table table-bordered" id="baDailyReportDataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -83,21 +109,54 @@
 @endsection
 @section('script')
     <script type="text/javascript">
+        var minDate, maxDate;
+
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                var min = minDate.val();
+                var max = maxDate.val();
+                var date = new Date(data[1]);
+
+                if (
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+
         $(document).ready(function() {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'MMMM Do YYYY'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'MMMM Do YYYY'
+            });
+
+            // // DataTables initialisation
+            // var table = $('#example').DataTable();
+
 
             // Export CSV and Excel uing DataTable Features
 
             var table = $('#baDailyReportDataTable').DataTable();
 
             new $.fn.dataTable.Buttons(table, {
-                buttons: [
-                    {
+                buttons: [{
                         extend: 'csv',
                         text: '<i class="fa fa-file-csv fa-beat fa-xl"></i> CSV',
                         className: 'btn btn-outline-success',
                         title: '',
                         enabled: true,
-                        filename: function () { return getCSVExportFileName();}
+                        filename: function() {
+                            return getCSVExportFileName();
+                        }
                     },
 
                     {
@@ -106,7 +165,9 @@
                         className: 'btn btn-outline-primary',
                         title: '',
                         enabled: true,
-                        filename: function () { return getExcelExportFileName();}
+                        filename: function() {
+                            return getExcelExportFileName();
+                        }
                     },
                 ]
             });
@@ -114,6 +175,11 @@
             // Append DataTable Buttons 
             table.buttons().container()
                 .appendTo($('#dt-buttons-gp'));
+
+            // Refilter the table
+            $('#min, #max').on('change', function() {
+                table.draw();
+            });
 
             // Excel Export 
             // $('#baDailyReportDataTable').dataTable({
