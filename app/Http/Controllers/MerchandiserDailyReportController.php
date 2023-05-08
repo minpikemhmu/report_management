@@ -7,6 +7,9 @@ use App\Models\MerchandiseReport;
 use App\Exports\MerchandiserReportExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\BaStaffImport;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Yajra\DataTables\Facades\DataTables;
 
 class MerchandiserDailyReportController extends Controller
 {
@@ -106,5 +109,40 @@ class MerchandiserDailyReportController extends Controller
         Excel::import(new BaStaffImport, request()->file('file'));
 
         return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+    }
+
+    public function getMerchandiserReport(Request $request){
+        $date  = strtotime($request->startDate);
+        $startDate  = date('Y-m-d', $date);
+        $date1  = strtotime($request->endDate);
+        $endDate  = date('Y-m-d', $date1);
+        $lastSevenDay = Carbon::now()->subDays(6);
+        if ($request->startDate == null && $request->endDate == null) {
+            $getAllDailyReports = DB::table('merchandise_reports')
+                ->select('merchandise_reports.remark as remark','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name')
+                ->leftjoin('merchandisers', 'merchandise_reports.merchandiser_id', '=', 'merchandisers.id')
+                ->leftjoin('customers', 'merchandise_reports.customer_id', '=', 'customers.id')
+                ->leftjoin('gondolar_types', 'merchandise_reports.gondolar_type_id', '=', 'gondolar_types.id')
+                ->leftjoin('trip_types', 'merchandise_reports.trip_type_id', '=', 'trip_types.id')
+                ->leftjoin('outskirt_types', 'merchandise_reports.outskirt_type_id', '=', 'outskirt_types.id')
+                ->where('merchandise_reports.created_at', '>=', $lastSevenDay)
+                ->orderBy('merchandise_reports.created_at', 'DESC')
+                ->get();
+        } elseif ($request->startDate != null && $request->endDate != null) {
+            $getAllDailyReports = DB::table('merchandise_reports')
+                ->select('merchandise_reports.remark as remark','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name')
+                ->leftjoin('merchandisers', 'merchandise_reports.merchandiser_id', '=', 'merchandisers.id')
+                ->leftjoin('customers', 'merchandise_reports.customer_id', '=', 'customers.id')
+                ->leftjoin('gondolar_types', 'merchandise_reports.gondolar_type_id', '=', 'gondolar_types.id')
+                ->leftjoin('trip_types', 'merchandise_reports.trip_type_id', '=', 'trip_types.id')
+                ->leftjoin('outskirt_types', 'merchandise_reports.outskirt_type_id', '=', 'outskirt_types.id')
+                ->whereDate('merchandise_reports.created_at', '>=', $startDate)
+                ->whereDate('merchandise_reports.created_at', '<=', $endDate)
+                ->orderBy('merchandise_reports.created_at', 'DESC')
+                ->get();
+        } else {
+            $getAllDailyReports = [];
+        }
+        return Datatables::of($getAllDailyReports)->addIndexColumn()->toJson();
     }
 }
