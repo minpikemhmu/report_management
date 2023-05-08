@@ -24,8 +24,9 @@
                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
                         <h6 class="mt-2 font-weight-bold float-left ut-title">Merchandiser Reports Table</h6>
                         <div>
-                            <a href="#" type="button" class="btn dbtn_export" style="background-color: #72F573">
-                                <i class="fa-solid fa-file-export export-i-white mr-2"></i><span class="txt-white">Export</span>
+                            <a href="#" type="button" class="btn btn-outline-success dbtn_export">
+                                {{-- <i class="fa-solid fa-file-export export-i-white mr-2"></i><span class="txt-white">Export</span> --}}
+                                <i class="fa fa-file-excel fa-beat fa-xl"></i> Excel Export
                             </a>
                         </div>
                     </div>
