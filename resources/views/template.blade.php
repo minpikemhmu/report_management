@@ -23,9 +23,17 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Select 2 -->
     <link href="{{ asset('template/css/select2.min.css') }}" rel="stylesheet">
+
+    <style>
+        table.dataTable td.hide-column,
+        table.dataTable th.hide-column {
+            display: none !important;
+        }
+    </style>
 
 </head>
 
@@ -378,6 +386,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
