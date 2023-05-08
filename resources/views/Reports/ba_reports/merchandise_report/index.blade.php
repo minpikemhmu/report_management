@@ -3,14 +3,14 @@
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-between align-items-center">
-                <h2>BA Daily Reports</h2>
+                <h2>Merchandiser Reports</h2>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                        <h6 class="mt-2 font-weight-bold float-left ut-title">BA Daily Reports Table</h6>
+                        <h6 class="mt-2 font-weight-bold float-left ut-title">Merchandiser Reports Table</h6>
                         <div>
                             <a href="#" type="button" class="btn dbtn_export" style="background-color: #72F573">
                                 <i class="fa-solid fa-file-export export-i-white mr-2"></i><span class="txt-white">Export</span>

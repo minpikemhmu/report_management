@@ -115,6 +115,14 @@ class BaDailyReportController extends Controller
     {
         $limit = isset($request['limit']) ? $request['limit'] : '';
 
+        $user = auth()->user();
+
+        $baStaffId = null;
+        if ($user instanceof \App\Models\BaStaff) {
+            $baStaffId = $user->id;
+        }
+
+
         // default start date = with client needs & end date = today
         $defaultStartDateString = '2020-01-01';
         $defaultStartDateBeforeFormat = strtotime($defaultStartDateString);

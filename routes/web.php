@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('getCityByDivision', [App\Http\Controllers\CityController::class, 'getCityByDivision'])->name('getCityByDivision');
     Route::get('getTownshipByCity', [App\Http\Controllers\TownshipController::class, 'getTownshipByCity'])->name('getTownshipByCity');
     Route::post('merchandiserReportExport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'merchandiserReportExport'])->name('merchandiserReportExport');
+    Route::post('baDAilyReportExport', [App\Http\Controllers\BaDailyReportController::class, 'baDailyReportExport'])->name('baDAilyReportExport');
     Route::post('/baStaffImport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'baStaffImport'])->name('baStaffImport');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
