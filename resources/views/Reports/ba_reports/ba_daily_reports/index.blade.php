@@ -6,13 +6,11 @@
                 <h2>BA Daily Reports</h2>
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                        <h6 class="mt-2 font-weight-bold float-left ut-title">BA Daily Reports Table</h6>
 
-                        <div id="date-range-filter" class="d-flex">
+        {{-- <div class="row mt-5"> --}}
+        <div class="row">
+            <div class="d-flex mt-3 justify-content-start col-12">
+                {{-- <div id="date-range-filter" class="d-flex">
                             <div class="input-group mr-4">
                                 <label for="min">
                                     Start Date: 
@@ -25,7 +23,39 @@
                                     <input class="form-control input-sm" type="text" id="max" name="max">
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
+                <div class="form-group ml-3">
+                    <p class="form-check-label active-or-not pos-r">Start Date: <input type="text" id="min"
+                            name="min" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
+                </div>
+                <div class="form-group ml-3">
+                    <p class="form-check-label active-or-not pos-r">End Date: <input type="text" id="max"
+                            name="max" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
+                </div>
+                <div class="mr-5">
+                    <button class="btn btn-primary dbtn-search btn-sm ml-3"><i
+                            class="fa-solid fa-magnifying-glass mr-2"></i>Search</button>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                        <h6 class="mt-2 font-weight-bold float-left ut-title">BA Daily Reports Table</h6>
+
+                        {{-- <div id="date-range-filter" class="d-flex">
+                            <div class="input-group mr-4">
+                                <label for="min">
+                                    Start Date: 
+                                    <input class="form-control input-sm" type="text" id="min" name="min">
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <label for="max">
+                                    End Date: 
+                                    <input class="form-control input-sm" type="text" id="max" name="max">
+                                </label>
+                            </div>
+                        </div> --}}
 
                         <div id="dt-buttons-gp" class="dt-buttons">
                             {{-- <a href="#" type="button" class="btn dbtn_export " style="background-color: #72F573">
@@ -139,6 +169,10 @@
                 format: 'MMMM Do YYYY'
             });
 
+            // // Clear input date when refresh
+            // $('#min').val('')
+            // $('#max').val('')
+
             // // DataTables initialisation
             // var table = $('#example').DataTable();
 
@@ -148,21 +182,23 @@
             var table = $('#baDailyReportDataTable').DataTable();
 
             new $.fn.dataTable.Buttons(table, {
-                buttons: [{
-                        extend: 'csv',
-                        text: '<i class="fa fa-file-csv fa-beat fa-xl"></i> CSV',
-                        className: 'btn btn-outline-success',
-                        title: '',
-                        enabled: true,
-                        filename: function() {
-                            return getCSVExportFileName();
-                        }
-                    },
+                buttons: [
+                    // {
+                    //     extend: 'csv',
+                    //     text: '<i class="fa fa-file-csv fa-beat fa-xl"></i> CSV',
+                    //     className: 'btn btn-outline-success',
+                    //     title: '',
+                    //     enabled: true,
+                    //     filename: function() {
+                    //         return getCSVExportFileName();
+                    //     }
+                    // },
 
                     {
                         extend: 'excel',
-                        text: '<i class="fa fa-file-excel fa-beat fa-xl"></i> Excel',
-                        className: 'btn btn-outline-primary',
+                        text: '<i class="fa fa-file-excel fa-beat fa-xl"></i> Excel Export',
+                        // className: 'btn btn-outline-primary',
+                        className: 'btn btn-outline-success',
                         title: '',
                         enabled: true,
                         filename: function() {
@@ -176,10 +212,13 @@
             table.buttons().container()
                 .appendTo($('#dt-buttons-gp'));
 
-            // Refilter the table
-            $('#min, #max').on('change', function() {
+            // Refilter the table (edited when clicked search button)
+            $('.dbtn-search').on('click', function() {
                 table.draw();
             });
+            // $('#min, #max').on('change', function() {
+            //     table.draw();
+            // });
 
             // Excel Export 
             // $('#baDailyReportDataTable').dataTable({
