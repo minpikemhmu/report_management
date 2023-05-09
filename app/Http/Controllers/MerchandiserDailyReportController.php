@@ -20,7 +20,7 @@ class MerchandiserDailyReportController extends Controller
      */
     public function index()
     {
-        $getAllDailyReports = MerchandiseReport::all();
+        $getAllDailyReports = MerchandiseReport::orderBy('merchandise_reports.created_at', 'DESC')->get();
         return view('Reports.ba_reports.merchandise_report.index', ['merchandiserReports' => $getAllDailyReports]);
     }
 
@@ -119,7 +119,7 @@ class MerchandiserDailyReportController extends Controller
         $lastSevenDay = Carbon::now()->subDays(6);
         if ($request->startDate == null && $request->endDate == null) {
             $getAllDailyReports = DB::table('merchandise_reports')
-                ->select('merchandise_reports.remark as remark','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name')
+                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name')
                 ->leftjoin('merchandisers', 'merchandise_reports.merchandiser_id', '=', 'merchandisers.id')
                 ->leftjoin('customers', 'merchandise_reports.customer_id', '=', 'customers.id')
                 ->leftjoin('gondolar_types', 'merchandise_reports.gondolar_type_id', '=', 'gondolar_types.id')
@@ -130,7 +130,7 @@ class MerchandiserDailyReportController extends Controller
                 ->get();
         } elseif ($request->startDate != null && $request->endDate != null) {
             $getAllDailyReports = DB::table('merchandise_reports')
-                ->select('merchandise_reports.remark as remark','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name')
+                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name')
                 ->leftjoin('merchandisers', 'merchandise_reports.merchandiser_id', '=', 'merchandisers.id')
                 ->leftjoin('customers', 'merchandise_reports.customer_id', '=', 'customers.id')
                 ->leftjoin('gondolar_types', 'merchandise_reports.gondolar_type_id', '=', 'gondolar_types.id')

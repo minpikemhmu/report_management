@@ -65,7 +65,7 @@
                                         @php
                                         $date = $row->assign_date;
                                         $day = date('l', strtotime($date));
-                                        @endphp;
+                                    @endphp
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$row->merchandiser}}</td>

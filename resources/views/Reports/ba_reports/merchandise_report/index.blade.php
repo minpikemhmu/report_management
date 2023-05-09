@@ -143,11 +143,20 @@
             $(".dbtn_export").click(function(){
                 var table = $('#merchandiserTable').DataTable();
                 var tmpdataArray = table.rows( {search:'applied'} ).data().toArray();
-                console.log(tmpdataArray);
                 var dataArray = [];
                 tmpdataArray.forEach(element => {
-                    element.pop();
-                    dataArray.push(element);
+                    if(element.DT_RowIndex){
+                        console.log(element.DT_RowIndex);
+                        var values = [element.DT_RowIndex,element.created_at,element.merchandiser_name,element.customer_name,element.gondolar_type_name,element.trip_type_name,element.outskirt_type_name,
+                        element.remark,element.gondolar_size_inches_length,element.gondolar_size_inches_weight,
+                        element.gondolar_size_centimeters_length,element.gondolar_size_centimeters_weight,element.backlit_size_inches_length,
+                        element.backlit_size_inches_weight,element.backlit_size_centimeters_length,element.backlit_size_centimeters_weight,
+                        element.qty,element.latitude,element.longitude];
+                        dataArray.push(values);
+                    }else{
+                        element.pop();
+                        dataArray.push(element);
+                    }
                 });
                 var jsondataArray = JSON.stringify(dataArray);
                 $.ajax({
@@ -235,86 +244,88 @@
                                     return  data.DT_RowIndex;
                                 }
                             },
+                            {"data" : "created_at"},
                             { "data": "merchandiser_name"},
                             { "data": "customer_name"},
                             { "data": "gondolar_type_name"},
                             { "data": "trip_type_name"},
                             { "data": "outskirt_type_name"},
                             { "data": "remark"},
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
-                            // {
-                            //     "data": null,
-                            //     render: function(data, type, full, meta, row) {
-                            //         return data.customer_name;
-                            //     }
-                            // },
+                            { "data": "gondolar_size_inches_length"},
+                            { "data": "gondolar_size_inches_weight"},
+                            { "data": "gondolar_size_centimeters_length"},
+                            { "data": "gondolar_size_centimeters_weight"},
+                            { "data": "backlit_size_inches_length"},
+                            { "data": "backlit_size_inches_weight"},
+                            { "data": "backlit_size_centimeters_length"},
+                            { "data": "backlit_size_centimeters_weight"},
+                            { "data": "qty"},
+                            { "data": "latitude"},
+                            { "data": "longitude"},
+                            {
+                                "data": null,
+                                render: function(data, type, full, meta, row) {
+                                    var url="{{route('mr_daily_reports.show',':id')}}"
+                                    url=url.replace(':id',data.id);
+                                    return `
+                                    <div class="t-flex-center">
+                                                        <a class="btn" href="${url}"><i class="fa-solid fa-xl fa-circle-info"></i></a>
+                                    </div>
+                                    `
+                                }
+                            },
                         ],
                         "info": true,
-                        // "columnDefs": [
-                        //     {
-                        //         "targets": 5,
-                        //         "className": "hide-column"
-                        //     }
-                        // ]
+                        "columnDefs": [
+                            {
+                                "targets": 7,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 8,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 9,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 10,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 11,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 12,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 13,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 14,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 15,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 16,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 17,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 18,
+                                "className": "hide-column"
+                            },
+                        ]
                 });
             })
         })

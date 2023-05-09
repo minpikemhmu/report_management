@@ -29,6 +29,8 @@
                             <li class="list-group-item d-flex flex-row"><span class="font-weight-bold h6 mr-2">outlet photo before</span> : <div class="col-md-2 px-0 ml-2"><img src="{{$merchandiserReport->outlet_photo_before}}" alt="outlet photo before" class="img-thumbnail" data-toggle="modal" data-target="#exampleModalCenter"></div></li>
                             <li class="list-group-item d-flex flex-row"><span class="font-weight-bold h6 mr-2">outlet photo after</span> : <div class="col-md-2 px-0 ml-2"><img src="{{$merchandiserReport->outlet_photo_after}}" alt="outlet photo after" class="img-thumbnail" data-toggle="modal" data-target="#exampleModalCenter2"></div></li>
                             <li class="list-group-item"><span class="font-weight-bold h6">qty</span> : {{$merchandiserReport->qty}}</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">latitude</span> : {{$merchandiserReport->latitude}}</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">longitude</span> : {{$merchandiserReport->longitude}}</li>
                         </ul>
                     </div>
             </div>
