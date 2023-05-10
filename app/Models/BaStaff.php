@@ -50,4 +50,14 @@ class BaStaff extends Model
     {
         return $this->hasMany(BaDailyReport::class, 'bastaff_id', 'id');
     }
+
+    /**
+     * Get all of the attendances for the BaStaff
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(BaAttendance::class, 'staff_id', 'id');
+    }
 }

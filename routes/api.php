@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\BA\BaAttendanceController;
 use App\Http\Controllers\Api\MerchandiserController;
 use App\Http\Controllers\Api\ReportTypeController;
 use App\Http\Controllers\Api\Product\ProductApiController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Api\TripTypeController;
 use App\Http\Controllers\Api\OutskirtTypeController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\BA\BaDailyReportController;
+use App\Http\Controllers\Api\MerchandiserAttendanceController;
 // use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\ImageUploadController;
 use App\Models\BaDailyReport;
@@ -43,6 +45,9 @@ Route::middleware('api.token')->group(function () {
             Route::prefix('merchandiser-daily-report')->group(function() {
                 Route::get('history', [ReportController::class,'reportHistory']);
             });
+
+            // Route for merchandiser attendance
+            Route::post('attendance', [MerchandiserAttendanceController::class, 'storeOrUpdateMerchandiserAttendance']);
         });
     });
 
@@ -64,6 +69,10 @@ Route::middleware('api.token')->group(function () {
                 Route::post('store', [BaDailyReportController::class, 'store']);
                 Route::get('history', [BaDailyReportController::class, 'getAllBaDailyReportByFilters']);
             });
+
+            
+            // Route for BA attendance
+            Route::post('attendance', [BaAttendanceController::class, 'storeOrUpdateBaAttendance']);
         });
     });
 

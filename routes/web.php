@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaAttendanceController;
 use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\BaStaffController;
 use App\Http\Controllers\OutletController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductSubCategoryController;
 use App\Http\Controllers\MerchandiserAssignController;
+use App\Http\Controllers\MerchandiserAttendanceController;
 use App\Http\Controllers\ProductKeyCategoryController;
 use App\Http\Controllers\MerchandiserDailyReportController;
 
@@ -47,5 +49,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('baDAilyReportExport', [App\Http\Controllers\BaDailyReportController::class, 'baDailyReportExport'])->name('baDAilyReportExport');
     Route::post('/baStaffImport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'baStaffImport'])->name('baStaffImport');
     Route::get('getMerchandiserReport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'getMerchandiserReport'])->name('getMerchandiserReport');
+    Route::resource('ba_attandence', BaAttendanceController::class);
+    Route::post('ba-attendance-filter', [App\Http\Controllers\BaAttendanceController::class, 'showFilterAttendance'])->name('ba_attandence.showFilterAttendance');
+    Route::resource('merchandiser_attandence', MerchandiserAttendanceController::class);
+    Route::post('merchandiser-attendance-filter', [App\Http\Controllers\MerchandiserAttendanceController::class, 'showFilterMerchandiserAttendance'])->name('merchandiser_attandence.showFilterMerchandiserAttendance');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
