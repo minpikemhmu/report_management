@@ -226,9 +226,11 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">BA Reports:</h6>
                         <a class="collapse-item" href="{{ route('ba_daily_reports.index') }}">BA Daily Reports</a>
+                        <a class="collapse-item" href="{{ route('ba_attandence.index') }}">BA Attendance Reports</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Merchandiser Reports:</h6>
                         <a class="collapse-item" href="{{route('mr_daily_reports.index')}}">Merchandiser Reports</a>
+                        <a class="collapse-item" href="{{ route('merchandiser_attandence.index') }}">Merchandiser Attendance Reports</a>
                     </div>
                 </div>
             </li>
