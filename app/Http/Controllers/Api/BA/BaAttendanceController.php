@@ -114,4 +114,10 @@ class BaAttendanceController extends Controller
         // return response()->json(['message' => 'Check-out recorded successfully.']);
         return $this->responseSuccess($now->format('Y-m-d') . ' Check-out recorded successfully.', new BaAttendanceResource(BaAttendance::findOrFail($attendance->id)));
     }
+
+    public function checkAttendance(Request $request){
+        $ba_staff = auth()->user();
+        $getAllBaAttendance = $ba_staff->attendances()->today()->get();
+        return $this->responseSuccess('Success',BaAttendanceResource::collection($getAllBaAttendance));
+    }
 }

@@ -48,6 +48,7 @@ Route::middleware('api.token')->group(function () {
 
             // Route for merchandiser attendance
             Route::post('attendance', [MerchandiserAttendanceController::class, 'storeOrUpdateMerchandiserAttendance']);
+            Route::get('checkAttendance',[MerchandiserAttendanceController::class, 'checkAttendance']);
         });
     });
 
@@ -73,6 +74,7 @@ Route::middleware('api.token')->group(function () {
             
             // Route for BA attendance
             Route::post('attendance', [BaAttendanceController::class, 'storeOrUpdateBaAttendance']);
+            Route::get('checkAttendance',[BaAttendanceController::class, 'checkAttendance']);
         });
     });
 

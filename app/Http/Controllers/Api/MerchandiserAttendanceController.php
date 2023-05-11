@@ -112,4 +112,11 @@ class MerchandiserAttendanceController extends Controller
         // return response()->json(['message' => 'Check-out recorded successfully.']);
         return $this->responseSuccess($now->format('Y-m-d') . ' Check-out recorded successfully.', new MerchandiserAttendanceResource(MerchandiserAttendance::findOrFail($attendance->id)));
     }
+
+    
+    public function checkAttendance(Request $request){
+        $merchandiser = auth()->user();
+        $getAllMerchandiserAttendance = $merchandiser->attendances()->today()->get();
+        return $this->responseSuccess('Success',MerchandiserAttendanceResource::collection($getAllMerchandiserAttendance));
+    }
 }
