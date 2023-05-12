@@ -15,6 +15,7 @@ class Attendance extends Model
         'staff_id',
         'is_check_in',
         'is_check_out',
+        'is_attendance',
         'check_in_time',
         'check_out_time',
     ];
