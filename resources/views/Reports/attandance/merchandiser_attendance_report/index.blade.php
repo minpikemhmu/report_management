@@ -90,6 +90,7 @@
                                         <th>Merchandiser Name</th>
                                         <th>Is Check-in</th>
                                         <th>Is Check-out</th>
+                                        <th>Is Attendance</th>
                                         <th>Check-in Time</th>
                                         <th>Check-out Time</th>
                                     </tr>
@@ -103,6 +104,7 @@
                                             <td>{{ $merchandiserAttendance->staff->name }}</td>
                                             <td>{{ $merchandiserAttendance->is_check_in == '1' ? 'Yes' : 'No'}}</td>
                                             <td>{{ $merchandiserAttendance->is_check_out == '1' ? 'Yes' : 'No' }}</td>
+                                            <td>{{ $merchandiserAttendance->is_attendance == '1' ? 'Yes' : 'No' }}</td>
                                             <td>{{ $merchandiserAttendance->check_in_time }}</td>
                                             <td>{{ $merchandiserAttendance->check_out_time }}</td>
                                         </tr>

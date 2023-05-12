@@ -9,6 +9,25 @@
 
         {{-- <div class="row mt-5"> --}}
         <div class="row">
+
+            <div class="d-flex mt-3 justify-content-start col-12">
+                <div class="ml-3">
+                    {{-- <h2>Attendance records for the selected time period:</h2> --}}
+    
+                    <form method="post" action="{{ route('ba_daily_reports.showFilterBaDailyReports') }}">
+                        @csrf
+                        <label for="time_period">Select a time period to show:</label>
+                        <select class="form-select" id="time_period" name="time_period">
+                            <option value="last_week" {{ $timePeriod == 'last_week' ? 'selected' : '' }}>Last week</option>
+                            <option value="last_month" {{ $timePeriod == 'last_month' ? 'selected' : '' }}>Last month</option>
+                            <option value="last_six_months" {{ $timePeriod == 'last_six_months' ? 'selected' : '' }}>Last 6 months</option>
+                            <option value="last_year" {{ $timePeriod == 'last_year' ? 'selected' : '' }}>Last year</option>
+                        </select>
+                        <button class="btn btn-primary btn-sm ml-3" type="submit">Show Ba Daily Reports</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="d-flex mt-3 justify-content-start col-12">
                 {{-- <div id="date-range-filter" class="d-flex">
                             <div class="input-group mr-4">

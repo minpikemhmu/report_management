@@ -77,9 +77,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $count = 0; ?>
                                     @foreach ($baStaffs as $baStaff)
                                         <tr>
-                                            <td>{{ $baStaff->id }}</td>
+                                            {{-- <td>{{ $baStaff->id }}</td> --}}
+                                            <td>{{ ++$count }}</td>
                                             <td>{{ $baStaff->ba_code }}</td>
                                             <td>{{ $baStaff->name }}</td>
                                             {{-- <td>{{ $baStaff->division_state_id }}</td> --}}

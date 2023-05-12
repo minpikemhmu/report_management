@@ -106,6 +106,7 @@ class MerchandiserAttendanceController extends Controller
 
         $attendance->update([
             'is_check_out' => true,
+            'is_attendance' => true,
             'check_out_time' => $now,
         ]);
 

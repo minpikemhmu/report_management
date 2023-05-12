@@ -90,6 +90,7 @@
                                         <th>BA Name</th>
                                         <th>Is Check-in</th>
                                         <th>Is Check-out</th>
+                                        <th>Is Attendance</th>
                                         <th>Check-in Time</th>
                                         <th>Check-out Time</th>
                                     </tr>
@@ -103,6 +104,7 @@
                                             <td>{{ $baAttendance->staff->name }}</td>
                                             <td>{{ $baAttendance->is_check_in == '1' ? 'Yes' : 'No' }}</td>
                                             <td>{{ $baAttendance->is_check_out == '1' ? 'Yes' : 'No' }}</td>
+                                            <td>{{ $baAttendance->is_attendance == '1' ? 'Yes' : 'No' }}</td>
                                             <td>{{ $baAttendance->check_in_time }}</td>
                                             <td>{{ $baAttendance->check_out_time }}</td>
                                         </tr>

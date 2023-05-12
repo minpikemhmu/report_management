@@ -26,7 +26,7 @@ class BaStaffController extends Controller
      */
     public function index()
     {
-        $baStaffs = BaStaff::all();
+        $baStaffs = BaStaff::orderByDesc('updated_at')->get();
         $supervisor=Supervisor::all();
         $city=City::orderby('name')->get();
         // $outlet=Outlet::all();
