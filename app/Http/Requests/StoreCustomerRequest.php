@@ -29,6 +29,7 @@ class StoreCustomerRequest extends FormRequest
         return [
             'name'                     => "required|string",
             'customer_id'              => "required|string",
+            'is_ba'                    => "required|boolean",
             'address'                  => "required|string",
             'phone_number'             => "required|numeric|unique:customers,phone_number,NULL,id,deleted_at,NULL|digits_between:8,11",
             'customer_type'            => "required|integer|exists:customer_types,id",

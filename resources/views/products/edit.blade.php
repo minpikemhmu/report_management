@@ -52,6 +52,14 @@
                             <div class="form-control-feedback text-danger"> {{ $errors->first('product_brands_id') }}
                             </div>
                         </div>
+
+                        
+                        <div class="form-group">
+                            <label for="price">Product Price</label>
+                            <input name="price" type="text" class="form-control" id="price"
+                                placeholder="Enter New Product Price" value="{{ old('price', $product->price ?? '') }}">
+                            <div class="form-control-feedback text-danger"> {{ $errors->first('price') }} </div>
+                        </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12">

@@ -36,6 +36,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="is_ba">BA / Non BA</label>
+                        <select
+                            class="form-control"
+                            id="is_ba"
+                            name="is_ba"
+                        >
+                            <option selected value="">Select the Customer Type</option>
+                            
+                            <option value=1>BA</option>
+                            <option value=0>Non BA</option>
+                            
+                        </select>
+                        <div class="form-control-feedback text-danger"> {{$errors->first('is_ba') }} </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="address">Address</label>
                         <input
                             type="text"
@@ -135,9 +151,19 @@
                         <div class="form-control-feedback text-danger"> {{$errors->first('township') }} </div>
                     </div>
 
-                    <button class="btn btn-primary mt-4" type="submit" >
-                            create
-                    </button>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;</div>
+    
+
+                    <div class="row">
+                        <div class="col-lg-2">&nbsp;</div>
+                        <button class="btn btn-primary btn-block col-lg-10" type="submit" >
+                                Create
+                        </button>
+                    </div>
                     </form>
                 </div>
              </div>

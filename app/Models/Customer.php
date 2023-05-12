@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Customer extends Model
 {
     use HasFactory; 
-    protected $fillable = ['name', 'dksh_customer_id', 'address', 'phone_number', 'division_state_id', 'township_id', 'city_id', 'customer_type_id', 'total_frequency'];
+    protected $fillable = ['name', 'dksh_customer_id', 'is_ba', 'address', 'phone_number', 'division_state_id', 'township_id', 'city_id', 'customer_type_id', 'total_frequency'];
 
     public function division_state(): BelongsTo
     {

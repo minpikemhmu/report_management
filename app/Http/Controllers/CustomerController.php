@@ -26,7 +26,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers=Customer::all();
+        $customers=Customer::orderByDesc('updated_at')->get();
         return view('customer.index',compact('customers'));
     }
 

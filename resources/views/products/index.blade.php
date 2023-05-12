@@ -40,6 +40,7 @@
                                         <th>Product Key Category</th>
                                         <th>Product Sub Category</th>
                                         <th>Product Size</th>
+                                        <th>Product Price</th>
                                         <th>Editor</th>
                                     </tr>
                                 </thead>
@@ -50,11 +51,12 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->product_code }}</td>
                                             <td>{{ $product->brn_code }}</td>
-                                            <td>{{ $product->productbrand->name?? null }}</td>
-                                            <td>{{ $product->productcategory->name?? null }}</td>
-                                            <td>{{ $product->productKeyCategory->name ?? null }}</td>
-                                            <td>{{ $product->productsubcategory->name?? null }}</td>
-                                            <td>{{ $product->size }}</td>
+                                            <td>{{ $product->productbrand->name ?? "N/A" }}</td>
+                                            <td>{{ $product->productcategory->name?? "N/A" }}</td>
+                                            <td>{{ $product->productKeyCategory->name ?? "N/A" }}</td>
+                                            <td>{{ $product->productsubcategory->name?? "N/A" }}</td>
+                                            <td>{{ $product->size ?? "N/A"}}</td>
+                                            <td>{{ $product->price ?? "N/A" }}</td>
                                             <td>
                                                 <div class="t-flex-center">
                                                     <a class="btn" href="{{ route('products.edit', $product) }}"><i class="fa-solid fa-pen-to-square"></i></a>

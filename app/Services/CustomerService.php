@@ -30,9 +30,11 @@ class CustomerService
 
     private function createCustomer($request): Customer
     {
+        // dd($request);
         return Customer::create([
             'name'                  => $request->name ?? null,
             'dksh_customer_id'      => $request->customer_id,
+            'is_ba'                 => $request->is_ba,
             'address'               => $request->address,
             'phone_number'          => $request->phone_number,
             'division_state_id'     => $request->division,
@@ -60,6 +62,7 @@ class CustomerService
         $customer->update([
             'name'              => $request->name ?? $customer->name,
             'dksh_customer_id'  => $request->customer_id ?? $customer->dksh_customer_id,
+            'is_ba'             => $request->is_ba ?? $customer->is_ba,
             'address'           => $request->address ?? $customer->address,
             'phone_number'      => $request->phone_number ?? $customer->phone_number,
             'division_state_id' => $request->division ?? $customer->division_state_id,
