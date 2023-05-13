@@ -32,6 +32,7 @@ class StoreProductRequest extends FormRequest
             'product_key_category_id' => "nullable|integer|exists:product_key_categories,id",
             'product_sub_category_id' => "nullable|integer|exists:product_sub_categories,id",
             'size' => "nullable|string",
+            'price' => 'required|digits_between:1,10|numeric',
         ];
     }
 }

@@ -36,6 +36,7 @@ class ProductService
       'product_key_category_id' => $request->product_key_category_id,
       'product_sub_category_id' => $request->product_sub_category_id,
       'size' => $request->size,
+      'price' => $request->price,
     ]);
   }
 
@@ -52,15 +53,17 @@ class ProductService
 
   private function updateProduct($request, Product $product): void
   {
+    // dd($request->all());
     $product->update([
       'name' => $request->name ?? $product->name,
       'product_code' => $request->product_code ?? $product->product_code,
-      'brn_code' => $request->brn_code ?? $product->brn_code,
+      'brn_code' => !$request->brn_code ? null : $request->brn_code,
       'product_brands_id' => $request->product_brands_id ?? $product->product_brands_id,
-      'product_category_id' => $request->product_category_id ?? $product->product_category_id,
-      'product_key_category_id' => $request->product_key_category_id ?? $product->product_key_category_id,
-      'product_sub_category_id' => $request->product_sub_category_id ?? $product->product_sub_category_id,
-      'size' => $request->size ?? $product->size,
+      'product_category_id' => !$request->product_category_id ? null :$request->product_category_id,
+      'product_key_category_id' => !$request->product_key_category_id ? null : $request->product_key_category_id,
+      'product_sub_category_id' => !$request->product_sub_category_id ? null : $request->product_sub_category_id,
+      'size' => !$request->size ? null : $request->size,
+      'price' => !$request->price ? null : $request->price,
     ]);
   }
 }

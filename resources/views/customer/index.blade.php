@@ -54,6 +54,7 @@
                                             <th>No</th>
                                             <th>Name</th>
                                             <th>ID</th>
+                                            <th>BA/Non BA</th>
                                             <th>Phone Number</th>
                                             <th>Address</th>
                                             <th>Division</th>
@@ -71,6 +72,7 @@
                                                 <td>{{$no++}}</td>
                                                 <td>{{$row->name}}</td>
                                                 <td>{{$row->dksh_customer_id}}</td>
+                                                <td>{{$row->is_ba == 1 ? 'BA' : 'Non BA'}}</td>
                                                 <td>{{$row->phone_number}}</td>
                                                 <td>{{$row->address}}</td>
                                                 <td>{{$row->division_state->name}}</td>

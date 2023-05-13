@@ -122,6 +122,8 @@
                                         <th>Product ID</th>
                                         <th>Product Name</th>
                                         <th>Count</th>
+                                        <th>Price Per Product</th>
+                                        <th>Total Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,6 +146,8 @@
                                                 <td>{{ $baDailyReportProduct->product->id }}</td>
                                                 <td>{{ $baDailyReportProduct->product->name }}</td>
                                                 <td>{{ $baDailyReportProduct->count }}</td>
+                                                <td>{{ $baDailyReportProduct->product->price }}</td>
+                                                <td>{{ intval($baDailyReportProduct->count) * intval($baDailyReportProduct->product->price) }}</td>
                                             </tr>
                                         @endforeach
                                     @endforeach
