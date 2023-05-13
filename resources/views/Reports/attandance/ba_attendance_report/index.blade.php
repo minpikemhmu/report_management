@@ -105,8 +105,8 @@
                                             <td>{{ $baAttendance->is_check_in == '1' ? 'Yes' : 'No' }}</td>
                                             <td>{{ $baAttendance->is_check_out == '1' ? 'Yes' : 'No' }}</td>
                                             <td>{{ $baAttendance->is_attendance == '1' ? 'Yes' : 'No' }}</td>
-                                            <td>{{ $baAttendance->check_in_time }}</td>
-                                            <td>{{ $baAttendance->check_out_time }}</td>
+                                            <td>{{ date("Y-m-d h:i:s A", strtotime($baAttendance->check_in_time)) }}</td>
+                                            <td>{{ date("Y-m-d h:i:s A", strtotime($baAttendance->check_out_time))}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
