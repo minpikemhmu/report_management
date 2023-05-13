@@ -16,8 +16,11 @@ class AssignCustomerListsResource extends JsonResource
     {
         return [
             'id'                   => $this->id,
-            'dksh_customer_id'     => $this->dksh_customer_id,
+            'customer_code'        => $this->dksh_customer_id,
             'customer_name'        => $this->name,
+            'customer_type'        => $this->customer_type->name,
+            'is_ba'                => $this->is_ba == 1 ? 'BA' : 'Non BA',
+            'total_frequency'      => $this->total_frequency,
             'address'              => $this->address,
             'phone_number'         => $this->phone_number,
             'division'             => $this->division_state->name,

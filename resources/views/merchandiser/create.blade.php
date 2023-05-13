@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <label for="team">Merchandiser Team</label>
                         <select
-                            class="form-control"
+                            class="form-control js-example-basic-single"
                             id="team"
                             name="team"
                         >
@@ -104,7 +104,7 @@
                     <div class="form-group">
                         <label for="area">Merchandiser Area</label>
                         <select
-                            class="form-control"
+                            class="form-control js-example-basic-single1"
                             id="area"
                             name="area"
                         >
@@ -126,3 +126,12 @@
       </div>
 </div>
 @endsection 
+@push('script2')
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+            $('.js-example-basic-single1').select2();
+
+        });
+    </script>
+@endpush

@@ -37,7 +37,7 @@
 
                         <div class="form-group">
                             <label for="product_brands_id">Product Brand</label>
-                            <select class="form-control" id="product_brands_id" name="product_brands_id">
+                            <select class="form-control js-example-basic-single" id="product_brands_id" name="product_brands_id">
                                 <option selected value="">Choose the new Product Brand</option>
                                 @foreach ($product_brands as $row)
                                     <option {{ old('product_brands_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
@@ -59,7 +59,7 @@
 
                     <div class="form-group">
                         <label for="product_category_id">Product Category</label>
-                        <select class="form-control" id="product_category_id" name="product_category_id">
+                        <select class="form-control js-example-basic-single1" id="product_category_id" name="product_category_id">
                             <option selected value="">Choose the Product Category</option>
                             @foreach ($product_categories as $row)
                                 <option {{ old('product_category_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
@@ -70,7 +70,7 @@
 
                     <div class="form-group">
                         <label for="product_sub_category_id">Product Sub Category</label>
-                        <select class="form-control" id="product_sub_category_id" name="product_sub_category_id">
+                        <select class="form-control js-example-basic-single2" id="product_sub_category_id" name="product_sub_category_id">
                             <option selected value="">Choose the Product Sub Category</option>
                             @foreach ($product_sub_categories as $row)
                                 <option {{ old('product_sub_category_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
@@ -81,7 +81,7 @@
 
                     <div class="form-group">
                         <label for="product_key_category_id">Product Key Category</label>
-                        <select class="form-control" id="product_key_category_id" name="product_key_category_id">
+                        <select class="form-control js-example-basic-single3" id="product_key_category_id" name="product_key_category_id">
                             <option selected value="">Choose the Product Key Category</option>
                             @foreach ($product_key_categories as $row)
                                 <option {{ old('product_key_category_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
@@ -114,4 +114,14 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+            $('.js-example-basic-single1').select2();
+            $('.js-example-basic-single2').select2();
+            $('.js-example-basic-single3').select2();
+        });
+    </script>
 @endsection

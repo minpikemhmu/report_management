@@ -109,7 +109,7 @@
                     <div class="form-group">
                         <label for="division">Division</label>
                         <select
-                            class="form-control selectedDivision"
+                            class="form-control selectedDivision js-example-basic-single"
                             id="division"
                             name="division"
                         >
@@ -124,7 +124,7 @@
                     <div class="form-group">
                         <label for="city">City</label>
                         <select
-                            class="form-control selectedCity"
+                            class="form-control selectedCity js-example-basic-single1"
                             id="city"
                             name="city"
                         >
@@ -139,7 +139,7 @@
                     <div class="form-group">
                         <label for="township">Township</label>
                         <select
-                            class="form-control selectedTownship"
+                            class="form-control selectedTownship js-example-basic-single2"
                             id="township"
                             name="township"
                         >
@@ -173,6 +173,10 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        $('.js-example-basic-single1').select2();
+        $('.js-example-basic-single2').select2();
+
         $(".selectedDivision").change(function(){
             var selected_division_id = $(this).val();
             $.ajax({

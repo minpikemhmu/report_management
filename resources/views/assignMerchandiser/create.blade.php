@@ -14,7 +14,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="merchandiser_id">Merchandiser</label>
-                            <select class="form-control" id="merchandiser_id" name="merchandiser_id">
+                            <select class="form-control js-example-basic-single1" id="merchandiser_id" name="merchandiser_id">
                                 <option selected value="">Choose the Merchandiser</option>
                                 @foreach ($merchandisers as $row)
                                     <option {{ old('merchandiser_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
@@ -49,6 +49,7 @@
 @section('script')
 <script type="text/javascript">
 $(document).ready(function() {
+    $('.js-example-basic-single1').select2();
     $('.js-example-basic-single').select2();
 })
 </script>

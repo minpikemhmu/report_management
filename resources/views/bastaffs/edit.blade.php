@@ -31,7 +31,7 @@
 
                         <div class="form-group">
                             <label for="supervisor_id">Supervisor</label>
-                            <select class="form-control" id="supervisor_id" name="supervisor_id">
+                            <select class="form-control js-example-basic-single" id="supervisor_id" name="supervisor_id">
 
                                 <option {{ !$baStaff->supervisor_id ? 'selected' : '' }} value="">Choose the
                                     Supervisor</option>
@@ -45,7 +45,7 @@
 
                         <div class="form-group">
                             <label for="city_id">City</label>
-                            <select class="form-control" id="city_id" name="city_id">
+                            <select class="form-control js-example-basic-single1" id="city_id" name="city_id">
                                 <option {{ !$baStaff->city_id ? 'selected' : '' }} value="">Choose the City</option>
                                 @foreach ($city as $row)
                                     <option {{ $baStaff->city_id == $row->id ? 'selected' : '' }}
@@ -61,7 +61,7 @@
 
                     <div class="form-group">
                         <label for="customer_id">Customer</label>
-                        <select class="form-control" id="customer_id" name="customer_id">
+                        <select class="form-control js-example-basic-single2" id="customer_id" name="customer_id">
                             <option {{ !$baStaff->customer_id ? 'selected' : '' }} value="">Choose the Customer
                             </option>
                             @foreach ($customers as $row)
@@ -87,7 +87,7 @@
 
                     <div class="form-group">
                         <label for="subchannel_id">Sub Channel</label>
-                        <select class="form-control" id="subchannel_id" name="subchannel_id">
+                        <select class="form-control js-example-basic-single3" id="subchannel_id" name="subchannel_id">
                             <option {{ !$baStaff->subchannel_id ? 'selected' : '' }} value="">Choose the Sub Channel
                             </option>
                             @foreach ($subchannel as $row)
@@ -141,6 +141,11 @@
 @push('script2')
     <script>
         $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+            $('.js-example-basic-single1').select2();
+            $('.js-example-basic-single2').select2();
+            $('.js-example-basic-single3').select2();
+
             $('.btn_eye').click(function() {
                 var x = document.getElementById("password");
 
