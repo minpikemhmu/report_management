@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class MerchandiseReport extends Model
 {
     use HasFactory, HasApiTokens;
-    protected $fillable = [ 'merchandiser_id', 'customer_id', 'gondolar_type_id', 'trip_type_id', 'outskirt_type_id', 'gondolar_size_inches_length', 'gondolar_size_inches_weight',
+    protected $fillable = [ 'merchandiser_id', 'customer_id', 'gondolar_type_id', 'trip_type_id', 'outskirt_type_id', 'merchandiser_report_type_id','qty','gondolar_size_inches_length', 'gondolar_size_inches_weight',
                             'gondolar_size_centimeters_length', 'gondolar_size_centimeters_weight', 'backlit_size_inches_length', 'backlit_size_inches_weight', 'backlit_size_centimeters_length', 'backlit_size_centimeters_weight',
                             'outlet_photo_before', 'outlet_photo_after', 'remark', 'latitude', 'longitude'];
 
@@ -39,5 +39,9 @@ class MerchandiseReport extends Model
     public function outskirt_type(): BelongsTo
     {
         return $this->belongsTo(OutskirtType::class);
+    }
+    public function merchandiser_report_type(): BelongsTo
+    {
+        return $this->belongsTo(MerchandiserReportType::class);
     }
 }

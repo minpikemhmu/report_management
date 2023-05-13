@@ -21,6 +21,7 @@ class MerchandiserReportResource extends JsonResource
             "gondolar_type" => $this->gondolar_type->name,
             "trip_type" => $this->trip_type->name,
             "outskirt_type" => $this->outskirt_type->name,
+            "merchandiser_report_type" => $this->merchandiser_report_type->name,
             "qty" => $this->qty,
             "gondolar_size_inches_length" => $this->gondolar_size_inches_length,
             "gondolar_size_inches_weight" => $this->gondolar_size_inches_weight,

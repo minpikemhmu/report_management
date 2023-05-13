@@ -20,5 +20,20 @@ class MerchantAreaSeeder extends Seeder
         MerchantArea::create(['name' => 'Van 3']);
         MerchantArea::create(['name' => 'Van 4']);
         MerchantArea::create(['name' => 'Van 5']);
+        MerchantArea::create(['name' => 'Van 6']);
+        MerchantArea::create(['name' => 'Van 7']);
+        MerchantArea::create(['name' => 'Bago']);
+        MerchantArea::create(['name' => 'Dawei']);
+        MerchantArea::create(['name' => 'Dike Oo']);
+        MerchantArea::create(['name' => 'Gadoke Payargyi']);
+        MerchantArea::create(['name' => 'Mawlamyaing']);
+        MerchantArea::create(['name' => 'Myaung Mya']);
+        MerchantArea::create(['name' => 'Pathein']);
+        MerchantArea::create(['name' => 'Phaung Daw Thi']);
+        MerchantArea::create(['name' => 'Pyay']);
+        MerchantArea::create(['name' => 'Taik Kyi']);
+        MerchantArea::create(['name' => 'Taung Ngu']);
+        MerchantArea::create(['name' => 'Thanlyin']);
+        MerchantArea::create(['name' => 'Tontae']);
     }
 }

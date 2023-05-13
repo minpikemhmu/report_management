@@ -225,6 +225,7 @@ class TownshipSeeder extends Seeder
         Township::updateOrCreate(['city_id'=> 170,'region_id' => 2, 'division_state_id' => 13, 'name' => 'North Okkalapa']);
         Township::updateOrCreate(['city_id'=> 170,'region_id' => 2, 'division_state_id' => 13, 'name' => 'Pabedan']);
         Township::updateOrCreate(['city_id'=> 170,'region_id' => 2, 'division_state_id' => 13, 'name' => 'Pazundaung']);
+        Township::updateOrCreate(['city_id'=> 170,'region_id' => 2, 'division_state_id' => 13, 'name' => 'San Chaung']);
         Township::updateOrCreate(['city_id'=> 170,'region_id' => 2, 'division_state_id' => 13, 'name' => 'Seikgyikanaungto']);
         Township::updateOrCreate(['city_id'=> 170,'region_id' => 2, 'division_state_id' => 13, 'name' => 'Seikkan']);
         Township::updateOrCreate(['city_id'=> 170,'region_id' => 2, 'division_state_id' => 13, 'name' => 'Shwepyithar']);

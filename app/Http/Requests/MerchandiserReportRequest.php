@@ -33,6 +33,7 @@ class MerchandiserReportRequest extends FormRequest
             'gondolar_type_id'                    => "required|integer|exists:gondolar_types,id",
             'trip_type_id'                        => "required|integer|exists:trip_types,id",
             'outskirt_type_id'                    => "required|integer|exists:outskirt_types,id",
+            'merchandiser_report_type_id'         => "nullable|integer|exists:merchandiser_report_types,id",
             'qty'                                 => "nullable|string",
             'gondolar_size_inches_length'         => "nullable|string",
             'gondolar_size_inches_weight'         => "nullable|string",

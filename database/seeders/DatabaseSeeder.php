@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             GondolarTypeSeeder::class,
             OutskirtTypeSeeder::class,
             TripTypeSeeder::class,
+            MerchandiserReportTypeSeeder::class,
         ]);
     }
 }

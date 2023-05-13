@@ -19,5 +19,6 @@ class BaReportTypeSeeder extends Seeder
         BaReportType::create(['name' => 'OSA 35 Reports']);
         BaReportType::create(['name' => 'Confirm PO Reports']);
         BaReportType::create(['name' => 'Stock Receive Reports']);
+        BaReportType::create(['name' => 'All Stock Reports']);
     }
 }

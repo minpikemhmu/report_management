@@ -42,7 +42,8 @@
                                         <th>Gondolar Type</th>
                                         <th>Trip Type</th>
                                         <th>Outskirt Type</th>
-                                        <th class="d-none">remark</th>
+                                        <th>Report Type</th>
+                                        <th>remark</th>
                                         <th class="d-none"></th>
                                         <th class="d-none"></th>
                                         <th class="d-none"></th>
@@ -60,15 +61,31 @@
                                 <tbody>
                                     <?php $count = 0; ?>
                                     @foreach ($merchandiserReports as $merchandiserReport)
+                                        @php
+                                        $originalDatetime = $merchandiserReport->created_at;
+
+                                        // Convert the string to a Unix timestamp
+                                        $timestamp = strtotime($originalDatetime);
+
+                                        // Format the timestamp in the desired 12-hour format
+                                        $report_date = date("Y-m-d h:ia", $timestamp);
+
+                                        if(isset($merchandiserReport->merchandiser_report_type->name)){
+                                            $report_type = $merchandiserReport->merchandiser_report_type->name;
+                                        }else{
+                                            $report_type = "";
+                                        }
+                                        @endphp
                                             <tr>
                                                 <td>{{ ++$count }}</td>
-                                                <td>{{ $merchandiserReport->created_at }}</td>
+                                                <td>{{ $report_date }}</td>
                                                 <td>{{ $merchandiserReport->merchandiser->name }}</td>
                                                 <td>{{ $merchandiserReport->customer->name }}</td>
                                                 <td>{{ $merchandiserReport->gondolar_type->name }}</td>
                                                 <td>{{ $merchandiserReport->trip_type->name }}</td>
                                                 <td>{{ $merchandiserReport->outskirt_type->name }}</td>
-                                                <td class="d-none">{{ $merchandiserReport->remark }}</td>
+                                                <td>{{ $report_type }}</td>
+                                                <td>{{ $merchandiserReport->remark }}</td>
                                                 <td class="d-none">{{$merchandiserReport->gondolar_size_inches_length}}</td>
                                                 <td class="d-none">{{$merchandiserReport->gondolar_size_inches_weight}}</td>
                                                 <td class="d-none">{{$merchandiserReport->gondolar_size_centimeters_length}}</td>
@@ -146,8 +163,24 @@
                 var dataArray = [];
                 tmpdataArray.forEach(element => {
                     if(element.DT_RowIndex){
-                        console.log(element.DT_RowIndex);
-                        var values = [element.DT_RowIndex,element.created_at,element.merchandiser_name,element.customer_name,element.gondolar_type_name,element.trip_type_name,element.outskirt_type_name,
+                        // Original datetime string
+                        var originalDatetime = element.created_at;
+
+                        // Create a Date object from the original datetime string
+                        var date = new Date(originalDatetime);
+
+                        // Get the hours and minutes from the Date object
+                        var hours = date.getHours();
+                        var minutes = date.getMinutes();
+
+                        // Convert hours to 12-hour format
+                        var suffix = hours >= 12 ? "pm" : "am";
+                        hours = hours % 12 || 12;
+
+                        // Format the datetime string in the desired format
+                        var newDatetime = date.toISOString().slice(0, 10) + " " + hours + ":" + (minutes < 10 ? "0" : "") + minutes + suffix;
+                        var values = [element.DT_RowIndex,newDatetime,element.merchandiser_name,element.customer_name,element.gondolar_type_name,element.trip_type_name,element.outskirt_type_name,
+                        element.report_type,
                         element.remark,element.gondolar_size_inches_length,element.gondolar_size_inches_weight,
                         element.gondolar_size_centimeters_length,element.gondolar_size_centimeters_weight,element.backlit_size_inches_length,
                         element.backlit_size_inches_weight,element.backlit_size_centimeters_length,element.backlit_size_centimeters_weight,
@@ -212,7 +245,7 @@
                         },
                         "bPaginate": true,
                         "bLengthChange": true,
-                        "bFilter": false,
+                        "bFilter": true,
                         "bSort": false,
                         "bInfo": true,
                         "bAutoWidth": false,
@@ -244,12 +277,34 @@
                                     return  data.DT_RowIndex;
                                 }
                             },
-                            {"data" : "created_at"},
+                           {
+                                "data": null,
+                                render: function(data, type, full, meta, row) {
+                                    // Original datetime string
+                                    var originalDatetime = data.created_at;
+
+                                    // Create a Date object from the original datetime string
+                                    var date = new Date(originalDatetime);
+
+                                    // Get the hours and minutes from the Date object
+                                    var hours = date.getHours();
+                                    var minutes = date.getMinutes();
+
+                                    // Convert hours to 12-hour format
+                                    var suffix = hours >= 12 ? "pm" : "am";
+                                    hours = hours % 12 || 12;
+
+                                    // Format the datetime string in the desired format
+                                    var newDatetime = date.toISOString().slice(0, 10) + " " + hours + ":" + (minutes < 10 ? "0" : "") + minutes + suffix;
+                                    return newDatetime;
+                                }
+                            },
                             { "data": "merchandiser_name"},
                             { "data": "customer_name"},
                             { "data": "gondolar_type_name"},
                             { "data": "trip_type_name"},
                             { "data": "outskirt_type_name"},
+                            { "data": "report_type"},
                             { "data": "remark"},
                             { "data": "gondolar_size_inches_length"},
                             { "data": "gondolar_size_inches_weight"},
@@ -276,15 +331,8 @@
                             },
                         ],
                         "info": true,
+                        scrollX: true,
                         "columnDefs": [
-                            {
-                                "targets": 7,
-                                "className": "hide-column"
-                            },
-                            {
-                                "targets": 8,
-                                "className": "hide-column"
-                            },
                             {
                                 "targets": 9,
                                 "className": "hide-column"
@@ -323,6 +371,10 @@
                             },
                             {
                                 "targets": 18,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 19,
                                 "className": "hide-column"
                             },
                         ]

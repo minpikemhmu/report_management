@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BaReportType;
+use App\Models\MerchandiserReportType;
 use App\Traits\ResponserTraits;
 use App\Http\Resources\BaReportTypeResource;
+use App\Http\Resources\MerchandiserReportTypeResource;
 
 class ReportTypeController extends Controller
 {
@@ -86,5 +88,11 @@ class ReportTypeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function merchandiserReportType()
+    {
+        $report_types = MerchandiserReportType::all();
+        return $this->responseSuccess('Success', MerchandiserReportTypeResource::collection($report_types));
     }
 }

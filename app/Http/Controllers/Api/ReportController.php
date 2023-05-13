@@ -25,13 +25,13 @@ class ReportController extends Controller
         $this->imageUploadService = $imageUploadService;
     }
     public function storeMerchandiseReport(MerchandiserReportRequest $request){
-        Log::info($request->all());
         $report                    = new MerchandiseReport;
         $report->merchandiser_id   = $request->merchandiser_id;
         $report->customer_id       = $request->customer_id;
         $report->gondolar_type_id  = $request->gondolar_type_id;
         $report->trip_type_id      = $request->trip_type_id;
         $report->outskirt_type_id  = $request->outskirt_type_id;
+        $report->merchandiser_report_type_id = $request->merchandiser_report_type_id;
 
         if(isset($request->qty)){
             $report->qty  = $request->qty;
