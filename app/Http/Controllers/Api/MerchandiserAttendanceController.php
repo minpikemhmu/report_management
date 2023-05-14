@@ -118,6 +118,18 @@ class MerchandiserAttendanceController extends Controller
     public function checkAttendance(Request $request){
         $merchandiser = auth()->user();
         $getAllMerchandiserAttendance = $merchandiser->attendances()->today()->get();
+        $customData = [
+            'staff_id' => auth()->user()->id,
+            'is_check_in' => 0,
+            'is_check_out' => 0,
+            'is_attendance' => 0,
+        ];
+        if($getAllMerchandiserAttendance->isEmpty()){
+            return response(["code"    => 200,
+            "message"           => "SUCCESS", 
+            "data"             => [$customData],
+            ]); 
+        }
         return $this->responseSuccess('Success',MerchandiserAttendanceResource::collection($getAllMerchandiserAttendance));
     }
 }
