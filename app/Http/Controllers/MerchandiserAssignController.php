@@ -8,6 +8,8 @@ use App\Models\Merchandiser;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreMerchandiserAssignRequest;
 use App\Http\Requests\UpdateMerchandiserAssignRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\assignMerchandiserImport;
 
 class MerchandiserAssignController extends Controller
 {
@@ -106,5 +108,12 @@ class MerchandiserAssignController extends Controller
     {
         $assign_client = DB::table('customer_merchandiser')->where('id', $id)->delete();
         return redirect()->back()->with("successMsg",'Existion Assign Delete successfully!!');
+    }
+
+    public function assignMerchandiserImport(Request $request)
+    {
+        Excel::import(new assignMerchandiserImport, request()->file('file'));
+
+        return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
     }
 }
