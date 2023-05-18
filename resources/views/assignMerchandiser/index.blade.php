@@ -32,6 +32,15 @@
                                 </button>
                             </div>
                         @endif
+                        @if (session('failedMsg') != null)
+                            <div class="alert alert-danger alert-dismissible fade show myalert mt-2" role="alert">
+                                <strong> ✅ Fail!</strong>
+                                {{ session('failedMsg') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div><a href="{{ route('assignMerchandiser.create') }}" type="button" class="btn"
                                 style="background-color: #72F573">
                                 <i class="fa-solid fa-circle-plus txt-white mr-3"></i><span class="txt-white">Assign</span></a>

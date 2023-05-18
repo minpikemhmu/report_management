@@ -112,8 +112,12 @@ class MerchandiserAssignController extends Controller
 
     public function assignMerchandiserImport(Request $request)
     {
-        Excel::import(new assignMerchandiserImport, request()->file('file'));
-
-        return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+        $import = new assignMerchandiserImport();
+        Excel::import($import, request()->file('file'));
+        if($import->getSuccess() == false){
+            return redirect()->back()->with('failedMsg', 'Merchandiser and Customer are inavalid!');
+        }else{
+            return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+        }
     }
 }
