@@ -10,6 +10,7 @@ use App\Http\Requests\StoreMerchandiserAssignRequest;
 use App\Http\Requests\UpdateMerchandiserAssignRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\assignMerchandiserImport;
+use Carbon\Carbon;
 
 class MerchandiserAssignController extends Controller
 {
@@ -20,10 +21,15 @@ class MerchandiserAssignController extends Controller
      */
     public function index()
     {
+        $endDate = Carbon::today();
+        $startDate = Carbon::today()->subDays(12);
         $merchandisers = DB::table('customer_merchandiser as cm')
         ->select('cm.id as id','cm.merchandiser_id as merchandiser_id','cm.assign_date as assign_date', 'c.name as customer', 'm.name as merchandiser')
         ->join('customers as c', 'c.id', '=', 'cm.customer_id')
         ->join('merchandisers as m', 'm.id', '=', 'cm.merchandiser_id')
+        ->whereDate('cm.created_at', '>=', $startDate)
+        ->whereDate('cm.created_at', '<=', $endDate)
+        ->orderBy('cm.created_at', 'desc')
         ->get();
         return view('assignMerchandiser.index',compact('merchandisers'));
     }
