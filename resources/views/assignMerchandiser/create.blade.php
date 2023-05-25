@@ -27,7 +27,7 @@
                             <label for="customer_id">Customers</label>
                                 <select class="js-example-basic-single form-control" name="customer_id[]" multiple="multiple" id="customer_id">
                                 @foreach($customers as $row)
-                                    <option value="{{$row->id}}">{{$row->name}}</option>
+                                    <option value="{{$row->id}}">{{$row->dksh_customer_id}} - {{$row->name}}</option>
                                 @endforeach
                                 </select>
                             <div class="form-control-feedback text-danger"> {{ $errors->first('customer_id') }} </div>

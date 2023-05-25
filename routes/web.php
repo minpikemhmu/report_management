@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('baDAilyReportExport', [App\Http\Controllers\BaDailyReportController::class, 'baDailyReportExport'])->name('baDAilyReportExport');
     Route::post('ba-daily-reports-filter', [App\Http\Controllers\BaDailyReportController::class, 'showFilterBaDailyReports'])->name('ba_daily_reports.showFilterBaDailyReports');
     Route::post('/baStaffImport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'baStaffImport'])->name('baStaffImport');
+    Route::post('/assignMerchandiserImport', [App\Http\Controllers\MerchandiserAssignController::class, 'assignMerchandiserImport'])->name('assignMerchandiserImport');
     Route::get('getMerchandiserReport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'getMerchandiserReport'])->name('getMerchandiserReport');
     Route::resource('ba_attandence', BaAttendanceController::class);
     Route::post('ba-attendance-filter', [App\Http\Controllers\BaAttendanceController::class, 'showFilterAttendance'])->name('ba_attandence.showFilterAttendance');

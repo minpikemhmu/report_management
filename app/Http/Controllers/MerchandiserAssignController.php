@@ -8,6 +8,9 @@ use App\Models\Merchandiser;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreMerchandiserAssignRequest;
 use App\Http\Requests\UpdateMerchandiserAssignRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\assignMerchandiserImport;
+use Carbon\Carbon;
 
 class MerchandiserAssignController extends Controller
 {
@@ -18,10 +21,15 @@ class MerchandiserAssignController extends Controller
      */
     public function index()
     {
+        $endDate = Carbon::today();
+        $startDate = Carbon::today()->subDays(12);
         $merchandisers = DB::table('customer_merchandiser as cm')
         ->select('cm.id as id','cm.merchandiser_id as merchandiser_id','cm.assign_date as assign_date', 'c.name as customer', 'm.name as merchandiser')
         ->join('customers as c', 'c.id', '=', 'cm.customer_id')
         ->join('merchandisers as m', 'm.id', '=', 'cm.merchandiser_id')
+        ->whereDate('cm.created_at', '>=', $startDate)
+        ->whereDate('cm.created_at', '<=', $endDate)
+        ->orderBy('cm.created_at', 'desc')
         ->get();
         return view('assignMerchandiser.index',compact('merchandisers'));
     }
@@ -106,5 +114,16 @@ class MerchandiserAssignController extends Controller
     {
         $assign_client = DB::table('customer_merchandiser')->where('id', $id)->delete();
         return redirect()->back()->with("successMsg",'Existion Assign Delete successfully!!');
+    }
+
+    public function assignMerchandiserImport(Request $request)
+    {
+        $import = new assignMerchandiserImport();
+        Excel::import($import, request()->file('file'));
+        if($import->getSuccess() == false){
+            return redirect()->back()->with('failedMsg', 'Merchandiser and Customer are inavalid!');
+        }else{
+            return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+        }
     }
 }
