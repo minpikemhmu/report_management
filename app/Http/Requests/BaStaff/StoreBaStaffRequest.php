@@ -29,6 +29,7 @@ class StoreBaStaffRequest extends FormRequest
             'supervisor_id' => "required|integer|exists:supervisors,id",
             'city_id' => "required|integer|exists:cities,id",
             'customer_id' => "required|integer|exists:customers,id",
+            'product_brand_id' => "required|integer|exists:product_brands,id",
             'channel_id' => "required|integer|exists:channels,id",
             'subchannel_id' => "required|integer|exists:sub_channels,id",
             'password' => "required|string|between:8,50"

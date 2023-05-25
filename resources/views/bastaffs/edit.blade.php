@@ -54,6 +54,19 @@
                             </select>
                             <div class="form-control-feedback text-danger"> {{ $errors->first('city_id') }} </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="product_brand_id">Product Brand</label>
+                            <select class="form-control js-example-basic-single2" id="product_brand_id" name="product_brand_id">
+                                <option {{ !$baStaff->product_brand_id ? 'selected' : '' }} value="">Choose the Product Brand
+                                </option>
+                                @foreach ($productBrands as $row)
+                                    <option {{ $baStaff->product_brand_id == $row->id ? 'selected' : '' }}
+                                        value="{{ $row->id }}">{{ $row->name }}</option>
+                                @endforeach
+                            </select>
+                            <div class="form-control-feedback text-danger"> {{ $errors->first('product_brand_id') }} </div>
+                        </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12">

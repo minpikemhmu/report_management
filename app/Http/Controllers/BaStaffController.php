@@ -9,6 +9,7 @@ use App\Models\Channel;
 use App\Models\City;
 use App\Models\Customer;
 use App\Models\Outlet;
+use App\Models\ProductBrand;
 use App\Models\SubChannel;
 use App\Models\Supervisor;
 use App\Services\BaStaffService;
@@ -48,9 +49,10 @@ class BaStaffController extends Controller
         $city=City::orderby('name')->get();
         // $outlet=Outlet::all();
         $customers=Customer::all();
+        $productBrands=ProductBrand::all();
         $channel=Channel::all();
         $subchannel=SubChannel::all();
-        return view('bastaffs.create', compact('baStaffs', 'supervisor', 'city', 'customers', 'channel', 'subchannel'));
+        return view('bastaffs.create', compact('baStaffs', 'supervisor', 'city', 'customers', 'productBrands', 'channel', 'subchannel'));
     }
 
     /**
@@ -89,9 +91,10 @@ class BaStaffController extends Controller
         $city=City::orderby('name')->get();
         // $outlet=Outlet::all();
         $customers=Customer::all();
+        $productBrands=ProductBrand::all();
         $channel=Channel::all();
         $subchannel=SubChannel::all();
-        return view('bastaffs.edit', compact('baStaff', 'supervisor', 'city', 'customers', 'channel', 'subchannel'));        
+        return view('bastaffs.edit', compact('baStaff', 'supervisor', 'city', 'customers', 'productBrands', 'channel', 'subchannel'));        
     }
 
     /**

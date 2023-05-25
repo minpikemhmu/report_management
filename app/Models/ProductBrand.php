@@ -22,4 +22,14 @@ class ProductBrand extends Model
     {
         return $this->hasMany(Product::class, 'product_brands_id');
     }
+
+    /**
+     * Get all of the baStaffs for the ProductBrand
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function baStaffs(): HasMany
+    {
+        return $this->hasMany(BaStaff::class);
+    }
 }

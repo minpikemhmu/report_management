@@ -29,6 +29,7 @@ class UpdateBaStaffRequest extends FormRequest
             'supervisor_id' => "integer|exists:supervisors,id",
             'city_id' => "integer|exists:cities,id",
             'customer_id' => "integer|exists:customers,id",
+            'product_brand_id' => "sometimes|required|integer|exists:product_brands,id",
             'channel_id' => "integer|exists:channels,id",
             'subchannel_id' => "integer|exists:sub_channels,id",
             'password' => "string|between:8,50|nullable"
