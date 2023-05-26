@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BaAssignController;
 use App\Http\Controllers\BaAttendanceController;
 use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\BaStaffController;
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('product_key_cateogories', ProductKeyCategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('assignMerchandiser', MerchandiserAssignController::class);
+    Route::resource('assignBa', BaAssignController::class);
     Route::resource('ba_daily_reports', BaDailyReportController::class);
     Route::resource('mr_daily_reports', MerchandiserDailyReportController::class);
     Route::get('getCityByDivision', [App\Http\Controllers\CityController::class, 'getCityByDivision'])->name('getCityByDivision');

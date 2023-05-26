@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <div>
-                <form action="{{route('baStaffImport')}}" method="POST" enctype="multipart/form-data" class="d-flex gap-0">
+                <form action="{{ route('baStaffImport') }}" method="POST" enctype="multipart/form-data" class="d-flex gap-0">
                     @csrf
                     <div class="form-group flex-grow-1">
                         <label for="file">Excel File</label>
@@ -40,26 +40,26 @@
                     </div>
                     <div class="card-body">
                         <!-- <div class="table-responsive">
-                                    <table class="table table-bordered v-center-th-td" id="myTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Name</th>
-                                                <th>ID</th>
-                                                <th>Phone Number</th>
-                                                <th>Address</th>
-                                                <th>Region</th>
-                                                <th>Division</th>
-                                                <th>Township</th>
-                                                <th>City</th>
-                                                <th>Customer Type</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                           
-                                        </tbody>
-                                    </table>
-                                </div> -->
+                                        <table class="table table-bordered v-center-th-td" id="myTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Name</th>
+                                                    <th>ID</th>
+                                                    <th>Phone Number</th>
+                                                    <th>Address</th>
+                                                    <th>Region</th>
+                                                    <th>Division</th>
+                                                    <th>Township</th>
+                                                    <th>City</th>
+                                                    <th>Customer Type</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div> -->
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -71,6 +71,7 @@
                                         <th>City</th>
                                         <th>Customer ID</th>
                                         <th>Customer Name</th>
+                                        <th>Product Brand</th>
                                         <th>Key Channel</th>
                                         <th>Sub Channel</th>
                                         <th>Editor</th>
@@ -85,20 +86,23 @@
                                             <td>{{ $baStaff->ba_code }}</td>
                                             <td>{{ $baStaff->name }}</td>
                                             {{-- <td>{{ $baStaff->division_state_id }}</td> --}}
-                                            <td>{{ $baStaff->supervisor->name}}
+                                            <td>{{ $baStaff->supervisor->name }}
                                             </td>
-                                            <td>{{ $baStaff->city->name}}</td>
-                                            <td>{{ $baStaff->customer->dksh_customer_id}}
+                                            <td>{{ $baStaff->city->name }}</td>
+                                            <td>{{ $baStaff->customer->dksh_customer_id }}
                                             </td>
-                                            <td>{{ $baStaff->customer->name}}
+                                            <td>{{ $baStaff->customer->name }}
                                             </td>
-                                            <td>{{ $baStaff->channel->name}}
+                                            <td>{{ $baStaff->productBrand->name ?? 'N/A' }}
                                             </td>
-                                            <td>{{ $baStaff->subchannel->name}}
+                                            <td>{{ $baStaff->channel->name }}
+                                            </td>
+                                            <td>{{ $baStaff->subchannel->name }}
                                             </td>
                                             <td>
                                                 <div class="t-flex-center">
-                                                    <a class="btn" href="{{ route('bastaffs.edit', $baStaff) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a class="btn" href="{{ route('bastaffs.edit', $baStaff) }}"><i
+                                                            class="fa-solid fa-pen-to-square"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -113,9 +117,12 @@
     </div>
 @endsection
 @section('script')
-<script type="text/javascript">
-    $(document).ready(function() {
-        setTimeout(function(){ $('.myalert').hide(); showDiv2() },3000);
-    })
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.myalert').hide();
+                showDiv2()
+            }, 3000);
+        })
+    </script>
 @endsection

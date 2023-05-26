@@ -14,7 +14,7 @@ class BaStaff extends Model
 
     protected $table = 'ba_staffs';
 
-    protected $fillable = ['ba_code', 'name', 'supervisor_id', 'city_id', 'customer_id', 'channel_id', 'subchannel_id', 'password'];
+    protected $fillable = ['ba_code', 'name', 'supervisor_id', 'city_id', 'customer_id', 'product_brand_id', 'channel_id', 'subchannel_id', 'password'];
 
     public function supervisor(): BelongsTo
     {
@@ -59,5 +59,15 @@ class BaStaff extends Model
     public function attendances(): HasMany
     {
         return $this->hasMany(BaAttendance::class, 'staff_id', 'id');
+    }
+
+    /**
+     * Get the productBrand that owns the BaStaff
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function productBrand(): BelongsTo
+    {
+        return $this->belongsTo(ProductBrand::class, 'product_brand_id', 'id');
     }
 }
