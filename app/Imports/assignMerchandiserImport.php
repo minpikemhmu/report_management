@@ -26,7 +26,7 @@ class assignMerchandiserImport implements ToCollection
         $success = true; // Flag to track if all rows are correct
 
         foreach ($collection as $row) {
-            $merchandiser = Merchandiser::where('name', $row[0])->first();
+            $merchandiser = Merchandiser::where('mer_code', $row[0])->first();
             $customer = Customer::where('dksh_customer_id', $row[1])->first();
 
             if (!$merchandiser || !$customer) {
@@ -37,7 +37,7 @@ class assignMerchandiserImport implements ToCollection
         if ($success) {
             // All rows are correct, proceed with attaching and storing data
             foreach ($collection as $row) {
-                $merchandiser = Merchandiser::where('name', $row[0])->first();
+                $merchandiser = Merchandiser::where('mer_code', $row[0])->first();
                 $customer = Customer::where('dksh_customer_id', $row[1])->first();
 
                 $date = Carbon::create(1900, 1, 1)

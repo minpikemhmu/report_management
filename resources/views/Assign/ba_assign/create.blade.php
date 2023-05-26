@@ -42,9 +42,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="target_quantity">Target Quantity</label>
+                            <label for="target_quantity">Target Amount</label>
                             <input name="target_quantity" type="text" class="form-control" id="target_quantity"
-                                aria-describedby="textHelp" placeholder="Enter the Target Quantity" value="{{ old('target_quantity') }}">
+                                aria-describedby="textHelp" placeholder="Enter the Target Amount" value="{{ old('target_quantity') }}">
                             <div class="form-control-feedback text-danger"> {{ $errors->first('target_quantity') }} </div>
                         </div>
                 </div>
