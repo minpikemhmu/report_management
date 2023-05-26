@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\BA\AssignBaController;
 use App\Http\Controllers\Api\BA\BaAttendanceController;
 use App\Http\Controllers\Api\MerchandiserController;
 use App\Http\Controllers\Api\ReportTypeController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Api\OutskirtTypeController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\BA\BaDailyReportController;
 use App\Http\Controllers\Api\MerchandiserAttendanceController;
+use App\Http\Controllers\BaAssignController;
 // use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\ImageUploadController;
 use App\Models\BaDailyReport;
@@ -76,6 +78,9 @@ Route::middleware('api.token')->group(function () {
             // Route for BA attendance
             Route::post('attendance', [BaAttendanceController::class, 'storeOrUpdateBaAttendance']);
             Route::get('checkAttendance',[BaAttendanceController::class, 'checkAttendance']);
+
+            // Get the BA's Assignment
+            Route::get('assign-by-ba', [AssignBaController::class, 'getAssignmentsByBA']);
         });
     });
 

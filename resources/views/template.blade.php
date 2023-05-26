@@ -192,6 +192,11 @@
                     <i class="fas fa-fw fa-user"></i>
                     <span>Merchandiser Assign</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('assignBa.index') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>BA Assign</span></a>
+            </li>
 
             <!-- Nav Item - Product Collapse Menu -->
             <li class="nav-item">
@@ -426,6 +431,14 @@
     <!-- Date Range Picker in DataTable -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
     <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+
+    <!-- Bootstrap Date Picker -->
+    <!-- Add the required stylesheets -->
+    <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
+    <!-- Add the required scripts -->
+    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('template/js/demo/datatables-demo.js') }}"></script>
