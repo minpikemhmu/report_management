@@ -87,6 +87,12 @@ class ReportController extends Controller
         if(isset($request->longitude)){
             $report->longitude  = $request->longitude;
         }
+        if(isset($request->actual_latitude)){
+            $report->actual_latitude  = $request->actual_latitude;
+        }
+        if(isset($request->actual_longitude)){
+            $report->actual_longitude  = $request->actual_longitude;
+        }
         $report->save();
         return response(["code"    => 200,
         "status"           => "SUCCESS", 

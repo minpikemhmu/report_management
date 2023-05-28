@@ -17,7 +17,9 @@ class BaAssignResource extends JsonResource
         return [
             'id' => $this->id,
             'ba_staff_id' => $this->ba_staff_id,
+            'ba_staff_name' => $this->baStaff->name,
             'product_key_category_id' => $this->product_key_category_id,
+            'product_key_category_name' => $this->productKeyCategory->name,
             'target_quantity' => $this->target_quantity,
             'month' => $this->month,
             'year' => $this->year,

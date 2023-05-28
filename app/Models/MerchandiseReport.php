@@ -13,7 +13,7 @@ class MerchandiseReport extends Model
     use HasFactory, HasApiTokens;
     protected $fillable = [ 'merchandiser_id', 'customer_id', 'gondolar_type_id', 'trip_type_id', 'outskirt_type_id', 'merchandiser_report_type_id','qty','gondolar_size_inches_length', 'gondolar_size_inches_weight',
                             'gondolar_size_centimeters_length', 'gondolar_size_centimeters_weight', 'backlit_size_inches_length', 'backlit_size_inches_weight', 'backlit_size_centimeters_length', 'backlit_size_centimeters_weight',
-                            'outlet_photo_before', 'outlet_photo_after', 'remark', 'latitude', 'longitude'];
+                            'outlet_photo_before', 'outlet_photo_after', 'remark', 'latitude', 'longitude', 'actual_latitude', 'actual_longitude'];
 
     
     public function merchandiser(): BelongsTo

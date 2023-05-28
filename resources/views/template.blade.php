@@ -434,10 +434,10 @@
 
     <!-- Bootstrap Date Picker -->
     <!-- Add the required stylesheets -->
-    <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('template/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 
     <!-- Add the required scripts -->
-    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('template/js/bootstrap-datepicker.min.js') }}"></script>
 
 
     <!-- Page level custom scripts -->
