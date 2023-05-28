@@ -14,7 +14,7 @@
                 <div class="ml-3">
                     {{-- <h2>Assign records for the selected time period:</h2> --}}
 
-                    <form method="post" action="{{ route('ba_attandence.showFilterAttendance') }}">
+                    <form method="post" action="{{ route('assignBa.showFilterBaAssign') }}">
                         @csrf
                         <label for="time_period">Select a time period to show:</label>
                         <select class="form-select" id="time_period" name="time_period">
@@ -85,7 +85,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $count = 0; ?>
-                                    @foreach ($getAllBaAassigns as $baAssign)
+                                    @foreach ($getAllBaAssigns as $baAssign)
                                         <tr>
                                             <td>{{ ++$count }}</td>
                                             <td>{{ $baAssign->baStaff->ba_code }}</td>
@@ -94,7 +94,7 @@
                                             <td>{{ $baAssign->target_quantity ?? 'N/A' }}</td>
                                             <td>{{ $baAssign->baStaff->customer->name ?? 'N/A' }}</td>
                                             <td>{{ $baAssign->year ?? 'N/A' }}</td>
-                                            <td>{{ $baAssign->month ? DateTime::createFromFormat('!m', $baAssign->month)->format('F') : 'N/A' }}
+                                            <td>{{ DateTime::createFromFormat('!m', $baAssign->month)->format('F') ?? 'N/A' }}
                                             </td>
                                             <td>{{ date('Y-m-d h:i:s A', strtotime($baAssign->created_at)) ?? 'N/A' }}</td>
                                         </tr>
@@ -117,9 +117,10 @@
             function(settings, data, dataIndex) {
                 var min = minDate.val();
                 var max = maxDate.val();
+            
                 // var date = new Date(data[1]);
-                // using Check-in time in filter
-                var date = new Date(data[5].split(" ")[0]);
+                // using "Assign Created At" time in filter
+                var date = new Date(data[8].split(" ")[0]);
 
                 if (
                     (min === null && max === null) ||
@@ -153,6 +154,7 @@
             // // Export CSV and Excel uaing DataTable Features
 
             // var table = $('#baAssignDataTable').DataTable();
+            var table = $('#baAssignDataTable').DataTable();
 
             // new $.fn.dataTable.Buttons(table, {
             //     buttons: [

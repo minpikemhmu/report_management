@@ -9,6 +9,7 @@ use App\Models\BaStaff;
 use App\Models\ProductKeyCategory;
 use App\Services\BaAssignService;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class BaAssignController extends Controller
 {
@@ -27,8 +28,8 @@ class BaAssignController extends Controller
         $endDate = Carbon::now();
 
         // $getAllBaAttendances = BaAttendance::orderByDesc('updated_at')->get();
-        $getAllBaAassigns = BaAssign::whereBetween('updated_at', [$startDate, $endDate])->orderByDesc('updated_at')->get();
-        return view("Assign.ba_assign.index", compact('getAllBaAassigns', 'timePeriod'));
+        $getAllBaAssigns = BaAssign::whereBetween('updated_at', [$startDate, $endDate])->orderByDesc('updated_at')->get();
+        return view("Assign.ba_assign.index", compact('getAllBaAssigns', 'timePeriod'));
 
     }
 
@@ -99,5 +100,31 @@ class BaAssignController extends Controller
     public function destroy(BaAssign $baAssign)
     {
         //
+    }
+
+    public function showFilterBaAssign(Request $request)
+    {
+        $timePeriod = $request->input('time_period') ?? 'last_week';
+        $startDate = null;
+        $endDate = Carbon::now();
+        
+        switch ($timePeriod) {
+            case 'last_week':
+                $startDate = Carbon::now()->subWeek();
+                break;
+            case 'last_month':
+                $startDate = Carbon::now()->subMonth();
+                break;
+            case 'last_six_months':
+                $startDate = Carbon::now()->subMonths(6);
+                break;
+            case 'last_year':
+                $startDate = Carbon::now()->subYear();
+                break;
+        }
+
+        $getAllBaAssigns = BaAssign::whereBetween('created_at', [$startDate, $endDate])->orderByDesc('created_at')->get();
+
+        return view('Assign.ba_assign.index', compact('getAllBaAssigns', 'timePeriod'));
     }
 }
