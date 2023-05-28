@@ -22,6 +22,7 @@ class BastaffResource extends JsonResource
             'supervisor_id'        => $this->supervisor_id,
             'supervisor_name'      => $this->supervisor->name,
             'customer'             => new CustomerResource($this->customer),
+            'product_brand_id'     => $this->product_brand_id,
 
             'city_id'              => $this->city_id,
             'city_name'            => $this->city->name,
