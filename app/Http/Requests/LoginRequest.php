@@ -90,7 +90,7 @@ class LoginRequest extends FormRequest
     private function checkPassword(Model $model, string $password): void
     {
         if (!Hash::check($password, $model->password)) {
-            throw new NotFoundResourceException("Phone Number and Password was wrong !!");
+            throw new NotFoundResourceException("Code and Password was wrong !!");
         }
     }
 }

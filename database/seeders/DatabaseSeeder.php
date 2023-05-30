@@ -3,6 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\BaExecutive;
+use App\Models\BaManager;
+use App\Models\MrExecutive;
+use App\Models\MrManager;
+use App\Models\MrSupervisor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,7 +33,13 @@ class DatabaseSeeder extends Seeder
             MerchantAreaSeeder::class,
             MerchantTeamSeeder::class,
             OutletSeeder::class,
+            BaManagerSeeder::class,
+            BaExecutive::class,
             SupervisorSeeder::class,
+            MrManagerSeeder::class,
+            MrExecutiveSeeder::class,
+            MrSupervisorSeeder::class,
+            MrLeaderSeeder::class,
             ProductBrandSeeder::class,
             ProductCategorySeeder::class,
             ProductSubCategorySeeder::class,

@@ -10,7 +10,7 @@ class Supervisor extends Model
 {
     use HasFactory; 
 
-    protected $fillable = ['name', 'region_id'];
+    protected $fillable = ['name', 'region_id', 'executive_id'];
 
     /**
      * Get the region that owns the Supervisor
@@ -20,5 +20,10 @@ class Supervisor extends Model
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class, 'region_id');
+    }
+
+    public function executive(): BelongsTo
+    {
+        return $this->belongsTo(BaExecutive::class, 'executive_id');
     }
 }

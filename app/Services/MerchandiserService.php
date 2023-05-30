@@ -37,6 +37,7 @@ class MerchandiserService
             'merchant_team_id'   => $request->team,
             'merchant_area_id'   => $request->area,
             'channel_id'         => $request->channel,
+            'leader_id'          => $request->leader,
             'password'           => Hash::make($request->password),
         ]);
     }
@@ -62,8 +63,8 @@ class MerchandiserService
             'merchant_team_id'   => $request->team ?? $merchandiser->merchant_team_id,
             'merchant_area_id'   => $request->area ?? $merchandiser->merchant_area_id,
             'channel_id'         => $request->channel ?? $merchandiser->channel_id,
+            'leader_id'          => $request->leader ?? $merchandiser->leader_id,
             'password'           => $request->password ? Hash::make($request->password) : $merchandiser->password,
-
         ]);
     }
 }

@@ -58,12 +58,20 @@
                                             <th>Mer Team</th>
                                             <th>Mer Area</th>
                                             <th>Channel</th>
+                                            <th>Leader</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php $no=1; @endphp
                                         @foreach($merchandiser as $row)
+                                         @php
+                                           if(isset($row->leader->name)){
+                                            $leader_name = $row->leader->name;
+                                           }else{
+                                            $leader_name = null;
+                                           }
+                                         @endphp
                                             <tr>
                                                 <td>{{$no++}}</td>
                                                 <td>{{$row->name}}</td>
@@ -72,6 +80,7 @@
                                                 <td>{{$row->merchantTeam->name}}</td>
                                                 <td>{{$row->merchantArea->name}}</td>
                                                 <td>{{$row->channel->name}}</td>
+                                                <td>{{$leader_name}}</td>
                                                 <td>
                                                     <div class="t-flex-center">
                                                         <a class="btn" href="{{route('merchandiser.edit',$row->id)}}"><i class="fa-solid fa-pen-to-square"></i></a>

@@ -29,10 +29,11 @@ class UpdateMerchandiserRequest extends FormRequest
         return [
             'name'                     => "required|string",
             'code'                     => "required|string",
-            'region'                   => "required|integer",
-            'team'                     => "required|integer",
-            'area'                     => "required|integer",
-            'channel'                  => "required|integer",
+            'region'                   => "required|integer|exists:regions,id",
+            'team'                     => "required|integer|exists:merchant_teams,id",
+            'area'                     => "required|integer|exists:merchant_areas,id",
+            'channel'                  => "required|integer|exists:channels,id",
+            'leader'                   => "nullable|integer|exists:mr_leaders,id",
             'password'                 => "string|between:8,50|nullable"
         ];
     }

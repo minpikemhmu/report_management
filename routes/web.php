@@ -16,6 +16,9 @@ use App\Http\Controllers\MerchandiserAssignController;
 use App\Http\Controllers\MerchandiserAttendanceController;
 use App\Http\Controllers\ProductKeyCategoryController;
 use App\Http\Controllers\MerchandiserDailyReportController;
+use App\Http\Controllers\BaSupervisorController;
+use App\Http\Controllers\MrSupervisorController;
+use App\Http\Controllers\MrLeaderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +38,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('outlets', OutletController::class);
     Route::resource('bastaffs', BaStaffController::class);
     Route::resource('customers', CustomerController::class);
+    Route::resource('ba_supervisors', BaSupervisorController::class);
+    Route::resource('mr_supervisors', MrSupervisorController::class);
+    Route::resource('mr_leaders', MrLeaderController::class);
     Route::resource('merchandiser', MerchandiserController::class);
     Route::resource('product_brands', ProductBrandController::class);
     Route::resource('product_categories', ProductCategoryController::class);

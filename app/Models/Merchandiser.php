@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class Merchandiser extends Model
 {
     use HasFactory, HasApiTokens;
-    protected $fillable = ['name', 'mer_code', 'password', 'region_id', 'merchant_team_id', 'merchant_area_id', 'channel_id'];
+    protected $fillable = ['name', 'mer_code', 'password', 'region_id', 'merchant_team_id', 'merchant_area_id', 'channel_id', 'leader_id'];
 
     public function region(): BelongsTo
     {
@@ -33,6 +33,11 @@ class Merchandiser extends Model
     public function channel(): BelongsTo
     {
         return $this->belongsTo(Channel::class);
+    }
+
+    public function leader(): BelongsTo
+    {
+        return $this->belongsTo(MrLeader::class);
     }
 
     public function customers()

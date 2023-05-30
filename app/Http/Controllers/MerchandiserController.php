@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Services\MerchandiserService;
 use App\Http\Requests\StoreMerchandiserRequest;
 use App\Http\Requests\UpdateMerchandiserRequest;
+use App\Models\MrLeader;
 
 class MerchandiserController extends Controller
 {
@@ -39,7 +40,8 @@ class MerchandiserController extends Controller
         $teams = MerchantTeam::all();
         $areas = MerchantArea::all();
         $channels = Channel::all();
-        return view('merchandiser.create',compact('regions', 'teams', 'areas', 'channels'));
+        $leaders = MrLeader::all();
+        return view('merchandiser.create',compact('regions', 'teams', 'areas', 'channels', 'leaders'));
     }
 
     /**
@@ -77,7 +79,8 @@ class MerchandiserController extends Controller
         $teams = MerchantTeam::all();
         $areas = MerchantArea::all();
         $channels = Channel::all();
-        return view('merchandiser.edit',compact('regions', 'teams', 'areas', 'channels', 'merchandiser'));
+        $leaders = MrLeader::all();
+        return view('merchandiser.edit',compact('regions', 'teams', 'areas', 'channels', 'merchandiser','leaders'));
     }
 
     /**

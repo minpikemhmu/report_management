@@ -33,6 +33,7 @@ class StoreMerchandiserRequest extends FormRequest
             'team'                     => "required|integer|exists:merchant_teams,id",
             'area'                     => "required|integer|exists:merchant_areas,id",
             'channel'                  => "required|integer|exists:channels,id",
+            'leader'                   => "required|integer|exists:mr_leaders,id",
             'password'                 => "required|string|between:8,50"
         ];
     }

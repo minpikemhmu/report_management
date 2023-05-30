@@ -118,6 +118,21 @@
                         <div class="form-control-feedback text-danger"> {{$errors->first('area') }} </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="leader">Leader</label>
+                        <select
+                            class="form-control js-example-basic-single1"
+                            id="leader"
+                            name="leader"
+                        >
+                            <option selected value="">Select the Leader</option>
+                            @foreach($leaders as $row)
+                                <option value="{{$row->id}}" @if($merchandiser->leader_id==$row->id) selected @endif>{{$row->name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="form-control-feedback text-danger"> {{$errors->first('leader') }} </div>
+                    </div>
+
                     <button class="btn btn-primary mt-4" type="submit" >
                             update
                     </button>
