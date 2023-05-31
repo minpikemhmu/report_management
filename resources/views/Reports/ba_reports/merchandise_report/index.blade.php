@@ -55,6 +55,8 @@
                                         <th class="d-none"></th>
                                         <th class="d-none"></th>
                                         <th class="d-none"></th>
+                                        <th class="d-none"></th>
+                                        <th class="d-none"></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -97,6 +99,8 @@
                                                 <td class="d-none">{{$merchandiserReport->qty}}</td>
                                                 <td class="d-none">{{$merchandiserReport->latitude}}</td>
                                                 <td class="d-none">{{$merchandiserReport->longitude}}</td>
+                                                <td class="d-none">{{$merchandiserReport->actual_latitude}}</td>
+                                                <td class="d-none">{{$merchandiserReport->actual_longitude}}</td>
                                                 <td>
                                                     <div class="t-flex-center">
                                                         <a class="btn" href="{{route('mr_daily_reports.show',$merchandiserReport->id)}}"><i class="fa-solid fa-xl fa-circle-info"></i></a>
@@ -184,7 +188,7 @@
                         element.remark,element.gondolar_size_inches_length,element.gondolar_size_inches_weight,
                         element.gondolar_size_centimeters_length,element.gondolar_size_centimeters_weight,element.backlit_size_inches_length,
                         element.backlit_size_inches_weight,element.backlit_size_centimeters_length,element.backlit_size_centimeters_weight,
-                        element.qty,element.latitude,element.longitude];
+                        element.qty,element.latitude,element.longitude,element.actual_latitude,element.actual_longitude];
                         dataArray.push(values);
                     }else{
                         element.pop();
@@ -317,6 +321,8 @@
                             { "data": "qty"},
                             { "data": "latitude"},
                             { "data": "longitude"},
+                            { "data": "actual_latitude"},
+                            { "data": "actual_longitude"},
                             {
                                 "data": null,
                                 render: function(data, type, full, meta, row) {
@@ -375,6 +381,14 @@
                             },
                             {
                                 "targets": 19,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 20,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 21,
                                 "className": "hide-column"
                             },
                         ]

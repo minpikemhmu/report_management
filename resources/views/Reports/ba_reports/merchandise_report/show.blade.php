@@ -31,6 +31,8 @@
                             <li class="list-group-item"><span class="font-weight-bold h6">qty</span> : {{$merchandiserReport->qty}}</li>
                             <li class="list-group-item"><span class="font-weight-bold h6">latitude</span> : {{$merchandiserReport->latitude}}</li>
                             <li class="list-group-item"><span class="font-weight-bold h6">longitude</span> : {{$merchandiserReport->longitude}}</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">actual latitude</span> : {{$merchandiserReport->actual_latitude}}</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">actual longitude</span> : {{$merchandiserReport->actual_longitude}}</li>
                         </ul>
                     </div>
             </div>
