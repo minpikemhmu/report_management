@@ -12,6 +12,8 @@ use App\Services\MerchandiserService;
 use App\Http\Requests\StoreMerchandiserRequest;
 use App\Http\Requests\UpdateMerchandiserRequest;
 use App\Models\MrLeader;
+use App\Imports\MrStaffImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MerchandiserController extends Controller
 {
@@ -105,5 +107,16 @@ class MerchandiserController extends Controller
     public function destroy(Merchandiser $merchandiser)
     {
         //
+    }
+
+    public function mrStaffImport(Request $request)
+    {
+        $import = new MrStaffImport();
+        Excel::import($import, request()->file('file'));
+        if($import->getSuccess() == false){
+            return redirect()->back()->with('failedMsg', 'Some data are inavalid!.');
+        }else{
+            return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+        }
     }
 }

@@ -14,6 +14,8 @@ use App\Models\SubChannel;
 use App\Models\Supervisor;
 use App\Services\BaStaffService;
 use Illuminate\Http\Request;
+use App\Imports\BaStaffImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BaStaffController extends Controller
 {
@@ -120,5 +122,16 @@ class BaStaffController extends Controller
     public function destroy(BaStaff $baStaff)
     {
         //
+    }
+
+    public function baStaffImport(Request $request)
+    {
+        $import = new BaStaffImport();
+        Excel::import($import, request()->file('file'));
+        if($import->getSuccess() == false){
+            return redirect()->back()->with('failedMsg', 'Some data are inavalid!.');
+        }else{
+            return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+        }
     }
 }

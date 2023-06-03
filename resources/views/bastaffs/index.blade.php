@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group flex-grow-1">
                         <label for="file">Excel File</label>
-                        <input type="file" name="file" id="file">
+                        <input type="file" name="file" id="file" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm mb-4 flex-grow-1">Import</button>
                 </form>
@@ -27,6 +27,15 @@
                             <div class="alert alert-success alert-dismissible fade show myalert mt-2" role="alert">
                                 <strong> ✅ SUCCESS!</strong>
                                 {{ session('successMsg') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        @if (session('failedMsg') != null)
+                            <div class="alert alert-danger alert-dismissible fade show myalert mt-2" role="alert">
+                                <strong> ✅ Fail!</strong>
+                                {{ session('failedMsg') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

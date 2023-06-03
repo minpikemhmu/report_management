@@ -57,7 +57,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('merchandiserReportExport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'merchandiserReportExport'])->name('merchandiserReportExport');
     Route::post('baDAilyReportExport', [App\Http\Controllers\BaDailyReportController::class, 'baDailyReportExport'])->name('baDAilyReportExport');
     Route::post('ba-daily-reports-filter', [App\Http\Controllers\BaDailyReportController::class, 'showFilterBaDailyReports'])->name('ba_daily_reports.showFilterBaDailyReports');
-    Route::post('/baStaffImport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'baStaffImport'])->name('baStaffImport');
+    Route::post('/baStaffImport', [App\Http\Controllers\BaStaffController::class, 'baStaffImport'])->name('baStaffImport');
+    Route::post('/mrStaffImport', [App\Http\Controllers\MerchandiserController::class, 'mrStaffImport'])->name('mrStaffImport');
+    Route::post('/customerImport', [App\Http\Controllers\CustomerController::class, 'customerImport'])->name('customerImport');
     Route::post('/assignMerchandiserImport', [App\Http\Controllers\MerchandiserAssignController::class, 'assignMerchandiserImport'])->name('assignMerchandiserImport');
     Route::get('getMerchandiserReport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'getMerchandiserReport'])->name('getMerchandiserReport');
     Route::resource('ba_attandence', BaAttendanceController::class);

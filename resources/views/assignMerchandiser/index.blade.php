@@ -12,7 +12,7 @@
                     @csrf
                     <div class="form-group flex-grow-1">
                         <label for="file">Excel File</label>
-                        <input type="file" name="file" id="file">
+                        <input type="file" name="file" id="file" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm mb-4 flex-grow-1">Import</button>
                 </form>

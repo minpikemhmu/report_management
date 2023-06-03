@@ -7,6 +7,18 @@
             <h2>Customer Management</h2>
         </div>
     </div>
+    <div class="row">
+        <div>
+            <form action="{{ route('customerImport') }}" method="POST" enctype="multipart/form-data" class="d-flex gap-0">
+                @csrf
+                <div class="form-group flex-grow-1">
+                    <label for="file">Excel File</label>
+                    <input type="file" name="file" id="file" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm mb-4 flex-grow-1">Import</button>
+            </form>
+        </div>
+    </div>
     <div class="row mt-5">
         <div class="col-12">
             <div class="card shadow mb-4">
@@ -20,6 +32,15 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    @endif
+                    @if (session('failedMsg') != null)
+                        <div class="alert alert-danger alert-dismissible fade show myalert mt-2" role="alert">
+                            <strong> ✅ Fail!</strong>
+                            {{ session('failedMsg') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     @endif
                     <div><a href="{{route('customers.create')}}" type="button" class="btn" style="background-color: #72F573">
                             <i class="fa-solid fa-circle-plus txt-white mr-3"></i><span class="txt-white">Add new customer</span></a>

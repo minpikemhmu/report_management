@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\MerchandiseReport;
 use App\Exports\MerchandiserReportExport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\BaStaffImport;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
@@ -104,13 +103,6 @@ class MerchandiserDailyReportController extends Controller
             $success_export = new MerchandiserReportExport(collect($reports));
             return Excel::download($success_export, 'merchandiser_report.csv');
         }
-    }
-
-    public function baStaffImport(Request $request)
-    {
-        Excel::import(new BaStaffImport, request()->file('file'));
-
-        return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
     }
 
     public function getMerchandiserReport(Request $request){
