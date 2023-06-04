@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/baStaffImport', [App\Http\Controllers\BaStaffController::class, 'baStaffImport'])->name('baStaffImport');
     Route::post('/mrStaffImport', [App\Http\Controllers\MerchandiserController::class, 'mrStaffImport'])->name('mrStaffImport');
     Route::post('/customerImport', [App\Http\Controllers\CustomerController::class, 'customerImport'])->name('customerImport');
+    Route::post('/productImport', [App\Http\Controllers\ProductController::class, 'productImport'])->name('productImport');
+    Route::post('/baAssignImport', [App\Http\Controllers\BaAssignController::class, 'baAssignImport'])->name('baAssignImport');
     Route::post('/assignMerchandiserImport', [App\Http\Controllers\MerchandiserAssignController::class, 'assignMerchandiserImport'])->name('assignMerchandiserImport');
     Route::get('getMerchandiserReport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'getMerchandiserReport'])->name('getMerchandiserReport');
     Route::resource('ba_attandence', BaAttendanceController::class);

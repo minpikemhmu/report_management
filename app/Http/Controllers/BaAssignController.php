@@ -10,6 +10,8 @@ use App\Models\ProductKeyCategory;
 use App\Services\BaAssignService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Imports\baAssignImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BaAssignController extends Controller
 {
@@ -126,5 +128,16 @@ class BaAssignController extends Controller
         $getAllBaAssigns = BaAssign::whereBetween('created_at', [$startDate, $endDate])->orderByDesc('created_at')->get();
 
         return view('Assign.ba_assign.index', compact('getAllBaAssigns', 'timePeriod'));
+    }
+
+    public function baAssignImport(Request $request)
+    {
+        $import = new baAssignImport();
+        Excel::import($import, request()->file('file'));
+        if($import->getSuccess() == false){
+            return redirect()->back()->with('failedMsg', 'Some data are inavalid!.');
+        }else{
+            return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+        }
     }
 }

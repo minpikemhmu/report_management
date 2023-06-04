@@ -10,6 +10,9 @@ use App\Models\ProductCategory;
 use App\Models\ProductKeyCategory;
 use App\Models\ProductSubCategory;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
+use App\Imports\productImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -106,5 +109,16 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function productImport(Request $request)
+    {
+        $import = new productImport();
+        Excel::import($import, request()->file('file'));
+        if($import->getSuccess() == false){
+            return redirect()->back()->with('failedMsg', 'Some data are inavalid!.');
+        }else{
+            return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
+        }
     }
 }
