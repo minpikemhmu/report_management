@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             MerchantTeamSeeder::class,
             OutletSeeder::class,
             BaManagerSeeder::class,
-            BaExecutive::class,
+            BaExecutiveSeeder::class,
             SupervisorSeeder::class,
             MrManagerSeeder::class,
             MrExecutiveSeeder::class,
