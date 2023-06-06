@@ -15,7 +15,6 @@ class ProductBrandSeeder extends Seeder
      */
     public function run()
     {
-        ProductBrand::truncate();
         ProductBrand::create(['name' => 'NIVEA']);
         ProductBrand::create(['name' => 'CutePress']);
         ProductBrand::create(['name' => 'Colgate']);

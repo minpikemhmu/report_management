@@ -15,7 +15,6 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        ProductCategory::truncate();
         ProductCategory::create(["name" => "Women Foam"]);
         ProductCategory::create(["name" => "Women Moist"]);
         ProductCategory::create(["name" => "Men Foam"]);

@@ -15,7 +15,6 @@ class ProductSubCategorySeeder extends Seeder
      */
     public function run()
     {
-        ProductSubCategory::truncate();
         ProductSubCategory::create(["name" => "Cleanse"]);
         ProductSubCategory::create(["name" => "Whip"]);
         ProductSubCategory::create(["name" => "Mousse"]);
