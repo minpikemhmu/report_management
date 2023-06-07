@@ -47,9 +47,9 @@ class customerImport implements ToCollection
             $division = DivisionState::where('name', $row[7])->first();
             $city = City::where("name",$row[8])->first();
             $township = Township::where("name",$row[9])->first();
-            if($row[2] != "BA"){
+            if($row[2] == "BA"){
                 $is_ba = 1;
-            }else if($row[2] != "Non BA"){
+            }else if($row[2] == "Non BA"){
                 $is_ba = 0;
             }
                 Customer::create([
