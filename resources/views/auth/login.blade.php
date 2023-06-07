@@ -12,13 +12,13 @@
     <title>Admin Portal - Login</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('template/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('template/vendor/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('template/css/sb-admin-2.css')}}" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -38,7 +38,7 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('{{ asset('template/img/sunergy.png') }}');"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
