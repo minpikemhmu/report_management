@@ -33,6 +33,10 @@
                             <li class="list-group-item"><span class="font-weight-bold h6">longitude</span> : {{$merchandiserReport->longitude}}</li>
                             <li class="list-group-item"><span class="font-weight-bold h6">actual latitude</span> : {{$merchandiserReport->actual_latitude}}</li>
                             <li class="list-group-item"><span class="font-weight-bold h6">actual longitude</span> : {{$merchandiserReport->actual_longitude}}</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">planogram</span> : @if(isset($merchandiserReport->planogram)) @if ($merchandiserReport->planogram == 0) No @else Yes @endif @endif</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">hygiene</span> : @if(isset($merchandiserReport->hygiene)) @if ($merchandiserReport->hygiene == 0) No @else Yes @endif @endif</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">sale team visit</span> : @if(isset($merchandiserReport->sale_team_visit)) @if ($merchandiserReport->sale_team_visit == 0) No @else Yes @endif @endif</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">outlet status</span> : {{$merchandiserReport->outlet_status}}</li>
                         </ul>
                     </div>
             </div>

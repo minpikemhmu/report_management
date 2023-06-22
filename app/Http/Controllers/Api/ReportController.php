@@ -93,6 +93,18 @@ class ReportController extends Controller
         if(isset($request->actual_longitude)){
             $report->actual_longitude  = $request->actual_longitude;
         }
+        if(isset($request->planogram)){
+            $report->planogram  = $request->planogram;
+        }
+        if(isset($request->hygiene)){
+            $report->hygiene  = $request->hygiene;
+        }
+        if(isset($request->sale_team_visit)){
+            $report->sale_team_visit  = $request->sale_team_visit;
+        }
+        if(isset($request->outlet_status)){
+            $report->outlet_status  = $request->outlet_status;
+        }
         $report->save();
         return response(["code"    => 200,
         "status"           => "SUCCESS", 

@@ -10863,6 +10863,7 @@ a:focus {
 .bg-login-image {
   /* background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800"); */
   background-size: 470px 400px;
+  background-repeat: no-repeat;
 }
 
 .bg-register-image {

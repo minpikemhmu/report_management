@@ -49,7 +49,10 @@ class MerchandiserReportRequest extends FormRequest
             'latitude'                            => "nullable|string",
             'longitude'                           => "nullable|string", 
             'actual_latitude'                     => "nullable|string",
-            'actual_longitude'                    => "nullable|string", 
+            'planogram'                           => "nullable|boolean",
+            'hygiene'                             => "nullable|boolean",
+            'sale_team_visit'                     => "nullable|boolean",
+            'outlet_status'                       => "nullable|string",
         ];
     }
 
