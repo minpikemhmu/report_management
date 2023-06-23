@@ -16,26 +16,35 @@ class baAssignImport implements ToCollection
     * @param Collection $collection
     */
     public $message = true;
+    public $errorRows;
 
     public function getSuccess()
     {
         return $this->message;
     }
 
+    public function getErrorRows()
+    {
+        return $this->errorRows ?? [];
+    }
+
     public function collection(Collection $collection)
     {
         $success = true; // Flag to track if all rows are correct
+        $errorRows = [];
 
-        foreach ($collection as $row) {
+        foreach ($collection as $index => $row) {
             $ba_staff = BaStaff::where('ba_code', $row[0])->first();
             $key_category = ProductKeyCategory::where("name",$row[1])->first();
             
             if($row[3] > 12 || $row[3]<0){
                 $success = false;
+                $errorRows[] = $index + 1;
             }
 
             if (!$ba_staff || !$key_category) {
                 $success = false;
+                $errorRows[] = $index + 1;
             }
         }
 
@@ -57,6 +66,7 @@ class baAssignImport implements ToCollection
             $this->message = true;
         } else {
             $this->message = false;
+            $this->errorRows = $errorRows[0];
         }
     }
 }

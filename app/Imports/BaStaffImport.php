@@ -19,17 +19,24 @@ class BaStaffImport implements ToCollection
     * @param Collection $collection
     */
     public $message = true;
+    public $errorRows;
 
     public function getSuccess()
     {
         return $this->message;
     }
 
+    public function getErrorRows()
+    {
+        return $this->errorRows ?? [];
+    }
+
     public function collection(Collection $collection)
     {
         $success = true; // Flag to track if all rows are correct
+        $errorRows = [];
 
-        foreach ($collection as $row) {
+        foreach ($collection as $index => $row) {
             $customer = Customer::where('dksh_customer_id', $row[1])->first();
             $channel = Channel::where("name",$row[3])->first();
             $supervisor = Supervisor::where("name",$row[4])->first();
@@ -39,6 +46,7 @@ class BaStaffImport implements ToCollection
 
             if (!$channel || !$customer || !$supervisor || !$subchannel || !$city || !$brand) {
                 $success = false;
+                $errorRows[] = $index + 1;
             }
         }
 
@@ -67,6 +75,7 @@ class BaStaffImport implements ToCollection
             $this->message = true;
         } else {
             $this->message = false;
+            $this->errorRows = $errorRows[0];
         }
     }
 }

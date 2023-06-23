@@ -17,39 +17,50 @@ class productImport implements ToCollection
     * @param Collection $collection
     */
     public $message = true;
+    public $errorRows;
 
     public function getSuccess()
     {
         return $this->message;
     }
 
+    public function getErrorRows()
+    {
+        return $this->errorRows ?? [];
+    }
+
     public function collection(Collection $collection)
     {
         $success = true; // Flag to track if all rows are correct
-        foreach ($collection as $row) {
+        $errorRows = [];
+        foreach ($collection as $index => $row) {
             $brand = ProductBrand::where("name",$row[3])->first();
 
             if(isset($row[5])){
                 $category = ProductCategory::where('name', $row[5])->first();
                 if(!$category){
                     $success = false;
+                    $errorRows[] = $index + 1;
                 }
             }
             if(isset($row[6])){
                 $sub_category = ProductSubCategory::where("name",$row[6])->first();
                 if(!$sub_category){
                     $success = false;
+                    $errorRows[] = $index + 1;
                 }
             }
             if(isset($row[7])){
                 $key_category = ProductKeyCategory::where("name",$row[7])->first();
                 if(!$key_category){
                     $success = false;
+                    $errorRows[] = $index + 1;
                 }
             }
 
             if (!$brand) {
                 $success = false;
+                $errorRows[] = $index + 1;
             }
         }
 
@@ -94,6 +105,7 @@ class productImport implements ToCollection
             $this->message = true;
         } else {
             $this->message = false;
+            $this->errorRows = $errorRows[0];
         }
     }
 }

@@ -128,8 +128,9 @@ class BaStaffController extends Controller
     {
         $import = new BaStaffImport();
         Excel::import($import, request()->file('file'));
+        $error = $import->getErrorRows();
         if($import->getSuccess() == false){
-            return redirect()->back()->with('failedMsg', 'Some data are inavalid!.');
+            return redirect()->back()->with('failedMsg', "some data of row $error are inavalid!");
         }else{
             return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
         }

@@ -18,17 +18,24 @@ class MrStaffImport implements ToCollection
     * @param Collection $collection
     */
     public $message = true;
+    public $errorRows;
 
     public function getSuccess()
     {
         return $this->message;
     }
 
+    public function getErrorRows()
+    {
+        return $this->errorRows ?? [];
+    }
+
     public function collection(Collection $collection)
     {
         $success = true; // Flag to track if all rows are correct
+        $errorRows = [];
 
-        foreach ($collection as $row) {
+        foreach ($collection as $index => $row) {
             $team = MerchantTeam::where('name', $row[2])->first();
             $region = Region::where("name",$row[3])->first();
             $area = MerchantArea::where("name",$row[4])->first();
@@ -37,6 +44,7 @@ class MrStaffImport implements ToCollection
 
             if (!$team || !$region || !$area || !$channel || !$leader) {
                 $success = false;
+                $errorRows[] = $index + 1;
             }
         }
 
@@ -63,6 +71,7 @@ class MrStaffImport implements ToCollection
             $this->message = true;
         } else {
             $this->message = false;
+            $this->errorRows = $errorRows[0];
         }
     }
 }

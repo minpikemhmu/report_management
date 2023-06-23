@@ -15,22 +15,30 @@ class assignMerchandiserImport implements ToCollection
     * @param Collection $collection
     */
     public $message = true;
+    public $errorRows;
 
     public function getSuccess()
     {
         return $this->message;
     }
 
+    public function getErrorRows()
+    {
+        return $this->errorRows ?? [];
+    }
+
     public function collection(Collection $collection)
     {
         $success = true; // Flag to track if all rows are correct
+        $errorRows = [];
 
-        foreach ($collection as $row) {
+        foreach ($collection as $index => $row) {
             $merchandiser = Merchandiser::where('mer_code', $row[0])->first();
             $customer = Customer::where('dksh_customer_id', $row[1])->first();
 
             if (!$merchandiser || !$customer) {
                 $success = false;
+                $errorRows[] = $index + 1;
             }
         }
 
@@ -50,6 +58,7 @@ class assignMerchandiserImport implements ToCollection
             $this->message = true;
         } else {
             $this->message = false;
+            $this->errorRows = $errorRows[0];
         }
     }
 }

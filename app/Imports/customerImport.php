@@ -17,16 +17,23 @@ class customerImport implements ToCollection
     * @param Collection $collection
     */
     public $message = true;
+    public $errorRows;
 
     public function getSuccess()
     {
         return $this->message;
     }
 
+    public function getErrorRows()
+    {
+        return $this->errorRows ?? [];
+    }
+
     public function collection(Collection $collection)
     {
         $success = true; // Flag to track if all rows are correct
-        foreach ($collection as $row) {
+        $errorRows = [];
+        foreach ($collection as $index => $row) {
             $cusType = CustomerType::where("name",$row[6])->first();
             $division = DivisionState::where('name', $row[7])->first();
             $city = City::where("name",$row[8])->first();
@@ -34,9 +41,11 @@ class customerImport implements ToCollection
 
             if (!$division || !$township || !$city || !$cusType) {
                 $success = false;
+                $errorRows[] = $index + 1;
             }
             if($row[2] != "BA" && $row[2] != "Non BA"){
                 $success = false;
+                $errorRows[] = $index + 1;
             }
         }
 
@@ -69,6 +78,7 @@ class customerImport implements ToCollection
             $this->message = true;
         } else {
             $this->message = false;
+            $this->errorRows = $errorRows[0];
         }
     }
 }
