@@ -68,5 +68,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('ba-attendance-filter', [App\Http\Controllers\BaAttendanceController::class, 'showFilterAttendance'])->name('ba_attandence.showFilterAttendance');
     Route::resource('merchandiser_attandence', MerchandiserAttendanceController::class);
     Route::post('merchandiser-attendance-filter', [App\Http\Controllers\MerchandiserAttendanceController::class, 'showFilterMerchandiserAttendance'])->name('merchandiser_attandence.showFilterMerchandiserAttendance');
+
+    // Email
+    Route::get('/email', 'App\Http\Controllers\EmailController@showEmailForm')->name('email.form');
+    Route::post('/preview-email', 'App\Http\Controllers\EmailController@previewEmail')->name('email.preview');
+    Route::post('/confirm-send-email', 'App\Http\Controllers\EmailController@confirmSendEmail')->name('email.confirm-send');
+
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

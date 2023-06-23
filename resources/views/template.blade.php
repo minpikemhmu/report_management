@@ -198,6 +198,14 @@
                     <span>BA Assign</span></a>
             </li>
 
+            {{-- Email Management --}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('email.form') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Email Management</span></a>
+            </li>
+
+
             <!-- Nav Item - Product Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
