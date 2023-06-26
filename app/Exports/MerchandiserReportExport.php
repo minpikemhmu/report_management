@@ -25,7 +25,7 @@ class MerchandiserReportExport implements FromCollection, WithCustomCsvSettings,
 
     public function headings(): array
     {
-        return ["No", "Report Date", "Merchandiser Name", "Customer Name", "Gondolar Type", "Trip Type", "Outskirt Type", "Report Type", "remark", "gondolar_size_inches_length", 'gondolar_size_inches_weight', "gondolar_size_centimeters_length", "gondolar_size_centimeters_weight", 'backlit_size_inches_length', "backlit_size_inches_weight", "backlit_size_centimeters_length",'backlit_size_centimeters_weight', "qty", "latitude",'longitude',"actual_latitude","actual_longitude"];
+        return ["No", "Report Date", "Merchandiser Name", "Customer Name", "Gondolar Type", "Trip Type", "Outskirt Type", "Report Type", "remark", "gondolar_size_inches_length", 'gondolar_size_inches_weight', "gondolar_size_centimeters_length", "gondolar_size_centimeters_weight", 'backlit_size_inches_length', "backlit_size_inches_weight", "backlit_size_centimeters_length",'backlit_size_centimeters_weight', "qty", "latitude",'longitude',"actual_latitude","actual_longitude", "planogram", "hygiene", "sale team visit", "outlet_status"];
     }
 
     /**

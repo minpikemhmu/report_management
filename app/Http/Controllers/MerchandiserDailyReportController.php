@@ -113,7 +113,23 @@ class MerchandiserDailyReportController extends Controller
         $lastSevenDay = Carbon::now()->subDays(6);
         if ($request->startDate == null && $request->endDate == null) {
             $getAllDailyReports = DB::table('merchandise_reports')
-                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name','merchandiser_report_types.name as report_type')
+                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name','merchandiser_report_types.name as report_type',
+                DB::raw("CASE 
+                        WHEN merchandise_reports.planogram = 1 THEN 'Yes' 
+                        WHEN merchandise_reports.planogram = 0 THEN 'No' 
+                        ELSE NULL 
+                        END AS my_planogram"),
+                DB::raw("CASE 
+                        WHEN merchandise_reports.hygiene = 1 THEN 'Yes' 
+                        WHEN merchandise_reports.hygiene = 0 THEN 'No' 
+                        ELSE NULL 
+                        END AS my_hygiene"),
+                DB::raw("CASE 
+                        WHEN merchandise_reports.sale_team_visit = 1 THEN 'Yes' 
+                        WHEN merchandise_reports.sale_team_visit = 0 THEN 'No' 
+                        ELSE NULL 
+                        END AS my_sale_team_visit"),
+                )
                 ->leftjoin('merchandisers', 'merchandise_reports.merchandiser_id', '=', 'merchandisers.id')
                 ->leftjoin('customers', 'merchandise_reports.customer_id', '=', 'customers.id')
                 ->leftjoin('gondolar_types', 'merchandise_reports.gondolar_type_id', '=', 'gondolar_types.id')
@@ -125,7 +141,23 @@ class MerchandiserDailyReportController extends Controller
                 ->get();
         } elseif ($request->startDate != null && $request->endDate != null) {
             $getAllDailyReports = DB::table('merchandise_reports')
-                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name','merchandiser_report_types.name as report_type')
+                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name','merchandiser_report_types.name as report_type',
+                DB::raw("CASE 
+                        WHEN merchandise_reports.planogram = 1 THEN 'Yes' 
+                        WHEN merchandise_reports.planogram = 0 THEN 'No' 
+                        ELSE NULL 
+                        END AS my_planogram"),
+                DB::raw("CASE 
+                        WHEN merchandise_reports.hygiene = 1 THEN 'Yes' 
+                        WHEN merchandise_reports.hygiene = 0 THEN 'No' 
+                        ELSE NULL 
+                        END AS my_hygiene"),
+                DB::raw("CASE 
+                        WHEN merchandise_reports.sale_team_visit = 1 THEN 'Yes' 
+                        WHEN merchandise_reports.sale_team_visit = 0 THEN 'No' 
+                        ELSE NULL 
+                        END AS my_sale_team_visit"),
+                )
                 ->leftjoin('merchandisers', 'merchandise_reports.merchandiser_id', '=', 'merchandisers.id')
                 ->leftjoin('customers', 'merchandise_reports.customer_id', '=', 'customers.id')
                 ->leftjoin('gondolar_types', 'merchandise_reports.gondolar_type_id', '=', 'gondolar_types.id')

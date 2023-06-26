@@ -118,10 +118,18 @@ class ReportController extends Controller
         $limit = isset($request['limit']) ? $request['limit'] : 15;
         $start_date = isset($request['start_date']) ? $request['start_date'] : '';
         $end_date = isset($request['end_date']) ? $request['end_date'] : '';
-        if ($start_date && $end_date) {
-            $merchandise_report = MerchandiseReport::where('merchandiser_id',auth()->user()->id)->orderBy('created_at', 'desc')->whereBetween('created_at', [$start_date, $end_date])->paginate($limit)->withQueryString();;  
+        if(auth()->user()->id == 1){
+            if ($start_date && $end_date) {
+                $merchandise_report = MerchandiseReport::orderBy('created_at', 'desc')->whereBetween('created_at', [$start_date, $end_date])->paginate($limit)->withQueryString();
+            }else{
+                $merchandise_report = MerchandiseReport::orderBy('created_at', 'desc')->paginate($limit)->withQueryString();;  
+            }
         }else{
-            $merchandise_report = MerchandiseReport::where('merchandiser_id',auth()->user()->id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString();;  
+            if ($start_date && $end_date) {
+                $merchandise_report = MerchandiseReport::where('merchandiser_id',auth()->user()->id)->orderBy('created_at', 'desc')->whereBetween('created_at', [$start_date, $end_date])->paginate($limit)->withQueryString();  
+            }else{
+                $merchandise_report = MerchandiseReport::where('merchandiser_id',auth()->user()->id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString(); 
+            }
         }
         return $this->responseSuccessWithPaginate('success', MerchandiserReportResource::collection($merchandise_report));
     }

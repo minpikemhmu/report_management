@@ -57,6 +57,10 @@
                                         <th class="d-none"></th>
                                         <th class="d-none"></th>
                                         <th class="d-none"></th>
+                                        <th class="d-none"></th>
+                                        <th class="d-none"></th>
+                                        <th class="d-none"></th>
+                                        <th class="d-none"></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -101,6 +105,10 @@
                                                 <td class="d-none">{{$merchandiserReport->longitude}}</td>
                                                 <td class="d-none">{{$merchandiserReport->actual_latitude}}</td>
                                                 <td class="d-none">{{$merchandiserReport->actual_longitude}}</td>
+                                                <td class="d-none"> @if(isset($merchandiserReport->planogram)) @if ($merchandiserReport->planogram == 0) No @else Yes @endif @endif</td>
+                                                <td class="d-none"> @if(isset($merchandiserReport->hygiene)) @if ($merchandiserReport->hygiene == 0) No @else Yes @endif @endif</td>
+                                                <td class="d-none"> @if(isset($merchandiserReport->sale_team_visit)) @if ($merchandiserReport->sale_team_visit == 0) No @else Yes @endif @endif</td>
+                                                <td class="d-none">{{$merchandiserReport->outlet_status}}</td>
                                                 <td>
                                                     <div class="t-flex-center">
                                                         <a class="btn" href="{{route('mr_daily_reports.show',$merchandiserReport->id)}}"><i class="fa-solid fa-xl fa-circle-info"></i></a>
@@ -188,7 +196,7 @@
                         element.remark,element.gondolar_size_inches_length,element.gondolar_size_inches_weight,
                         element.gondolar_size_centimeters_length,element.gondolar_size_centimeters_weight,element.backlit_size_inches_length,
                         element.backlit_size_inches_weight,element.backlit_size_centimeters_length,element.backlit_size_centimeters_weight,
-                        element.qty,element.latitude,element.longitude,element.actual_latitude,element.actual_longitude];
+                        element.qty,element.latitude,element.longitude,element.actual_latitude,element.actual_longitude, element.my_planogram, element.my_hygiene, element.my_sale_team_visit, element.outlet_status];
                         dataArray.push(values);
                     }else{
                         element.pop();
@@ -323,6 +331,10 @@
                             { "data": "longitude"},
                             { "data": "actual_latitude"},
                             { "data": "actual_longitude"},
+                            { "data": "planogram"},
+                            { "data": "hygiene"},
+                            { "data": "sale_team_visit"},
+                            { "data": "outlet_status"},
                             {
                                 "data": null,
                                 render: function(data, type, full, meta, row) {
@@ -389,6 +401,22 @@
                             },
                             {
                                 "targets": 21,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 22,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 23,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 24,
+                                "className": "hide-column"
+                            },
+                            {
+                                "targets": 25,
                                 "className": "hide-column"
                             },
                         ]

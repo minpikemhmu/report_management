@@ -133,8 +133,11 @@ class BaDailyReportController extends Controller
         $endDate = $request->input('end_date');
 
         if (!isset($startDate) && !isset($endDate)) {
-            $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString();
-
+            if(auth()->user()->id == 1){
+                $reports = BaDailyReport::orderBy('created_at', 'desc')->paginate($limit)->withQueryString();
+            }else{
+                $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString();
+            }
             return  $this->responseSuccessWithPaginate('success', BaDailyReportResource::collection($reports));
         } elseif (!isset($startDate) && isset($endDate)) {
 
@@ -143,9 +146,11 @@ class BaDailyReportController extends Controller
 
             $endDate = $defaultEndDate;
         }
-
-        $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
-
+        if(auth()->user()->id == 1){
+            $reports = BaDailyReport::orderBy('created_at', 'desc')->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
+        }else{
+            $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
+        }
         return  $this->responseSuccessWithPaginate('success', BaDailyReportResource::collection($reports));
     }
 }
