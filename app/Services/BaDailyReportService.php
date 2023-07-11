@@ -41,12 +41,26 @@ class BaDailyReportService
     foreach ($productsData as $productData) {
       $product = Product::findOrFail($productData['product_id']);
       $count = $productData['count'];
+      if(isset($productData['manufacture_date'])){
+        $manufacture_date=$productData['manufacture_date'];
+      }else{
+        $manufacture_date= null;
+      }
+      if(isset($productData['expiry_date'])){
+        $expiry_date = $productData['expiry_date'];
+      }else{
+        $expiry_date = null;
+      }
+      $price = $product->price;
 
       // Creating and commit the BaDailyReportProducts
       BaDailyReportProduct::create([
         'ba_daily_report_id' => $report->id,
         'product_id' => $product->id,
         'count' => $count,
+        'price' => $price,
+        'manufacture_date' => $manufacture_date,
+        'expiry_date' => $expiry_date,
       ]);
     }
     

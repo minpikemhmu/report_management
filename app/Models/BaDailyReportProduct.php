@@ -15,6 +15,9 @@ class BaDailyReportProduct extends Model
         'ba_daily_report_id',
         'product_id',
         'count',
+        'price',
+        'manufacture_date',
+        'expiry_date',
     ];
 
     public function report()

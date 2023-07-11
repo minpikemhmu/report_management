@@ -18,7 +18,9 @@ class BaDailyReportProductResource extends JsonResource
             'id' => $this->id,
             'ba_daily_report_id' =>$this->ba_daily_report_id,
             'product_name'=> $this->product->name,
-            'count' => $this->count
+            'count' => $this->count,
+            'manufacture_date' => $this->manufacture_date,
+            'expiry_date' => $this->expiry_date,
         ];
     }
 }

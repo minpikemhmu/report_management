@@ -23,8 +23,7 @@ class BaDailyReportController extends Controller
         $timePeriod = 'last_week';
         $startDate = Carbon::now()->subWeek();
         $endDate = Carbon::now();
-
-        $baDailyReports = BaDailyReport::whereBetween('ba_report_date', [$startDate, $endDate])->with('products')->orderByDesc('created_at')->get();
+        $baDailyReports = BaDailyReport::whereDate('ba_report_date', '>=', $startDate)->whereDate('ba_report_date', '<=', $endDate)->with('products')->orderByDesc('created_at')->get();
         return view('Reports.ba_reports.ba_daily_reports.index', compact('baDailyReports', 'timePeriod'));
 
         // $getAllBaDailyReports = BaDailyReport::with('products')->get();
@@ -132,7 +131,7 @@ class BaDailyReportController extends Controller
                 break;
         }
 
-        $baDailyReports = BaDailyReport::whereBetween('ba_report_date', [$startDate, $endDate])->with('products')->orderByDesc('created_at')->get();
+        $baDailyReports = BaDailyReport::whereDate('ba_report_date', '>=', $startDate)->whereDate('ba_report_date', '<=', $endDate)->with('products')->orderByDesc('created_at')->get();
         return view('Reports.ba_reports.ba_daily_reports.index', compact('baDailyReports', 'timePeriod'));
     }
 }

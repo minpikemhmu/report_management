@@ -124,6 +124,8 @@
                                         <th>Count</th>
                                         <th>Price Per Product</th>
                                         <th>Total Price</th>
+                                        <th>Manufacture date</th>
+                                        <th>Expiry Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -146,8 +148,10 @@
                                                 <td>{{ $baDailyReportProduct->product->id }}</td>
                                                 <td>{{ $baDailyReportProduct->product->name }}</td>
                                                 <td>{{ $baDailyReportProduct->count }}</td>
-                                                <td>{{ $baDailyReportProduct->product->price }}</td>
-                                                <td>{{ intval($baDailyReportProduct->count) * intval($baDailyReportProduct->product->price) }}</td>
+                                                <td>{{ $baDailyReportProduct->price }}</td>
+                                                <td>{{ intval($baDailyReportProduct->count) * intval($baDailyReportProduct->price) }}</td>
+                                                <td>{{ $baDailyReportProduct->manufacture_date }}</td>
+                                                <td>{{ $baDailyReportProduct->expiry_date }}</td>
                                             </tr>
                                         @endforeach
                                     @endforeach

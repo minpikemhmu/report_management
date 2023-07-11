@@ -31,6 +31,8 @@ class StoreBaDailyReportRequest extends FormRequest
             'products' => 'nullable|array',
             'products.*.product_id' => 'required_with:products|exists:products,id',
             'products.*.count' => 'required_with:products|string|min:1',
+            'products.*.manufacture_date' => 'nullable|date',
+            'products.*.expiry_date' => 'nullable|date',
         ];
     }
 
