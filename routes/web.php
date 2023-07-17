@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/email', 'App\Http\Controllers\EmailController@showEmailForm')->name('email.form');
     Route::post('/preview-email', 'App\Http\Controllers\EmailController@previewEmail')->name('email.preview');
     Route::post('/confirm-send-email', 'App\Http\Controllers\EmailController@confirmSendEmail')->name('email.confirm-send');
+    Route::get('/php-info', 'App\Http\Controllers\EmailController@showPhpInfo')->name('php-info');
 
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
