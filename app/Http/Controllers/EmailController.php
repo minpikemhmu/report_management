@@ -168,8 +168,8 @@ class EmailController extends Controller
         return redirect()->route('email.form')->with('success', 'Email was sent successfully.');
     }
 
-    public function showPhpInfo() 
-    {
-        return view('emails.php-info');
-    }
+    // public function showPhpInfo() 
+    // {
+    //     return view('emails.php-info');
+    // }
 }
