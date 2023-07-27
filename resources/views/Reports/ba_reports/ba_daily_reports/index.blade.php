@@ -149,7 +149,8 @@
                                                 <td>{{ $baDailyReportProduct->product->name }}</td>
                                                 <td>{{ $baDailyReportProduct->count }}</td>
                                                 <td>{{ $baDailyReportProduct->price }}</td>
-                                                <td>{{ intval($baDailyReportProduct->count) * intval($baDailyReportProduct->price) }}</td>
+                                                {{-- <td>{{ intval($baDailyReportProduct->count) * intval($baDailyReportProduct->price) }}</td> --}}
+                                                <td>{{ $baDailyReportProduct->count * $baDailyReportProduct->price }}</td>
                                                 <td>{{ $baDailyReportProduct->manufacture_date }}</td>
                                                 <td>{{ $baDailyReportProduct->expiry_date }}</td>
                                             </tr>
