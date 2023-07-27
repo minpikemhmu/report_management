@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\http\Resources\BaDailyReportCollection;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
+use DataTables;
 
 class BaDailyReportController extends Controller
 {
@@ -23,11 +24,21 @@ class BaDailyReportController extends Controller
         $timePeriod = 'last_week';
         $startDate = Carbon::now()->subWeek();
         $endDate = Carbon::now();
-        $baDailyReports = BaDailyReport::whereDate('ba_report_date', '>=', $startDate)->whereDate('ba_report_date', '<=', $endDate)->with('products')->orderByDesc('created_at')->get();
-        return view('Reports.ba_reports.ba_daily_reports.index', compact('baDailyReports', 'timePeriod'));
+        
+        $baDailyReports = BaDailyReport::whereDate('ba_report_date', '>=', $startDate)->whereDate('ba_report_date', '<=', $endDate)->with(
+            [
+                'baReportType',
+                'baStaff.supervisor.region',
+                'baStaff.supervisor',
+                'baStaff.city',
+                'baStaff.channel',
+                'baStaff.subchannel',
+                'customer',
+                'baDailyReportProducts.product'
+            ]
+        )->orderByDesc('created_at')->get();
 
-        // $getAllBaDailyReports = BaDailyReport::with('products')->get();
-        // return view('Reports.ba_reports.ba_daily_reports.index', ['baDailyReports' => $getAllBaDailyReports]);
+        return view('Reports.ba_reports.ba_daily_reports.index', compact('baDailyReports', 'timePeriod'));
     }
 
     /**
@@ -115,7 +126,7 @@ class BaDailyReportController extends Controller
         $timePeriod = $request->input('time_period') ?? 'last_week';
         $startDate = null;
         $endDate = Carbon::now();
-        
+
         switch ($timePeriod) {
             case 'last_week':
                 $startDate = Carbon::now()->subWeek();
@@ -131,7 +142,16 @@ class BaDailyReportController extends Controller
                 break;
         }
 
-        $baDailyReports = BaDailyReport::whereDate('ba_report_date', '>=', $startDate)->whereDate('ba_report_date', '<=', $endDate)->with('products')->orderByDesc('created_at')->get();
+        $baDailyReports = BaDailyReport::whereDate('ba_report_date', '>=', $startDate)->whereDate('ba_report_date', '<=', $endDate)->with([
+            'baReportType',
+            'baStaff.supervisor.region',
+            'baStaff.supervisor',
+            'baStaff.city',
+            'baStaff.channel',
+            'baStaff.subchannel',
+            'customer',
+            'baDailyReportProducts.product'
+        ])->orderByDesc('created_at')->get();
         return view('Reports.ba_reports.ba_daily_reports.index', compact('baDailyReports', 'timePeriod'));
     }
 }

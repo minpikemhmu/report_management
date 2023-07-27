@@ -198,6 +198,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -215,6 +216,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'DataTables' => \Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];
