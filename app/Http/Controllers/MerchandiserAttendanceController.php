@@ -19,7 +19,7 @@ class MerchandiserAttendanceController extends Controller
         $startDate = Carbon::now()->subWeek();
         $endDate = Carbon::now();
 
-        $getAllMerchandiserAttendances = MerchandiserAttendance::whereBetween('check_in_time', [$startDate, $endDate])->orderByDesc('check_out_time')->get();
+        $getAllMerchandiserAttendances = MerchandiserAttendance::with('staff')->whereBetween('check_in_time', [$startDate, $endDate])->orderByDesc('check_out_time')->get();
         return view('Reports.attandance.merchandiser_attendance_report.index', compact('getAllMerchandiserAttendances', 'timePeriod'));
     }
 
@@ -111,7 +111,7 @@ class MerchandiserAttendanceController extends Controller
                 break;
         }
 
-        $getAllMerchandiserAttendances = MerchandiserAttendance::whereBetween('check_in_time', [$startDate, $endDate])->orderByDesc('check_out_time')->get();
+        $getAllMerchandiserAttendances = MerchandiserAttendance::with('staff')->whereBetween('check_in_time', [$startDate, $endDate])->orderByDesc('check_out_time')->get();
 
         return view('Reports.attandance.merchandiser_attendance_report.index', compact('getAllMerchandiserAttendances', 'timePeriod'));
     }
