@@ -21,8 +21,11 @@ class BaAttendanceController extends Controller
         $startDate = Carbon::now()->subWeek();
         $endDate = Carbon::now();
 
-        // $getAllBaAttendances = BaAttendance::orderByDesc('updated_at')->get();
-        $getAllBaAttendances = BaAttendance::whereBetween('check_in_time', [$startDate, $endDate])->orderByDesc('check_out_time')->get();
+        $getAllBaAttendances = BaAttendance::with('staff')
+            ->whereBetween('check_in_time', [$startDate, $endDate])
+            ->orderByDesc('check_out_time')
+            ->get();
+            
         return view('Reports.attandance.ba_attendance_report.index', compact('getAllBaAttendances', 'timePeriod'));
     }
 
@@ -98,7 +101,7 @@ class BaAttendanceController extends Controller
         $timePeriod = $request->input('time_period') ?? 'last_week';
         $startDate = null;
         $endDate = Carbon::now();
-        
+
         switch ($timePeriod) {
             case 'last_week':
                 $startDate = Carbon::now()->subWeek();
@@ -114,9 +117,11 @@ class BaAttendanceController extends Controller
                 break;
         }
 
-        $getAllBaAttendances = BaAttendance::whereBetween('check_in_time', [$startDate, $endDate])->orderByDesc('check_out_time')->get();
+        $getAllBaAttendances = BaAttendance::with('staff')
+            ->whereBetween('check_in_time', [$startDate, $endDate])
+            ->orderByDesc('check_out_time')
+            ->get();
 
         return view('Reports.attandance.ba_attendance_report.index', compact('getAllBaAttendances', 'timePeriod'));
     }
-
 }
