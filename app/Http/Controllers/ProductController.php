@@ -26,11 +26,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $product_brands = ProductBrand::all();
-        $product_categories = ProductCategory::all();
-        $product_sub_categories = ProductSubCategory::all();
-        return view('products.index', compact('products', 'product_brands', 'product_categories', 'product_sub_categories'));
+        $products = Product::with([
+            'productbrand',
+            'productcategory',
+            'productsubcategory',
+            'productKeyCategory'
+        ])->get();
+
+        return view('products.index', compact('products'));
     }
 
     /**

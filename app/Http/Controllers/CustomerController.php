@@ -28,8 +28,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers=Customer::orderByDesc('updated_at')->get();
-        return view('customer.index',compact('customers'));
+        $customers = Customer::with([
+            'division_state',
+            'township',
+            'city',
+            'customer_type'
+        ])->orderByDesc('updated_at')->get();
+        return view('customer.index', compact('customers'));
     }
 
     /**
@@ -39,11 +44,11 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $customer_types= CustomerType::all();
+        $customer_types = CustomerType::all();
         $divisions = DivisionState::orderby('name')->get();
         $townships = Township::orderby('name')->get();
         $cities = City::orderby('name')->get();
-        return view('customer.create',compact('customer_types', 'divisions', 'townships', 'cities'));
+        return view('customer.create', compact('customer_types', 'divisions', 'townships', 'cities'));
     }
 
     /**
@@ -55,7 +60,7 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         $this->service->storeCustomer($request);
-        return redirect()->route('customers.index')->with("successMsg",'New Customer is ADDED in your data');
+        return redirect()->route('customers.index')->with("successMsg", 'New Customer is ADDED in your data');
     }
 
     /**
@@ -77,11 +82,11 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        $customer_types= CustomerType::all();
+        $customer_types = CustomerType::all();
         $divisions = DivisionState::orderby('name')->get();
         $townships = Township::orderby('name')->get();
         $cities = City::orderby('name')->get();
-        return view('customer.edit',compact('customer', 'customer_types', 'divisions', 'townships', 'cities'));
+        return view('customer.edit', compact('customer', 'customer_types', 'divisions', 'townships', 'cities'));
     }
 
     /**
@@ -94,7 +99,7 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $this->service->update($request, $customer);
-        return redirect()->route('customers.index', $customer->id)->with("successMsg",'Existing Customer is UPDATED in your data');
+        return redirect()->route('customers.index', $customer->id)->with("successMsg", 'Existing Customer is UPDATED in your data');
     }
 
     /**
@@ -113,9 +118,9 @@ class CustomerController extends Controller
         $import = new customerImport();
         Excel::import($import, request()->file('file'));
         $error = $import->getErrorRows();
-        if($import->getSuccess() == false){
+        if ($import->getSuccess() == false) {
             return redirect()->back()->with('failedMsg', "some data of row $error are inavalid!");
-        }else{
+        } else {
             return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
         }
     }

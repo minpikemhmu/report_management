@@ -29,14 +29,15 @@ class BaStaffController extends Controller
      */
     public function index()
     {
-        $baStaffs = BaStaff::orderByDesc('updated_at')->get();
-        $supervisor=Supervisor::all();
-        $city=City::orderby('name')->get();
-        // $outlet=Outlet::all();
-        $customers=Customer::all();
-        $channel=Channel::all();
-        $subchannel=SubChannel::all();
-        return view('bastaffs.index', compact('baStaffs', 'supervisor', 'city', 'customers', 'channel', 'subchannel'));
+        $baStaffs = BaStaff::with([
+            'supervisor',
+            'city',
+            'customer',
+            'channel',
+            'subchannel',
+            'productBrand'
+        ])->orderByDesc('updated_at')->get();
+        return view('bastaffs.index', compact('baStaffs'));
     }
 
     /**
@@ -47,13 +48,13 @@ class BaStaffController extends Controller
     public function create()
     {
         $baStaffs = BaStaff::all();
-        $supervisor=Supervisor::all();
-        $city=City::orderby('name')->get();
+        $supervisor = Supervisor::all();
+        $city = City::orderby('name')->get();
         // $outlet=Outlet::all();
-        $customers=Customer::all();
-        $productBrands=ProductBrand::all();
-        $channel=Channel::all();
-        $subchannel=SubChannel::all();
+        $customers = Customer::all();
+        $productBrands = ProductBrand::all();
+        $channel = Channel::all();
+        $subchannel = SubChannel::all();
         return view('bastaffs.create', compact('baStaffs', 'supervisor', 'city', 'customers', 'productBrands', 'channel', 'subchannel'));
     }
 
@@ -66,7 +67,7 @@ class BaStaffController extends Controller
     public function store(StoreBaStaffRequest $request)
     {
         $this->baStaffService->storeBaStaff($request);
-        return redirect()->route('bastaffs.index')->with("successMsg",'New BA Staff is ADDED in your data');
+        return redirect()->route('bastaffs.index')->with("successMsg", 'New BA Staff is ADDED in your data');
     }
 
     /**
@@ -88,15 +89,15 @@ class BaStaffController extends Controller
      */
     public function edit($id)
     {
-        $baStaff=BaStaff::find($id);
-        $supervisor=Supervisor::all();
-        $city=City::orderby('name')->get();
+        $baStaff = BaStaff::find($id);
+        $supervisor = Supervisor::all();
+        $city = City::orderby('name')->get();
         // $outlet=Outlet::all();
-        $customers=Customer::all();
-        $productBrands=ProductBrand::all();
-        $channel=Channel::all();
-        $subchannel=SubChannel::all();
-        return view('bastaffs.edit', compact('baStaff', 'supervisor', 'city', 'customers', 'productBrands', 'channel', 'subchannel'));        
+        $customers = Customer::all();
+        $productBrands = ProductBrand::all();
+        $channel = Channel::all();
+        $subchannel = SubChannel::all();
+        return view('bastaffs.edit', compact('baStaff', 'supervisor', 'city', 'customers', 'productBrands', 'channel', 'subchannel'));
     }
 
     /**
@@ -106,11 +107,11 @@ class BaStaffController extends Controller
      * @param  \App\Models\BaStaff  $baStaff
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBaStaffRequest $request, $id )
+    public function update(UpdateBaStaffRequest $request, $id)
     {
         $baStaff = BaStaff::find($id);
         $this->baStaffService->update($request, $baStaff);
-        return redirect()->route('bastaffs.index')->with("successMsg",'Existing BA Staff is UPDATED in your data');
+        return redirect()->route('bastaffs.index')->with("successMsg", 'Existing BA Staff is UPDATED in your data');
     }
 
     /**
@@ -129,9 +130,9 @@ class BaStaffController extends Controller
         $import = new BaStaffImport();
         Excel::import($import, request()->file('file'));
         $error = $import->getErrorRows();
-        if($import->getSuccess() == false){
+        if ($import->getSuccess() == false) {
             return redirect()->back()->with('failedMsg', "some data of row $error are inavalid!");
-        }else{
+        } else {
             return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
         }
     }

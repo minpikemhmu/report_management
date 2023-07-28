@@ -27,7 +27,14 @@ class MerchandiserController extends Controller
      */
     public function index()
     {
-        $merchandiser = Merchandiser::all();
+        // $merchandiser = Merchandiser::all();
+        $merchandiser = Merchandiser::with([
+            'region',
+            'merchantTeam',
+            'merchantArea',
+            'channel',
+            'leader'
+        ])->get();
         return view('merchandiser.index',compact('merchandiser'));
     }
 
