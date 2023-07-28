@@ -20,8 +20,19 @@ class MerchandiserDailyReportController extends Controller
     public function index()
     {
         $endDate = Carbon::today();
-        $startDate = Carbon::today()->subDays(6); 
-        $getAllDailyReports = MerchandiseReport::whereDate('created_at', '>=', $startDate)->whereDate('created_at', '<=', $endDate)->orderBy('merchandise_reports.created_at', 'DESC')->get();
+        $startDate = Carbon::today()->subDays(6);
+        $getAllDailyReports = MerchandiseReport::with([
+            'merchandiser',
+            'customer',
+            'gondolar_type',
+            'trip_type',
+            'outskirt_type',
+            'merchandiser_report_type'
+        ])
+            ->whereDate('created_at', '>=', $startDate)
+            ->whereDate('created_at', '<=', $endDate)
+            ->orderBy('merchandise_reports.created_at', 'DESC')
+            ->get();
         return view('Reports.ba_reports.merchandise_report.index', ['merchandiserReports' => $getAllDailyReports]);
     }
 
@@ -43,7 +54,6 @@ class MerchandiserDailyReportController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -105,7 +115,8 @@ class MerchandiserDailyReportController extends Controller
         }
     }
 
-    public function getMerchandiserReport(Request $request){
+    public function getMerchandiserReport(Request $request)
+    {
         $date  = strtotime($request->startDate);
         $startDate  = date('Y-m-d', $date);
         $date1  = strtotime($request->endDate);
@@ -113,18 +124,25 @@ class MerchandiserDailyReportController extends Controller
         $lastSevenDay = Carbon::now()->subDays(6);
         if ($request->startDate == null && $request->endDate == null) {
             $getAllDailyReports = DB::table('merchandise_reports')
-                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name','merchandiser_report_types.name as report_type',
-                DB::raw("CASE 
+                ->select(
+                    'merchandise_reports.*',
+                    'merchandisers.name as merchandiser_name',
+                    'customers.name as customer_name',
+                    'gondolar_types.name as gondolar_type_name',
+                    'trip_types.name as trip_type_name',
+                    'outskirt_types.name as outskirt_type_name',
+                    'merchandiser_report_types.name as report_type',
+                    DB::raw("CASE 
                         WHEN merchandise_reports.planogram = 1 THEN 'Yes' 
                         WHEN merchandise_reports.planogram = 0 THEN 'No' 
                         ELSE NULL 
                         END AS my_planogram"),
-                DB::raw("CASE 
+                    DB::raw("CASE 
                         WHEN merchandise_reports.hygiene = 1 THEN 'Yes' 
                         WHEN merchandise_reports.hygiene = 0 THEN 'No' 
                         ELSE NULL 
                         END AS my_hygiene"),
-                DB::raw("CASE 
+                    DB::raw("CASE 
                         WHEN merchandise_reports.sale_team_visit = 1 THEN 'Yes' 
                         WHEN merchandise_reports.sale_team_visit = 0 THEN 'No' 
                         ELSE NULL 
@@ -141,18 +159,25 @@ class MerchandiserDailyReportController extends Controller
                 ->get();
         } elseif ($request->startDate != null && $request->endDate != null) {
             $getAllDailyReports = DB::table('merchandise_reports')
-                ->select('merchandise_reports.*','merchandisers.name as merchandiser_name', 'customers.name as customer_name','gondolar_types.name as gondolar_type_name', 'trip_types.name as trip_type_name', 'outskirt_types.name as outskirt_type_name','merchandiser_report_types.name as report_type',
-                DB::raw("CASE 
+                ->select(
+                    'merchandise_reports.*',
+                    'merchandisers.name as merchandiser_name',
+                    'customers.name as customer_name',
+                    'gondolar_types.name as gondolar_type_name',
+                    'trip_types.name as trip_type_name',
+                    'outskirt_types.name as outskirt_type_name',
+                    'merchandiser_report_types.name as report_type',
+                    DB::raw("CASE 
                         WHEN merchandise_reports.planogram = 1 THEN 'Yes' 
                         WHEN merchandise_reports.planogram = 0 THEN 'No' 
                         ELSE NULL 
                         END AS my_planogram"),
-                DB::raw("CASE 
+                    DB::raw("CASE 
                         WHEN merchandise_reports.hygiene = 1 THEN 'Yes' 
                         WHEN merchandise_reports.hygiene = 0 THEN 'No' 
                         ELSE NULL 
                         END AS my_hygiene"),
-                DB::raw("CASE 
+                    DB::raw("CASE 
                         WHEN merchandise_reports.sale_team_visit = 1 THEN 'Yes' 
                         WHEN merchandise_reports.sale_team_visit = 0 THEN 'No' 
                         ELSE NULL 
