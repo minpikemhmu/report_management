@@ -3,7 +3,7 @@
 <div class="container">
         <div class="row">
             <div class="col-12 align-items-center">
-                <h2>{{$merchandiserReport->merchandiser->name}}'s Reports Detail</h2>
+                <h2>{{$merchandiserReport->merchandiser}}'s Reports Detail</h2>
                 <h6>{{$merchandiserReport->created_at}}</h6>
             </div>
         </div>
@@ -17,71 +17,56 @@
                     </div>
                     <div class="row mb-5 ml-3">
                         <ul class="list-group w-75 mx-auto">
-                            <li class="list-group-item"><span class="font-weight-bold h6">customer name</span> : {{$merchandiserReport->customer->name}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">gondolar size inches length</span> : {{$merchandiserReport->gondolar_size_inches_length}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">gondolar size inches weigh</span> : {{$merchandiserReport->gondolar_size_inches_weight}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">gondolar size centimeters length</span> : {{$merchandiserReport->gondolar_size_centimeters_length}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">gondolar size centimeters weight</span> : {{$merchandiserReport->gondolar_size_centimeters_weight}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">backlit size inches length</span> : {{$merchandiserReport->backlit_size_inches_length}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">backlit size inches weight</span> : {{$merchandiserReport->backlit_size_inches_weight}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">backlit size centimeters length</span> : {{$merchandiserReport->backlit_size_centimeters_length}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">backlit size centimeters weight</span> : {{$merchandiserReport->backlit_size_centimeters_weight}}</li>
-                            <li class="list-group-item d-flex flex-row"><span class="font-weight-bold h6 mr-2">outlet photo before</span> : <div class="col-md-2 px-0 ml-2"><img src="{{$merchandiserReport->outlet_photo_before}}" alt="outlet photo before" class="img-thumbnail" data-toggle="modal" data-target="#exampleModalCenter"></div></li>
-                            <li class="list-group-item d-flex flex-row"><span class="font-weight-bold h6 mr-2">outlet photo after</span> : <div class="col-md-2 px-0 ml-2"><img src="{{$merchandiserReport->outlet_photo_after}}" alt="outlet photo after" class="img-thumbnail" data-toggle="modal" data-target="#exampleModalCenter2"></div></li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">qty</span> : {{$merchandiserReport->qty}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">latitude</span> : {{$merchandiserReport->latitude}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">longitude</span> : {{$merchandiserReport->longitude}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">actual latitude</span> : {{$merchandiserReport->actual_latitude}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">actual longitude</span> : {{$merchandiserReport->actual_longitude}}</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">planogram</span> : @if(isset($merchandiserReport->planogram)) @if ($merchandiserReport->planogram == 0) No @else Yes @endif @endif</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">hygiene</span> : @if(isset($merchandiserReport->hygiene)) @if ($merchandiserReport->hygiene == 0) No @else Yes @endif @endif</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">sale team visit</span> : @if(isset($merchandiserReport->sale_team_visit)) @if ($merchandiserReport->sale_team_visit == 0) No @else Yes @endif @endif</li>
-                            <li class="list-group-item"><span class="font-weight-bold h6">outlet status</span> : {{$merchandiserReport->outlet_status}}</li>
+                            <li class="list-group-item"><span class="font-weight-bold h6">customer name</span> : {{$merchandiserReport->customer}}</li>
+                            @php
+                                $uniqueKeys = ['id','created_at', 'customer', 'merchandiser', 'latitude', 'longitude', 'actual_latitude', 'actual_longitude'];
+                            @endphp
+
+                            @foreach ($merchandiserReport as $key => $value)
+                                @if (!in_array($key, $uniqueKeys))
+                                  @if (filter_var($value, FILTER_VALIDATE_URL))
+                                      <li class="list-group-item d-flex flex-row"><span class="font-weight-bold h6 mr-2">{{ $key }}</span> : 
+                                        <div class="col-md-2 px-0 ml-2"><img src="{{$value}}" alt="{{$key}}" class="img-thumbnail image-modal" data-key="{{$key}}" data-value="{{$value}}">
+                                        </div>
+                                    </li>
+                                  @else
+                                      <li class="list-group-item"><span class="font-weight-bold h6">{{ $key }}</span> : {{$value}}</li>
+                                  @endif
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
             </div>
         </div>
 </div>
-
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Outlet Photo Before </h5>
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <img src="{{$merchandiserReport->outlet_photo_before}}" alt="outlet photo before" class="img-thumbnail" width="100%" style="height:400px;">
+       
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Outlet Photo After </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="{{$merchandiserReport->outlet_photo_after}}" alt="outlet photo before" class="img-thumbnail" width="100%" style="height:400px;">
-      </div>
-    </div>
-  </div>
-</div>
 @endsection
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
-            setTimeout(function() {
-                $('.myalert').hide();
-                showDiv2()
-            }, 3000);
+            $(".image-modal").click(function(){
+                var dataKey = $(this).data("key");
+                var dataValue = $(this).data("value");
+                $("#exampleModalCenter").modal("show");
+                $("#exampleModalLongTitle").html(dataKey);
+                var html = `<img src="${dataValue}" alt="${dataKey}" class="img-thumbnail" width="100%" style="height:400px;">`;
+                $(".modal-body").html(html);
+            })
         })
     </script>
 @endsection

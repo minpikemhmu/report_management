@@ -9,6 +9,9 @@ use App\Models\MerchandiserReportType;
 use App\Traits\ResponserTraits;
 use App\Http\Resources\BaReportTypeResource;
 use App\Http\Resources\MerchandiserReportTypeResource;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\MrInputFieldResource;
+use App\Models\MrInputField;
 
 class ReportTypeController extends Controller
 {
@@ -95,4 +98,44 @@ class ReportTypeController extends Controller
         $report_types = MerchandiserReportType::all();
         return $this->responseSuccess('Success', MerchandiserReportTypeResource::collection($report_types));
     }
+
+    public function fieldsByMerchandiserReportType(Request $request)
+    {
+       $validator = $this->checkReportType($request->merchandiser_report_type_id);
+
+       // Check if validation fails
+       if ($validator->fails()) {
+            // Handle the validation failure (e.g., return an error response)
+            $errors = $validator->errors()->all();
+
+            return response()->json([
+                'code' => 400,
+                'message' => 'Validation Error Exception',
+                'data' => [],
+                'errors' => array_map(function ($error) {
+                    return [
+                        'key' => $error,
+                        'message' => ucfirst($error),
+                    ];
+                }, $errors),
+            ], 400);
+       }else{
+            $fields = MrInputField::where('merchandiser_report_type_id',$request->merchandiser_report_type_id)->where('active_status',1)->get();
+            return $this->responseSuccess('Success', MrInputFieldResource::collection($fields));
+       }
+    }
+
+    public function checkReportType($merchandiser_report_type_id){
+        // Define validation rules
+        $rules = [
+            'merchandiser_report_type_id' => 'required|integer|exists:merchandiser_report_types,id',
+        ];
+
+        // Create a validator instance
+        $validator = Validator::make(['merchandiser_report_type_id' => $merchandiser_report_type_id], $rules);
+
+        return $validator;
+
+    }
+
 }

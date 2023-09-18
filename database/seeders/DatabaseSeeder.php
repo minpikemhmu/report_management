@@ -48,6 +48,10 @@ class DatabaseSeeder extends Seeder
             OutskirtTypeSeeder::class,
             TripTypeSeeder::class,
             MerchandiserReportTypeSeeder::class,
+            OsaProductSeeder::class,
+            OsaHansaplastProductSeeder::class,
+            PosmProductSeeder::class,
+            MrFieldSeeder::class,
         ]);
     }
 }

@@ -19,6 +19,7 @@ use App\Http\Controllers\MerchandiserDailyReportController;
 use App\Http\Controllers\BaSupervisorController;
 use App\Http\Controllers\MrSupervisorController;
 use App\Http\Controllers\MrLeaderController;
+use App\Http\Controllers\MrInputFieldController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('products', ProductController::class);
     Route::resource('assignMerchandiser', MerchandiserAssignController::class);
     Route::resource('assignBa', BaAssignController::class);
+    Route::resource('mr_input_fields', MrInputFieldController::class);
     Route::post('ba-assign-filter', [App\Http\Controllers\BaAssignController::class, 'showFilterBaAssign'])->name('assignBa.showFilterBaAssign');
     Route::resource('ba_daily_reports', BaDailyReportController::class);
     Route::resource('mr_daily_reports', MerchandiserDailyReportController::class);

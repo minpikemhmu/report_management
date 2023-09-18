@@ -24,92 +24,44 @@ class ReportController extends Controller
     {
         $this->imageUploadService = $imageUploadService;
     }
-    public function storeMerchandiseReport(MerchandiserReportRequest $request){
-        $report                    = new MerchandiseReport;
-        $report->merchandiser_id   = $request->merchandiser_id;
-        $report->customer_id       = $request->customer_id;
-        $report->gondolar_type_id  = $request->gondolar_type_id;
-        $report->trip_type_id      = $request->trip_type_id;
-        $report->outskirt_type_id  = $request->outskirt_type_id;
-        $report->merchandiser_report_type_id = $request->merchandiser_report_type_id;
-
-        if(isset($request->qty)){
-            $report->qty  = $request->qty;
+    public function storeMerchandiseReport(Request $request){
+        $reportArray = $request->dataArray;
+        if(count($reportArray)>0){
+            foreach ($reportArray as $key => $value) {
+                $report                    = new MerchandiseReport;
+                $report->merchandiser_id   = $value['merchandiser_id'];
+                $report->customer_id       = $value['customer_id'];
+                $report->merchandiser_report_type_id = $value['merchandiser_report_type_id'];
+        
+                for ($i = 1; $i <= 20; $i++) {
+                    $fieldName = 'field_' . $i;
+                    if (isset($value[$fieldName]) && $this->isBase64Image($value[$fieldName])) {
+                        $upload_image = $this->imageUploadService->uploadBase64($value[$fieldName], new Image());
+                        $report->$fieldName =$upload_image;
+                    }else if(isset($value[$fieldName])){
+                        $report->$fieldName = $value[$fieldName];
+                    }
+                }
+        
+                if(isset($value['latitude'])){
+                    $report->latitude  = $value['latitude'];
+                }
+                if(isset($value['longitude'])){
+                    $report->longitude  = $value['longitude'];
+                }
+                if(isset($value['actual_latitude'])){
+                    $report->actual_latitude  = $value['actual_latitude'];
+                }
+                if(isset($value['actual_longitude'])){
+                    $report->actual_longitude  = $value['actual_longitude'];
+                }
+                $report->save();
+            }
         }
-        if(isset($request->gondolar_size_inches_length)){
-            $report->gondolar_size_inches_length  = $request->gondolar_size_inches_length;
-        }
-        if(isset($request->gondolar_size_inches_weight)){
-            $report->gondolar_size_inches_weight  = $request->gondolar_size_inches_weight;
-        }
-        if(isset($request->gondolar_size_centimeters_length)){
-            $report->gondolar_size_centimeters_length  = $request->gondolar_size_centimeters_length;
-        }
-        if(isset($request->gondolar_size_centimeters_weight)){
-            $report->gondolar_size_centimeters_weight  = $request->gondolar_size_centimeters_weight;
-        }
-        if(isset($request->backlit_size_inches_length)){
-            $report->backlit_size_inches_length  = $request->backlit_size_inches_length;
-        }
-        if(isset($request->backlit_size_inches_weight)){
-            $report->backlit_size_inches_weight  = $request->backlit_size_inches_weight;
-        }
-        if(isset($request->backlit_size_centimeters_length)){
-            $report->backlit_size_centimeters_length  = $request->backlit_size_centimeters_length;
-        }
-        if(isset($request->backlit_size_centimeters_weight)){
-            $report->backlit_size_centimeters_weight  = $request->backlit_size_centimeters_weight;
-        }
-        if(isset($request->outlet_photo_before)){
-            $upload_image = $this->imageUploadService->uploadBase64($request->outlet_photo_before, new Image());
-
-            $to_image = $request->toImage($upload_image);
-
-            $to_image->save();
-
-            $report->outlet_photo_before  = $upload_image;
-        }
-        if(isset($request->outlet_photo_after)){
-            $upload_image = $this->imageUploadService->uploadBase64($request->outlet_photo_after, new Image());
-
-            $to_image = $request->toImage($upload_image);
-
-            $to_image->save();
-
-            $report->outlet_photo_after  = $upload_image;
-        }
-        if(isset($request->remark)){
-            $report->remark  = $request->remark;
-        }
-        if(isset($request->latitude)){
-            $report->latitude  = $request->latitude;
-        }
-        if(isset($request->longitude)){
-            $report->longitude  = $request->longitude;
-        }
-        if(isset($request->actual_latitude)){
-            $report->actual_latitude  = $request->actual_latitude;
-        }
-        if(isset($request->actual_longitude)){
-            $report->actual_longitude  = $request->actual_longitude;
-        }
-        if(isset($request->planogram)){
-            $report->planogram  = $request->planogram;
-        }
-        if(isset($request->hygiene)){
-            $report->hygiene  = $request->hygiene;
-        }
-        if(isset($request->sale_team_visit)){
-            $report->sale_team_visit  = $request->sale_team_visit;
-        }
-        if(isset($request->outlet_status)){
-            $report->outlet_status  = $request->outlet_status;
-        }
-        $report->save();
         return response(["code"    => 200,
         "status"           => "SUCCESS", 
         "message"          => "Store SuccessFul",
-        "data"             => $report,
+        "data"             => $reportArray,
         ]); 
     }
 
@@ -132,5 +84,11 @@ class ReportController extends Controller
             }
         }
         return $this->responseSuccessWithPaginate('success', MerchandiserReportResource::collection($merchandise_report));
+    }
+
+    function isBase64Image($data)
+    {
+        // Check if the data starts with a base64 image header
+        return preg_match('/^data:image\/(png|jpeg|jpg|gif);base64,/', $data);
     }
 }

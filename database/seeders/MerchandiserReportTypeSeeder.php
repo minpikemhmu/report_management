@@ -21,6 +21,7 @@ class MerchandiserReportTypeSeeder extends Seeder
         MerchandiserReportType::updateOrCreate(['name' => 'Outlet']);
         MerchandiserReportType::updateOrCreate(['name' => 'Planogram']);
         MerchandiserReportType::updateOrCreate(['name' => 'POSM']);
-        MerchandiserReportType::updateOrCreate(['name' => 'Sale Team']);
+        MerchandiserReportType::updateOrCreate(['name' => 'Sale Team Visit']);
+        MerchandiserReportType::updateOrCreate(['name' => 'OSA(Hansaplast)']);
     }
 }

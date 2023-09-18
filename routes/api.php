@@ -44,6 +44,7 @@ Route::middleware('api.token')->group(function () {
             Route::get('tripTypeLists',  [TripTypeController::class, 'index']);
             Route::get('outskirtTypeLists',  [OutskirtTypeController::class, 'index']);
             Route::get('report_type',  [ReportTypeController::class, 'merchandiserReportType']);
+            Route::get('mr_input_fields/{merchandiser_report_type_id}',  [ReportTypeController::class, 'fieldsByMerchandiserReportType']);
             Route::post('storeMerchandiseReport', [ReportController::class,'storeMerchandiseReport']);
             Route::prefix('merchandiser-daily-report')->group(function() {
                 Route::get('history', [ReportController::class,'reportHistory']);
