@@ -4,6 +4,13 @@ namespace App\Http\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Merchandiser;
+use App\Models\MrSupervisor;
+use App\Models\MrExecutive;
+use App\Models\BaStaff;
+use App\Models\BaExecutive;
+use App\Models\Supervisor;
+use Illuminate\Support\Facades\Auth;
 
 class AuthResource extends JsonResource
 {
@@ -28,13 +35,24 @@ class AuthResource extends JsonResource
         $response = [
             "token" => $this->token
         ];
-
+        $modelName = class_basename($this->resource);
         if (request()->status === "merchandiser") {
-            $response['merchandiser'] = new MerchandiserResource($this);
+            if($modelName == "MrExecutive"){
+                $response['executive'] = new MrExecutiveResource($this);
+            }else if($modelName == "MrSupervisor"){
+                $response['supervisor'] = new MrSupervisorResource($this);
+            }else{
+                $response['merchandiser'] = new MerchandiserResource($this);
+            }  
         }
-
         if (request()->status === "bastaff") {
-            $response['bastaff'] = new BastaffResource($this);
+            if($modelName == "BaExecutive"){
+                $response['executive'] = new BaExecutiveResource($this);
+            }else if($modelName == "Supervisor"){
+                $response['supervisor'] = new BaSupervisorResource($this);
+            }else{
+                $response['bastaff'] = new BastaffResource($this);
+            }  
         }
 
         return $response;

@@ -25,6 +25,8 @@ class UpdateBaSupervisorRequest extends FormRequest
     {
         return [
             'name' => "string",
+            'code' => "string|unique:supervisors,code,{$this->id}",
+            'password' => "string|between:8,50|nullable",
             'executive_id' => "nullable|integer|exists:ba_executives,id",
             'region_id' => "nullable|integer|exists:regions,id",
         ];

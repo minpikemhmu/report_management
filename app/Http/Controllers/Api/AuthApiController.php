@@ -14,7 +14,6 @@ class AuthApiController extends Controller
         $auth = $request->authenticate();
         $token = null;
         $token = $auth->createToken($request->validated('status'))->plainTextToken;
-
         return $this->responseSuccess('Success', new AuthResource($auth, $token));
     }
 }

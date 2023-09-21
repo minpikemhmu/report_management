@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BaDailyReportResource;
 use App\Services\BaDailyReportService;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\BaReportHistoryRequest;
 
 class BaDailyReportController extends Controller
 {
@@ -111,18 +111,9 @@ class BaDailyReportController extends Controller
         //
     }
 
-    public function getAllBaDailyReportByFilters(Request $request)
+    public function getAllBaDailyReportByFilters(BaReportHistoryRequest $request)
     {
-        $limit = isset($request['limit']) ? $request['limit'] : '';
-
-        $user = auth()->user();
-
-        $baStaffId = null;
-        if ($user instanceof \App\Models\BaStaff) {
-            $baStaffId = $user->id;
-        }
-
-
+        $limit = isset($request['limit']) ? $request['limit'] : '15';
         // default start date = with client needs & end date = today
         $defaultStartDateString = '2020-01-01';
         $defaultStartDateBeforeFormat = strtotime($defaultStartDateString);
@@ -133,11 +124,7 @@ class BaDailyReportController extends Controller
         $endDate = $request->input('end_date');
 
         if (!isset($startDate) && !isset($endDate)) {
-            if(auth()->user()->id == 1){
-                $reports = BaDailyReport::orderBy('created_at', 'desc')->paginate($limit)->withQueryString();
-            }else{
-                $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString();
-            }
+            $reports = BaDailyReport::where('bastaff_id',$request->bastaff_id)->orderBy('created_at', 'desc')->paginate($limit)->withQueryString();
             return  $this->responseSuccessWithPaginate('success', BaDailyReportResource::collection($reports));
         } elseif (!isset($startDate) && isset($endDate)) {
 
@@ -146,11 +133,8 @@ class BaDailyReportController extends Controller
 
             $endDate = $defaultEndDate;
         }
-        if(auth()->user()->id == 1){
-            $reports = BaDailyReport::orderBy('created_at', 'desc')->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
-        }else{
-            $reports = BaDailyReport::where('bastaff_id',auth()->user()->id)->orderBy('created_at', 'desc')->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
-        }
+        
+        $reports = BaDailyReport::where('bastaff_id',$request->bastaff_id)->orderBy('created_at', 'desc')->whereBetween('ba_report_date', [$startDate, $endDate])->paginate($limit)->withQueryString();
         return  $this->responseSuccessWithPaginate('success', BaDailyReportResource::collection($reports));
     }
 }

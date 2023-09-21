@@ -12,6 +12,7 @@
                     <form method="POST" action="{{route('merchandiser.update',$merchandiser->id)}}">
                     @csrf
                     @method('PUT')
+                    <input name="id" type="hidden"  value="{{$merchandiser->id}}">
                     <div class="form-group">
                         <label for="customer">Merchandiser name</label>
                         <input
@@ -133,7 +134,7 @@
                         <div class="form-control-feedback text-danger"> {{$errors->first('leader') }} </div>
                     </div>
 
-                    <button class="btn btn-primary mt-4" type="submit" >
+                    <button class="btn btn-primary my-4" type="submit" >
                             update
                     </button>
                     </form>

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\UpdateBaSupervisorRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Supervisor;
+use Illuminate\Support\Facades\Hash;
 
 class BaSupervisorService
 {
@@ -29,6 +30,8 @@ class BaSupervisorService
   {
     return Supervisor::create([
       'name'       => $request->name,
+      'code'       => $request->code,
+      'password'   => Hash::make($request->password),
       'executive_id' => $request->executive_id,
       'region_id'  => $request->region_id,
     ]);
@@ -49,6 +52,8 @@ class BaSupervisorService
   {
       $supervisor->update([
           'name' => $request->name ?? $supervisor->name,
+          'code' => $request->code ?? $supervisor->code,
+          'password' => $request->password ? Hash::make($request->password) : $supervisor->password,
           'executive_id' => $request->executive_id ?? $supervisor->executive_id,
           'region_id' => $request->region_id ?? $supervisor->region_id,
       ]);

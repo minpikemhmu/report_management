@@ -13,7 +13,10 @@ use App\Http\Controllers\Api\TripTypeController;
 use App\Http\Controllers\Api\OutskirtTypeController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\BA\BaDailyReportController;
+use App\Http\Controllers\Api\BaStaffController;
 use App\Http\Controllers\Api\MerchandiserAttendanceController;
+use App\Http\Controllers\Api\MrSupervisorController;
+use App\Http\Controllers\Api\BaSupervisorController;
 use App\Http\Controllers\BaAssignController;
 // use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\ImageUploadController;
@@ -48,11 +51,14 @@ Route::middleware('api.token')->group(function () {
             Route::post('storeMerchandiseReport', [ReportController::class,'storeMerchandiseReport']);
             Route::prefix('merchandiser-daily-report')->group(function() {
                 Route::get('history', [ReportController::class,'reportHistory']);
+                Route::get('historyDetail/{merchandiser_report_id}', [ReportController::class,'reportHistoryDetail']);
             });
 
             // Route for merchandiser attendance
             Route::post('attendance', [MerchandiserAttendanceController::class, 'storeOrUpdateMerchandiserAttendance']);
             Route::get('checkAttendance',[MerchandiserAttendanceController::class, 'checkAttendance']);
+            Route::get('supervisors',[MrSupervisorController::class, 'index']);
+            Route::get('merchandisers',[MerchandiserController::class, 'index']);
         });
     });
 
@@ -82,6 +88,8 @@ Route::middleware('api.token')->group(function () {
 
             // Get the BA's Assignment
             Route::get('assign-by-ba', [AssignBaController::class, 'getAssignmentsByBA']);
+            Route::get('supervisors',[BaSupervisorController::class, 'index']);
+            Route::get('ba-staffs',[BaStaffController::class, 'index']);
         });
     });
 

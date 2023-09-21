@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\BaExecutive;
+use Illuminate\Support\Facades\Hash;
 
 class BaExecutiveSeeder extends Seeder
 {
@@ -15,6 +16,6 @@ class BaExecutiveSeeder extends Seeder
      */
     public function run()
     {
-        BaExecutive::updateOrCreate(['name' => 'TLZ', 'manager_id' => 1]);
+        BaExecutive::updateOrCreate(['name' => 'TLZ', 'code'=>'1234', 'password'=>Hash::make(123456789), 'manager_id' => 1]);
     }
 }

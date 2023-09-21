@@ -25,6 +25,8 @@ class UpdateMrSupervisorRequest extends FormRequest
     {
         return [
             'name' => "string",
+            'code' => "string|unique:mr_supervisors,code,{$this->id}",
+            'password' => "string|between:8,50|nullable",
             'executive_id' => "nullable|integer|exists:mr_executives,id",
         ];
     }

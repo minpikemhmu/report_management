@@ -3,7 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Models\Merchandiser;
+use App\Models\MrSupervisor;
+use App\Models\MrExecutive;
 use App\Models\BaStaff;
+use App\Models\BaExecutive;
+use App\Models\Supervisor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
@@ -44,22 +48,27 @@ class LoginRequest extends FormRequest
             case self::Merchandiser:
                 return $this->merchandiserAuthenticate();
                 break;
-
             case self::BaStaff:
                 return $this->bastaffAuthenticate();
                 break;
-
             default:
                 //throw fatal error
                 break;
         }
     }
 
-    private function merchandiserAuthenticate(): Merchandiser
+    private function merchandiserAuthenticate()
     {
-        $merchandiser = Merchandiser::where('mer_code',$this->code)
-            ->first();
+        // Try to find a Merchandiser with the given code
+        $merchandiser = Merchandiser::where('mer_code', $this->code)->first();
 
+        // If not found, try to find in other tables
+        if (!$merchandiser) {
+            $merchandiser = MrSupervisor::where('code', $this->code)->first();
+            if (!$merchandiser) {
+                $merchandiser = MrExecutive::where('code', $this->code)->first();
+            }
+        }
         if (!$merchandiser) {
             throw new NotFoundResourceException("Please Register First");
         }
@@ -71,10 +80,18 @@ class LoginRequest extends FormRequest
         return $merchandiser;
     }
 
-    private function bastaffAuthenticate(): BaStaff
+    private function bastaffAuthenticate()
     {
         $bastaff = BaStaff::where('ba_code',$this->code)
             ->first();
+
+        // If not found, try to find in other tables
+        if (!$bastaff) {
+            $bastaff = Supervisor::where('code', $this->code)->first();
+            if (!$bastaff) {
+                $bastaff = BaExecutive::where('code', $this->code)->first();
+            }
+        }
 
         if (!$bastaff) {
             throw new NotFoundResourceException("Please Register First");

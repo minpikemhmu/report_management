@@ -24,7 +24,7 @@ class StoreBaStaffRequest extends FormRequest
     public function rules()
     {
         return [
-            'ba_code' => "required|string|unique:outlets,outlet_id,except,id",
+            'ba_code' => "required|string|unique:ba_staffs",
             'name' => "required|string",
             'supervisor_id' => "required|integer|exists:supervisors,id",
             'city_id' => "required|integer|exists:cities,id",

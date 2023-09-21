@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Sanctum\HasApiTokens;
 
 class Supervisor extends Model
 {
-    use HasFactory; 
+    use HasFactory, HasApiTokens; 
 
-    protected $fillable = ['name', 'region_id', 'executive_id'];
+    protected $fillable = ['name', 'code', 'password', 'region_id', 'executive_id',];
 
     /**
      * Get the region that owns the Supervisor

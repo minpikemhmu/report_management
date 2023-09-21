@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBaSupervisorRequest extends FormRequest
+class MrSupervisorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,7 @@ class StoreBaSupervisorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required|string",
-            'code' => "required|string|unique:supervisors",
-            'password' => "required|string|between:8,50",
-            'executive_id' => "required|integer|exists:ba_executives,id",
-            'region_id' => "required|integer|exists:regions,id",
+            'executive_id' => "required|integer|exists:mr_executives,id",
         ];
     }
 }

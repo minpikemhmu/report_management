@@ -7,6 +7,9 @@ use App\Models\Merchandiser;
 use Illuminate\Http\Request;
 use App\Http\Resources\AssignCustomerListsResource;
 use App\Traits\ResponserTraits;
+use App\Http\Requests\MerchandiserRequest;
+use App\Http\Resources\MerchandiserResource;
+use App\Models\MrLeader;
 
 class MerchandiserController extends Controller
 {
@@ -16,9 +19,15 @@ class MerchandiserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MerchandiserRequest $request)
     {
-        //
+        $leaders = MrLeader::where('supervisor_id',$request->supervisor_id)->get();
+        $merchandisers = collect();
+        foreach($leaders as $leader){
+            $merchandiserByLeader = Merchandiser::where('leader_id', $leader->id)->get();
+            $merchandisers = $merchandisers->concat($merchandiserByLeader);
+        }
+        return $this->responseSuccess('Success', MerchandiserResource::collection($merchandisers));
     }
 
     /**

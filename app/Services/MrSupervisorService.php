@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\UpdateMrSupervisorRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\MrSupervisor;
+use Illuminate\Support\Facades\Hash;
 
 class MrSupervisorService
 {
@@ -29,6 +30,8 @@ class MrSupervisorService
   {
     return MrSupervisor::create([
       'name'       => $request->name,
+      'code'       => $request->code,
+      'password'   => Hash::make($request->password),
       'executive_id' => $request->executive_id,
     ]);
   }
@@ -48,6 +51,8 @@ class MrSupervisorService
   {
       $supervisor->update([
           'name' => $request->name ?? $supervisor->name,
+          'code' => $request->code ?? $supervisor->code,
+          'password' => $request->password ? Hash::make($request->password) : $supervisor->password,
           'executive_id' => $request->executive_id ?? $supervisor->executive_id,
       ]);
   }

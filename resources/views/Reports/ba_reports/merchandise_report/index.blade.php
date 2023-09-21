@@ -8,25 +8,35 @@
         </div>
         <div class="row">
             <div class="d-flex mt-3 justify-content-start col-12">
-                <div class="form-group">
-                    <p class="form-check-label active-or-not pos-r">Start Date: <input type="text" id="dstartDate" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
-                </div>
-                <div class="form-group">
-                    <p class="form-check-label active-or-not pos-r">End Date: <input type="text" id="dendDate" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
-                </div>
-                <div class="form-group">
-                    <p class="form-check-label active-or-not pos-r">Report Type: 
-                        <select class="form-control js-example-basic-single" id="merchandiser_report_type_id" name="merchandiser_report_type_id">
-                            <option selected value="">Choose Merchandiser Report Type</option>
-                            @foreach ($report_types as $row)
-                                <option {{ old('merchandiser_report_type_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
-                            @endforeach
-                        </select>
-                    </i>
-                    </p>
-                </div>
-                <div>
-                    <button class="btn btn-primary dbtn-search btn-sm ml-3"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</button>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <p class="form-check-label active-or-not pos-r">Start Date: <input type="text" id="dstartDate" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <p class="form-check-label active-or-not pos-r">End Date: <input type="text" id="dendDate" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <p class="form-check-label active-or-not pos-r">Report Type: 
+                                <select class="form-control js-example-basic-single" id="merchandiser_report_type_id" name="merchandiser_report_type_id">
+                                    <option selected value="">Choose Merchandiser Report Type</option>
+                                    @foreach ($report_types as $row)
+                                        <option {{ old('merchandiser_report_type_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                                    @endforeach
+                                </select>
+                            </i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-2 mt-4">
+                        <div>
+                            <button class="btn btn-primary dbtn-search btn-sm ml-3"><i class="fa-solid fa-magnifying-glass mr-2"></i>Search</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 

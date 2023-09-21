@@ -13,7 +13,7 @@
                     <form method="POST" action="{{ route('bastaffs.update', $baStaff) }}">
                         @csrf
                         @method('PUT')
-
+                        <input name="id" type="hidden"  value="{{$baStaff->id}}">
                         <div class="form-group">
                             <label for="ba_code">BA Code</label>
                             <input name="ba_code" type="text" class="form-control" id="ba_code"

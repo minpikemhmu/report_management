@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Sanctum\HasApiTokens;
 
 class BaExecutive extends Model
 {
-    use HasFactory;
-    protected $fillable = ['name','manager_id'];
+    use HasFactory, HasApiTokens;
+    protected $fillable = ['name', 'code', 'password', 'manager_id'];
 
     public function manager(): BelongsTo
     {

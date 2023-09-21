@@ -24,7 +24,7 @@ class UpdateBaStaffRequest extends FormRequest
     public function rules()
     {
         return [
-            'ba_code' => "string|unique:outlets,outlet_id," .$this->route('bastaff'),
+            'ba_code' => "string|unique:ba_staffs,ba_code,{$this->id}",
             'name' => "string",
             'supervisor_id' => "integer|exists:supervisors,id",
             'city_id' => "integer|exists:cities,id",

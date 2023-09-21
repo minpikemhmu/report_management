@@ -28,7 +28,7 @@ class StoreMerchandiserRequest extends FormRequest
     {
         return [
             'name'                     => "required|string",
-            'code'                     => "required|string",
+            'code'                     => "required|string|unique:merchandisers,mer_code",
             'region'                   => "required|integer|exists:regions,id",
             'team'                     => "required|integer|exists:merchant_teams,id",
             'area'                     => "required|integer|exists:merchant_areas,id",
