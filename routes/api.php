@@ -58,7 +58,7 @@ Route::middleware('api.token')->group(function () {
             Route::post('attendance', [MerchandiserAttendanceController::class, 'storeOrUpdateMerchandiserAttendance']);
             Route::get('checkAttendance',[MerchandiserAttendanceController::class, 'checkAttendance']);
             Route::get('supervisors',[MrSupervisorController::class, 'index']);
-            Route::get('merchandisers',[MerchandiserController::class, 'index']);
+            Route::get('merchandisers',[MerchandiserController::class, 'index'])->name('merchandisers.list');
         });
     });
 

@@ -42,6 +42,8 @@ class MerchandiserController extends Controller
         );
 
         $merchandisersPaginated->withQueryString();
+        $path = route('merchandisers.list');
+        $merchandisersPaginated->setPath($path);
         return $this->responseSuccessWithPaginate('Success', MerchandiserResource::collection($merchandisersPaginated));
     }
 
