@@ -25,6 +25,7 @@ class MrSupervisorRequest extends FormRequest
     {
         return [
             'executive_id' => "required|integer|exists:mr_executives,id",
+            'name'         => "string",
         ];
     }
 }

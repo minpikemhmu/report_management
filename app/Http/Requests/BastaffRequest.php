@@ -25,6 +25,7 @@ class BastaffRequest extends FormRequest
     {
         return [
             'supervisor_id' => "required|integer|exists:supervisors,id",
+            'name'          => "string",
         ];
     }
 }

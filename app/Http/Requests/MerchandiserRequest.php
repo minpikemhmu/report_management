@@ -25,6 +25,7 @@ class MerchandiserRequest extends FormRequest
     {
         return [
             'supervisor_id' => "required|integer|exists:mr_supervisors,id",
+            'name'          => "string",
         ];
     }
 }

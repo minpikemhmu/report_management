@@ -25,6 +25,7 @@ class BaSupervisorRequest extends FormRequest
     {
         return [
             'executive_id' => "required|integer|exists:ba_executives,id",
+            'name'         => "string",
         ];
     }
 }

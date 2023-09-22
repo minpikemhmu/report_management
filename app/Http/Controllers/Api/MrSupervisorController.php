@@ -19,7 +19,9 @@ class MrSupervisorController extends Controller
      */
     public function index(MrSupervisorRequest $request)
     {
-        $mrSupervisors = MrSupervisor::where('executive_id', $request->executive_id)->get();
+        $mrSupervisors = MrSupervisor::where('executive_id', $request->executive_id)->when(isset($request['name']), function ($q) use ($request) {
+            $q->where('name', 'like', "%{$request['name']}%");
+        })->paginate(15)->withQueryString();
         return $this->responseSuccess('Success', MrSupervisorResource::collection($mrSupervisors));
     }
 

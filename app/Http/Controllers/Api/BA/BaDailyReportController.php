@@ -113,7 +113,7 @@ class BaDailyReportController extends Controller
 
     public function getAllBaDailyReportByFilters(BaReportHistoryRequest $request)
     {
-        $limit = isset($request['limit']) ? $request['limit'] : '15';
+        $limit = isset($request['limit']) ? $request['limit'] : 15;
         // default start date = with client needs & end date = today
         $defaultStartDateString = '2020-01-01';
         $defaultStartDateBeforeFormat = strtotime($defaultStartDateString);

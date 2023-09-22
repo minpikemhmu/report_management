@@ -19,7 +19,9 @@ class BaSupervisorController extends Controller
      */
     public function index(BaSupervisorRequest $request)
     {
-        $baSupervisors = Supervisor::where('executive_id', $request->executive_id)->get();
+        $baSupervisors = Supervisor::where('executive_id', $request->executive_id)->when(isset($request['name']), function ($q) use ($request) {
+            $q->where('name', 'like', "%{$request['name']}%");
+        })->paginate(15)->withQueryString();
         return $this->responseSuccess('Success', BaSupervisorResource::collection($baSupervisors));
     }
 

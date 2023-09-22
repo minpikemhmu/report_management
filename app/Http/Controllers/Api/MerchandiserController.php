@@ -24,9 +24,12 @@ class MerchandiserController extends Controller
         $leaders = MrLeader::where('supervisor_id',$request->supervisor_id)->get();
         $merchandisers = collect();
         foreach($leaders as $leader){
-            $merchandiserByLeader = Merchandiser::where('leader_id', $leader->id)->get();
+            $merchandiserByLeader = Merchandiser::where('leader_id', $leader->id)->when(isset($request['name']), function ($q) use ($request) {
+                $q->where('name', 'like', "%{$request['name']}%");
+            })->get();
             $merchandisers = $merchandisers->concat($merchandiserByLeader);
         }
+        $merchandisers = $merchandisers->paginate(15)->withQueryString();
         return $this->responseSuccess('Success', MerchandiserResource::collection($merchandisers));
     }
 
