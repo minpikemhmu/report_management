@@ -22,7 +22,7 @@ class MrSupervisorController extends Controller
         $mrSupervisors = MrSupervisor::where('executive_id', $request->executive_id)->when(isset($request['name']), function ($q) use ($request) {
             $q->where('name', 'like', "%{$request['name']}%");
         })->paginate(15)->withQueryString();
-        return $this->responseSuccess('Success', MrSupervisorResource::collection($mrSupervisors));
+        return $this->responseSuccessWithPaginate('Success', MrSupervisorResource::collection($mrSupervisors));
     }
 
     /**

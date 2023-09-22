@@ -22,7 +22,7 @@ class BaStaffController extends Controller
         $baStaffs = BaStaff::where('supervisor_id', $request->supervisor_id)->when(isset($request['name']), function ($q) use ($request) {
             $q->where('name', 'like', "%{$request['name']}%");
         })->paginate(15)->withQueryString();
-        return $this->responseSuccess('Success', BastaffResource::collection($baStaffs));
+        return $this->responseSuccessWithPaginate('Success', BastaffResource::collection($baStaffs));
     }
 
     /**

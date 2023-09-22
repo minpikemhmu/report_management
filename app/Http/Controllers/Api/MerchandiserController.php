@@ -30,7 +30,7 @@ class MerchandiserController extends Controller
             $merchandisers = $merchandisers->concat($merchandiserByLeader);
         }
         $merchandisers = $merchandisers->paginate(15)->withQueryString();
-        return $this->responseSuccess('Success', MerchandiserResource::collection($merchandisers));
+        return $this->responseSuccessWithPaginate('Success', MerchandiserResource::collection($merchandisers));
     }
 
     /**
