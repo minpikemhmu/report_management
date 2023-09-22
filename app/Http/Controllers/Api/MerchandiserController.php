@@ -10,6 +10,7 @@ use App\Traits\ResponserTraits;
 use App\Http\Requests\MerchandiserRequest;
 use App\Http\Resources\MerchandiserResource;
 use App\Models\MrLeader;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class MerchandiserController extends Controller
 {
@@ -29,8 +30,19 @@ class MerchandiserController extends Controller
             })->get();
             $merchandisers = $merchandisers->concat($merchandiserByLeader);
         }
-        $merchandisers = $merchandisers->paginate(15)->withQueryString();
-        return $this->responseSuccessWithPaginate('Success', MerchandiserResource::collection($merchandisers));
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $perPage = 15;
+
+        // Paginate the merged collection
+        $merchandisersPaginated = new LengthAwarePaginator(
+            $merchandisers->forPage($currentPage, $perPage),
+            $merchandisers->count(),
+            $perPage,
+            $currentPage
+        );
+
+        $merchandisersPaginated->withQueryString();
+        return $this->responseSuccessWithPaginate('Success', MerchandiserResource::collection($merchandisersPaginated));
     }
 
     /**
