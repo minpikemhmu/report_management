@@ -38,18 +38,18 @@ class AuthResource extends JsonResource
         $modelName = class_basename($this->resource);
         if (request()->status === "merchandiser") {
             if($modelName == "MrExecutive"){
-                $response['executive'] = new MrExecutiveResource($this);
+                $response['merchandiser'] = new MrExecutiveResource($this);
             }else if($modelName == "MrSupervisor"){
-                $response['supervisor'] = new MrSupervisorResource($this);
+                $response['merchandiser'] = new MrSupervisorResource($this);
             }else{
                 $response['merchandiser'] = new MerchandiserResource($this);
             }  
         }
         if (request()->status === "bastaff") {
             if($modelName == "BaExecutive"){
-                $response['executive'] = new BaExecutiveResource($this);
+                $response['bastaff'] = new BaExecutiveResource($this);
             }else if($modelName == "Supervisor"){
-                $response['supervisor'] = new BaSupervisorResource($this);
+                $response['bastaff'] = new BaSupervisorResource($this);
             }else{
                 $response['bastaff'] = new BastaffResource($this);
             }  

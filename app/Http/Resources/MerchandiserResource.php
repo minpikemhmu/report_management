@@ -15,7 +15,7 @@ class MerchandiserResource extends JsonResource
      */
     public function toArray($request): array
     {
-
+        $modelName = class_basename($this->resource->resource);
         return [
             'id'                   => $this->id,
             'name'                 => $this->name,
@@ -31,6 +31,7 @@ class MerchandiserResource extends JsonResource
 
             'channel_id'           => $this->channel_id,
             'channel_name'         => $this->channel->name,
+            'role'                 => $modelName,
         ];
     }
 }
