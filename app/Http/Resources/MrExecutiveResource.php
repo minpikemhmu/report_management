@@ -16,12 +16,11 @@ class MrExecutiveResource extends JsonResource
      */
     public function toArray($request): array
     {
-        $modelName = class_basename($this->resource->resource);
         return [
             'id'                   => $this->id,
             'name'                 => $this->name,
             'code'                 => $this->code,
-            'role'                 => $modelName,
+            'role'                 => "Executive",
         ];
     }
 }

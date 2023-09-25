@@ -19,7 +19,7 @@ class MrSupervisorResource extends JsonResource
             'id'                   => $this->id,
             'name'                 => $this->name,
             'code'                 => $this->code,
-            'role'                 => $modelName,
+            'role'                 => "Supervisor",
         ];
     }
 }
