@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreFieldRequest;
 use App\Http\Requests\UpdateFieldRequest;
 use App\Services\FieldService;
+use App\Exceptions\FieldException;
 
 class MrInputFieldController extends Controller
 {
@@ -44,8 +45,14 @@ class MrInputFieldController extends Controller
      */
     public function store(StoreFieldRequest $request)
     {
-        $this->fieldService->storeField($request);
-        return redirect()->route('mr_input_fields.index')->with("successMsg",'New Field was ADDED in your data');
+        try {
+            $this->fieldService->storeField($request);
+            return redirect()->route('mr_input_fields.index')->with("successMsg",'New Field was ADDED in your data');
+        } catch (FieldException $e) {
+            $errorMessage = $e->getMessage();
+            return redirect()->back()->with('custom_error', $errorMessage);
+        }
+        
     }
 
     /**

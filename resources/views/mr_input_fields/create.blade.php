@@ -10,6 +10,11 @@
             <div class="row m-3">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <span class="">Add a new Field</span>
+                    @if(session('custom_error'))
+                        <div class="alert alert-danger">
+                            {{ session('custom_error') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('mr_input_fields.store') }}">
                         @csrf
 

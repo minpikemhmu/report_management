@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\MrInputField;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateFieldRequest;
+use App\Exceptions\FieldException;
 
 class FieldService
 {
@@ -19,24 +20,29 @@ class FieldService
       DB::beginTransaction();
       $field = $this->createField($request);
       DB::commit();
-    } catch (\Exception $exception) {
+    } catch (FieldException $exception) {
       DB::rollBack();
+      throw new FieldException($exception);
     }
   }
 
-  private function createField($request): MrInputField
+  private function createField($request)
   {
     $reportTypeId = $request->merchandiser_report_type_id;
-    $lastCount = MrInputField::where('merchandiser_report_type_id', $reportTypeId)->max('identifier');
-    if($lastCount == null){
+    $lastCount = MrInputField::where('merchandiser_report_type_id', $reportTypeId)
+        ->selectRaw('MAX(CAST(SUBSTRING(identifier, 7) AS UNSIGNED)) AS numeric_part')
+        ->first();
+    if($lastCount->numeric_part == null){
       $count = 1;
+    }else if($lastCount->numeric_part >= 20){
+      throw new FieldException;
     }else{
-      $count = preg_replace('/[^0-9]/', '', $lastCount) + 1;
+      $count = $lastCount->numeric_part + 1;
     }
     return MrInputField::create([
       'merchandiser_report_type_id' => $request->merchandiser_report_type_id,
       'display_name' => $request->display_name,
-      'identifier' => "field_".$count++,
+      'identifier' => "field_".$count,
       'display_order' => $request->display_order,
       'field_type' => $request->field_type,
       'isRequired' => $request->isRequired,
