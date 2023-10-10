@@ -34,7 +34,7 @@ class FieldService
         ->first();
     if($lastCount->numeric_part == null){
       $count = 1;
-    }else if($lastCount->numeric_part >= 20){
+    }else if($lastCount->numeric_part >= 40){
       throw new FieldException;
     }else{
       $count = $lastCount->numeric_part + 1;

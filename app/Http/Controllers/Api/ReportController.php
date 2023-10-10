@@ -37,7 +37,7 @@ class ReportController extends Controller
                 $report->customer_id       = $value['customer_id'];
                 $report->merchandiser_report_type_id = $value['merchandiser_report_type_id'];
         
-                for ($i = 1; $i <= 20; $i++) {
+                for ($i = 1; $i <= 40; $i++) {
                     $fieldName = 'field_' . $i;
                     if (isset($value[$fieldName]) && $this->isBase64Image($value[$fieldName])) {
                         $upload_image = $this->imageUploadService->uploadBase64($value[$fieldName], new Image());
