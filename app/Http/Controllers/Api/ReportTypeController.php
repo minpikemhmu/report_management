@@ -120,7 +120,7 @@ class ReportTypeController extends Controller
                 }, $errors),
             ], 400);
        }else{
-            $fields = MrInputField::where('merchandiser_report_type_id',$request->merchandiser_report_type_id)->where('active_status',1)->get();
+            $fields = MrInputField::where('merchandiser_report_type_id',$request->merchandiser_report_type_id)->where('active_status',1)->orderBy('display_order')->get();
             return $this->responseSuccess('Success', MrInputFieldResource::collection($fields));
        }
     }
