@@ -119,7 +119,10 @@ class MerchandiserDailyReportController extends Controller
                     if ($value->field_type === "list_input") {
                         $query->leftJoin($value->list_data, "merchandise_reports.{$value->identifier}", '=', "{$value->list_data}.id");
                         $querySubString = "{$value->list_data}.name AS {$value->display_name}";
-                    }else {
+                    } elseif ($value->field_type == "radio_input") {
+                        $alias = str_replace(' ', '_', $value->display_name); // Replace spaces with underscores
+                        $query->selectRaw("CASE WHEN {$value->identifier} = 1 THEN 'yes' ELSE 'no' END AS {$alias}");
+                    } else {
                         $querySubString = "{$db_name}{$value->identifier} AS {$value->display_name}";
                     }
             
