@@ -115,4 +115,16 @@ class MerchandiserAttendanceController extends Controller
 
         return view('Reports.attandance.merchandiser_attendance_report.index', compact('getAllMerchandiserAttendances', 'timePeriod'));
     }
+
+    public function unblockMerchandiserAttandence(Request $request){
+        $attendance_id = $request->id;
+        $attendance = MerchandiserAttendance::find($attendance_id);
+        $attendance->update([
+            'is_check_out'       => 1,
+            'is_attendance' => 1,
+        ]);
+
+        // Redirect or return a response, e.g., to a success page
+        return redirect()->route('merchandiser_attandence.index')->with("successMsg",'Unblock Successfully');
+    }
 }

@@ -58,6 +58,7 @@ Route::middleware('api.token')->group(function () {
             // Route for merchandiser attendance
             Route::post('attendance', [MerchandiserAttendanceController::class, 'storeOrUpdateMerchandiserAttendance']);
             Route::get('checkAttendance',[MerchandiserAttendanceController::class, 'checkAttendance']);
+            Route::get('checkLatestAttendance',[MerchandiserAttendanceController::class, 'checkLatestAttendance']);
             Route::get('supervisors',[MrSupervisorController::class, 'index']);
             Route::get('merchandisers',[MerchandiserController::class, 'index'])->name('merchandisers.list');
             Route::get('videos',[VideoController::class, 'index'])->name('videos.list');
@@ -87,6 +88,7 @@ Route::middleware('api.token')->group(function () {
             // Route for BA attendance
             Route::post('attendance', [BaAttendanceController::class, 'storeOrUpdateBaAttendance']);
             Route::get('checkAttendance',[BaAttendanceController::class, 'checkAttendance']);
+            Route::get('checkLatestAttendance',[BaAttendanceController::class, 'checkLatestAttendance']);
 
             // Get the BA's Assignment
             Route::get('assign-by-ba', [AssignBaController::class, 'getAssignmentsByBA']);

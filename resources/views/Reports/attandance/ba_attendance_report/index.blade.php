@@ -63,12 +63,6 @@
                             </div>
                         </div> --}}
 
-                        <div id="dt-buttons-gp" class="dt-buttons">
-                            {{-- <a href="#" type="button" class="btn dbtn_export " style="background-color: #72F573">
-                                <i class="fa-solid fa-file-export export-i-white mr-2"></i><span
-                                    class="txt-white">Export</span>
-                            </a> --}}
-                        </div>
                         @if (session('successMsg') != null)
                             <div class="alert alert-success alert-dismissible fade show myalert mt-2" role="alert">
                                 <strong> ✅ SUCCESS!</strong>
@@ -78,6 +72,13 @@
                                 </button>
                             </div>
                         @endif
+
+                        <div id="dt-buttons-gp" class="dt-buttons">
+                            {{-- <a href="#" type="button" class="btn dbtn_export " style="background-color: #72F573">
+                                <i class="fa-solid fa-file-export export-i-white mr-2"></i><span
+                                    class="txt-white">Export</span>
+                            </a> --}}
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -93,6 +94,7 @@
                                         <th>Is Attendance</th>
                                         <th>Check-in Time</th>
                                         <th>Check-out Time</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -106,7 +108,12 @@
                                             <td>{{ $baAttendance->is_check_out == '1' ? 'Yes' : 'No' }}</td>
                                             <td>{{ $baAttendance->is_attendance == '1' ? 'Yes' : 'No' }}</td>
                                             <td>{{ date("Y-m-d h:i:s A", strtotime($baAttendance->check_in_time)) }}</td>
-                                            <td>{{ date("Y-m-d h:i:s A", strtotime($baAttendance->check_out_time))}}</td>
+                                            <td>
+                                                @if (!is_null($baAttendance->check_out_time))
+                                                    {{ date("Y-m-d h:i:s A", strtotime($baAttendance->check_out_time)) }}
+                                                @endif
+                                            </td>
+                                            <td><a href="{{route('ba_attandence.unblock_ba_attandence',$baAttendance->id)}}" type="button" class="btn btn-primary">unblock</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -121,6 +128,8 @@
 @section('script')
     <script type="text/javascript">
         var minDate, maxDate;
+
+        setTimeout(function(){ $('.myalert').hide(); showDiv2() },3000);
 
         // Custom filtering function which will search data in column four between two values
         $.fn.dataTable.ext.search.push(

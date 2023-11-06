@@ -69,8 +69,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/assignMerchandiserImport', [App\Http\Controllers\MerchandiserAssignController::class, 'assignMerchandiserImport'])->name('assignMerchandiserImport');
     Route::get('getMerchandiserReport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'getMerchandiserReport'])->name('getMerchandiserReport');
     Route::resource('ba_attandence', BaAttendanceController::class);
+    Route::get('unblock_ba_attandence/{id}',[App\Http\Controllers\BaAttendanceController::class, 'unblockBaAttandence'])->name('ba_attandence.unblock_ba_attandence');
     Route::post('ba-attendance-filter', [App\Http\Controllers\BaAttendanceController::class, 'showFilterAttendance'])->name('ba_attandence.showFilterAttendance');
     Route::resource('merchandiser_attandence', MerchandiserAttendanceController::class);
+    Route::get('unblock_merchandiser_attandence/{id}',[App\Http\Controllers\MerchandiserAttendanceController::class, 'unblockMerchandiserAttandence'])->name('merchandiser_attandence.unblockMerchandiserAttandence');
     Route::post('merchandiser-attendance-filter', [App\Http\Controllers\MerchandiserAttendanceController::class, 'showFilterMerchandiserAttendance'])->name('merchandiser_attandence.showFilterMerchandiserAttendance');
 
     // Email

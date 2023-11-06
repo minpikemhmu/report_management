@@ -132,4 +132,10 @@ class MerchandiserAttendanceController extends Controller
         }
         return $this->responseSuccess('Success',MerchandiserAttendanceResource::collection($getAllMerchandiserAttendance));
     }
+    
+    public function checkLatestAttendance(Request $request){
+        $merchandiser = auth()->user();
+        $getMerchandiserLatestAttendance = $merchandiser->attendances()->latest('created_at')->first();
+        return $this->responseSuccess('Success',New MerchandiserAttendanceResource($getMerchandiserLatestAttendance));
+    }
 }

@@ -23,7 +23,7 @@ class BaAttendanceResource extends JsonResource
             'is_check_out' => $this->is_check_out,
             'is_attendance' => $this->is_attendance,
             'check_in_time' => $this->check_in_time ?? Carbon::parse($this->check_in_time)->format('Y-m-d H:i:s'),
-            'check_out_time' => $this->check_out_time ?? Carbon::parse($this->check_out_time)->format('Y-m-d H:i:s'),
+            'check_out_time' => $this->check_out_time ? Carbon::parse($this->check_out_time)->format('Y-m-d H:i:s') : null,
             // 'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             // 'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];

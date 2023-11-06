@@ -133,4 +133,10 @@ class BaAttendanceController extends Controller
         }
         return $this->responseSuccess('Success',BaAttendanceResource::collection($getAllBaAttendance));
     }
+
+    public function checkLatestAttendance(Request $request){
+        $baStaff = auth()->user();
+        $getBaLatestAttendance = $baStaff->attendances()->latest('created_at')->first();
+        return $this->responseSuccess('Success',New BaAttendanceResource($getBaLatestAttendance));
+    }
 }
