@@ -15,6 +15,7 @@ class MerchandiserResource extends JsonResource
      */
     public function toArray($request): array
     {
+        $MerchandiserLatestAttendance = $this->attendances()->latest('created_at')->first();
         return [
             'id'                   => $this->id,
             'name'                 => $this->name,
@@ -31,6 +32,7 @@ class MerchandiserResource extends JsonResource
             'channel_id'           => $this->channel_id,
             'channel_name'         => $this->channel->name,
             'role'                 => "Merchandiser",
+            'latest_check_out_status' => $MerchandiserLatestAttendance == null ? null : $MerchandiserLatestAttendance->is_check_out,
         ];
     }
 }
