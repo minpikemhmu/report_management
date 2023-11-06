@@ -264,6 +264,7 @@
                         <a class="collapse-item" href="{{ route('mr_supervisors.index') }}">Mr Supervisor</a>
                         <a class="collapse-item" href="{{ route('mr_leaders.index') }}">Mr Leader</a>
                         <a class="collapse-item" href="{{ route('mr_input_fields.index') }}">Mr Field</a>
+                        <a class="collapse-item" href="{{ route('videos.index') }}">Video</a>
                     </div>
                 </div>
             </li>

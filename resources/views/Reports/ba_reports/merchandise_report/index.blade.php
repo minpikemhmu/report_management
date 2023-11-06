@@ -8,15 +8,16 @@
         </div>
         <div class="row">
             <div class="d-flex mt-3 justify-content-start col-12">
+            <form  method="get" action="{{route('getMerchandiserReport')}}">
                 <div class="row">
                     <div class="col-3">
                         <div class="form-group">
-                            <p class="form-check-label active-or-not pos-r">Start Date: <input type="text" id="dstartDate" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
+                            <p class="form-check-label active-or-not pos-r">Start Date: <input type="text" id="dstartDate" class="date-w" name="startDate" value="{{$sDate}}"><i class="fa-solid fa-calendar-days c-green"></i></p>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
-                            <p class="form-check-label active-or-not pos-r">End Date: <input type="text" id="dendDate" class="date-w"><i class="fa-solid fa-calendar-days c-green"></i></p>
+                            <p class="form-check-label active-or-not pos-r">End Date: <input type="text" id="dendDate" class="date-w" name="endDate" value="{{$eDate}}"><i class="fa-solid fa-calendar-days c-green"></i></p>
                         </div>
                     </div>
                     <div class="col-4">
@@ -25,7 +26,7 @@
                                 <select class="form-control js-example-basic-single" id="merchandiser_report_type_id" name="merchandiser_report_type_id">
                                     <option selected value="">Choose Merchandiser Report Type</option>
                                     @foreach ($report_types as $row)
-                                        <option {{ old('merchandiser_report_type_id') ? "selected" : "" }} value="{{ $row->id }}">{{ $row->name }}</option>
+                                        <option {{ $merchandiser_report_type_id == $row->id ? 'selected' : '' }} value="{{ $row->id }}">{{ $row->name }}</option>
                                     @endforeach
                                 </select>
                             </i>
@@ -38,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
 
             <div class="">
@@ -45,7 +47,12 @@
                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
                         <h6 class="mt-2 font-weight-bold float-left ut-title">Merchandiser Reports Table</h6>
                         <div>
-                            <a href="#" type="button" class="btn btn-outline-success dbtn_export">
+                        @php
+                            $sDateFormatted = str_replace('/', '-', $sDate);
+                            $eDateFormatted = str_replace('/', '-', $eDate);
+                            $report_type = $merchandiser_report_type_id;
+                        @endphp
+                            <a id="exportButton" href="{{route('merchandiserReportExport', ['startDate' => $sDateFormatted, 'endDate' => $eDateFormatted, 'report_type' => $report_type])}}" type="button" class="btn btn-outline-success dbtn_export">
                                 {{-- <i class="fa-solid fa-file-export export-i-white mr-2"></i><span class="txt-white">Export</span> --}}
                                 <i class="fa fa-file-excel fa-beat fa-xl"></i> Excel Export
                             </a>
@@ -125,9 +132,19 @@
             }
 
             $("#dstartDate").datepicker({ dateFormat: 'dd-mm-yy'});
-            $("#dstartDate").datepicker('setDate', getMinDate());
-            $("#dendDate").datepicker({ dateFormat: 'dd-mm-yy' });
-            $("#dendDate").datepicker('setDate', new Date());
+            // $("#dstartDate").datepicker('setDate', getMinDate());
+            $("#dendDate").datepicker({ dateFormat: 'dd-mm-yy'});
+            // $("#dendDate").datepicker('setDate', new Date());
+
+            $('#exportButton').click(function() {
+               $report_type = $("#merchandiser_report_type_id").val();
+               if($report_type != 0){
+                    return true;
+               }else{
+                alert ("You Need To Choose One Report Type and Need To Click Search button To Export")
+                return false;
+               }
+            });
         })
     </script>
 @endsection

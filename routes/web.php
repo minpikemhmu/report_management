@@ -5,6 +5,7 @@ use App\Http\Controllers\BaAttendanceController;
 use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\BaStaffController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MerchandiserController;
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('product_sub_cateogories', ProductSubCategoryController::class);
     Route::resource('product_key_cateogories', ProductKeyCategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('videos', VideoController::class);
     Route::resource('assignMerchandiser', MerchandiserAssignController::class);
     Route::resource('assignBa', BaAssignController::class);
     Route::resource('mr_input_fields', MrInputFieldController::class);
@@ -56,7 +58,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('mr_daily_reports', MerchandiserDailyReportController::class);
     Route::get('getCityByDivision', [App\Http\Controllers\CityController::class, 'getCityByDivision'])->name('getCityByDivision');
     Route::get('getTownshipByCity', [App\Http\Controllers\TownshipController::class, 'getTownshipByCity'])->name('getTownshipByCity');
-    Route::post('merchandiserReportExport', [App\Http\Controllers\MerchandiserDailyReportController::class, 'merchandiserReportExport'])->name('merchandiserReportExport');
+    Route::get('merchandiserReportExport/{startDate}/{endDate}/{report_type}', [App\Http\Controllers\MerchandiserDailyReportController::class, 'merchandiserReportExport'])->name('merchandiserReportExport');
     Route::post('baDAilyReportExport', [App\Http\Controllers\BaDailyReportController::class, 'baDailyReportExport'])->name('baDAilyReportExport');
     Route::post('ba-daily-reports-filter', [App\Http\Controllers\BaDailyReportController::class, 'showFilterBaDailyReports'])->name('ba_daily_reports.showFilterBaDailyReports');
     Route::post('/baStaffImport', [App\Http\Controllers\BaStaffController::class, 'baStaffImport'])->name('baStaffImport');

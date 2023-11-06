@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\BaSupervisorController;
 use App\Http\Controllers\BaAssignController;
 // use App\Http\Controllers\BaDailyReportController;
 use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\Api\VideoController;
 use App\Models\BaDailyReport;
 
 /*
@@ -59,6 +60,7 @@ Route::middleware('api.token')->group(function () {
             Route::get('checkAttendance',[MerchandiserAttendanceController::class, 'checkAttendance']);
             Route::get('supervisors',[MrSupervisorController::class, 'index']);
             Route::get('merchandisers',[MerchandiserController::class, 'index'])->name('merchandisers.list');
+            Route::get('videos',[VideoController::class, 'index'])->name('videos.list');
         });
     });
 
@@ -90,6 +92,7 @@ Route::middleware('api.token')->group(function () {
             Route::get('assign-by-ba', [AssignBaController::class, 'getAssignmentsByBA']);
             Route::get('supervisors',[BaSupervisorController::class, 'index']);
             Route::get('ba-staffs',[BaStaffController::class, 'index']);
+            Route::get('videos',[VideoController::class, 'index'])->name('videos.list');
         });
     });
 
