@@ -62,6 +62,7 @@ Route::middleware('api.token')->group(function () {
             Route::get('supervisors',[MrSupervisorController::class, 'index']);
             Route::get('merchandisers',[MerchandiserController::class, 'index'])->name('merchandisers.list');
             Route::get('videos',[VideoController::class, 'index'])->name('videos.list');
+            Route::post('watch_videos',[VideoController::class, 'watchVideo'])->name('videos.watchVideo');
         });
     });
 

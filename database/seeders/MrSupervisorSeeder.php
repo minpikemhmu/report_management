@@ -15,7 +15,7 @@ class MrSupervisorSeeder extends Seeder
      */
     public function run()
     {
-        MrSupervisor::updateOrCreate(['name' => 'Swan Pyae  Aung', 'executive_id' => 1]);
-        MrSupervisor::updateOrCreate(['name' => 'Myat Thu', 'executive_id' => 1]);
+        MrSupervisor::updateOrCreate(['name' => 'Swan Pyae  Aung', 'executive_id' => 1, 'code' => 123, 'password'=>"password"]);
+        MrSupervisor::updateOrCreate(['name' => 'Myat Thu', 'executive_id' => 1, 'code' => 123, 'password'=>"password"]);
     }
 }

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WatchVideoRequest;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use App\Http\Resources\VideoResource;
+use App\Http\Resources\WatchVideoResource;
+use App\Models\UserVideo;
 use App\Traits\ResponserTraits;
 
 class VideoController extends Controller
@@ -86,5 +89,14 @@ class VideoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function watchVideo(WatchVideoRequest $request){
+       $user_video = UserVideo::create([
+            'merchandiser_id' => $request->merchandiser_id,
+            'bastaff_id'    => $request->bastaff_id,
+            'video_id'      => $request->video_id,
+        ]);
+        return $this->responseSuccess('Success', New WatchVideoResource($user_video));
     }
 }
