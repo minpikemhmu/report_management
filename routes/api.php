@@ -96,6 +96,7 @@ Route::middleware('api.token')->group(function () {
             Route::get('supervisors',[BaSupervisorController::class, 'index']);
             Route::get('ba-staffs',[BaStaffController::class, 'index']);
             Route::get('videos',[VideoController::class, 'index'])->name('videos.list');
+            Route::post('watch_videos',[VideoController::class, 'watchVideo'])->name('videos.watchVideo');
         });
     });
 
