@@ -16,6 +16,15 @@ class BastaffResource extends JsonResource
     public function toArray($request): array
     {
         $BaLatestAttendance = $this->attendances()->latest('created_at')->first();
+        if($BaLatestAttendance != null){
+            $latest_date = $BaLatestAttendance->created_at->format('Y-m-d');
+            $today = date("Y-m-d");
+            if($today==$latest_date){
+                $check_out_status = 1;
+            }else{
+                $check_out_status = $BaLatestAttendance->is_check_out;
+            }
+        }
         return [
             'id'                   => $this->id,
             'name'                 => $this->name,
@@ -34,7 +43,7 @@ class BastaffResource extends JsonResource
             'subchannel_id'        => $this->subchannel_id,
             'subchannel_name'      => $this->subchannel->name,
             'role'                 => "BaStaff",
-            'latest_check_out_status' => $BaLatestAttendance == null ? null : $BaLatestAttendance->is_check_out,
+            'latest_check_out_status' => $BaLatestAttendance == null ? null : $check_out_status,
         ];
     }
 }
