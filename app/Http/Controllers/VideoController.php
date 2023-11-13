@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VideoController extends Controller
 {
@@ -63,7 +64,18 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
+        $video = Video::find($id);
+        $video_mr = DB::table('user_video')->select('merchandisers.name as merchandiser_name')
+                    ->join('merchandisers', 'merchandisers.id', '=', 'user_video.merchandiser_id')
+                    ->where('user_video.video_id', $id)
+                    ->where('user_video.bastaff_id', null)
+                    ->get();
+        $video_ba = DB::table('user_video')->select('ba_staffs.name as bastaff_name')
+                    ->join('ba_staffs', 'ba_staffs.id', '=', 'user_video.bastaff_id')
+                    ->where('user_video.video_id', $id)
+                    ->where('user_video.merchandiser_id', null)
+                    ->get();
+        return view('videos.detail', compact('video', 'video_mr', 'video_ba'));
     }
 
     /**

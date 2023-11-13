@@ -67,8 +67,11 @@
                                             <td>{{ $row->description }}</td>
                                             <td> <a href="{{$row->link}}">{{ $row->link }}</a></td>
                                             <td>
-                                                <div class="t-flex-center">
+                                                <div class="d-flex flex-row">
                                                     <a  class="btn" href="{{ route('videos.edit', $row->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a class="btn" href="{{ route('videos.show', $row->id) }}">
+                                                            <i class="fa-solid fa-xl fa-circle-info"></i>
+                                                        </a>
                                                 </div>
                                             </td>
                                         </tr>
