@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             OsaProductSeeder::class,
             OsaHansaplastProductSeeder::class,
             PosmProductSeeder::class,
-            MrFieldSeeder::class,
+            // MrFieldSeeder::class,
         ]);
     }
 }
