@@ -49,16 +49,22 @@ class WatchVideoRequest extends FormRequest
         $bastaffId = $this->input('bastaff_id');
         $videoId = $this->input('video_id');
 
-        $existingRecord = DB::table('user_video')
-            ->where(function ($query) use ($merchandiserId, $videoId) {
-                $query->where('merchandiser_id', $merchandiserId)
-                    ->where('video_id', $videoId);
-            })
-            ->orWhere(function ($query) use ($bastaffId, $videoId) {
+        if($merchandiserId == null){
+            $existingRecord = DB::table('user_video')
+            ->Where(function ($query) use ($bastaffId, $videoId) {
                 $query->where('bastaff_id', $bastaffId)
                     ->where('video_id', $videoId);
             })
             ->first();
+        }
+
+        if($bastaffId == null){
+            $existingRecord = DB::table('user_video')
+            ->where(function ($query) use ($merchandiserId, $videoId) {
+                $query->where('merchandiser_id', $merchandiserId)
+                    ->where('video_id', $videoId);
+            })->first();
+        }
 
         if ($existingRecord) {
             $validator->errors()->add('unique_combination', 'The combination of merchandiser/bastaff and video is not unique.');
