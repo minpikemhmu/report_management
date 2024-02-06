@@ -94,6 +94,10 @@
                                         <th>Is Attendance</th>
                                         <th>Check-in Time</th>
                                         <th>Check-out Time</th>
+                                        <th>Check-in latitude</th>
+                                        <th>Check-in longitude</th>
+                                        <th>Check-out latitude</th>
+                                        <th>Check-out longitude</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -113,6 +117,10 @@
                                                     {{ date("Y-m-d h:i:s A", strtotime($baAttendance->check_out_time)) }}
                                                 @endif
                                             </td>
+                                            <td>{{$baAttendance->check_in_latitude}}</td>
+                                            <td>{{$baAttendance->check_in_longitude}}</td>
+                                            <td>{{$baAttendance->check_out_latitude}}</td>
+                                            <td>{{$baAttendance->check_out_longitude}}</td>
                                             <td><a href="{{route('ba_attandence.unblock_ba_attandence',$baAttendance->id)}}" type="button" class="btn btn-primary">unblock</a></td>
                                         </tr>
                                     @endforeach

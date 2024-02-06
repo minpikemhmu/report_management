@@ -12,6 +12,8 @@ class MerchandiserAttendance extends Attendance
 
     protected $table = 'merchandiser_attendances';
 
+    protected $fillable = ['staff_id', 'is_check_in', 'is_check_out', 'is_attendance', 'check_in_time', 'check_out_time', 'check_in_latitude', 'check_in_longitude', 'check_out_latitude', 'check_out_longitude'];
+
     /**
      * Get the staff that owns the BaStaff
      *

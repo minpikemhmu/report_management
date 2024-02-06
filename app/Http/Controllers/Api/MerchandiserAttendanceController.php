@@ -85,6 +85,8 @@ class MerchandiserAttendanceController extends Controller
                     'staff_id' => $staffId,
                     'is_check_in' => true,
                     'check_in_time' => $now,
+                    'check_in_latitude' => $request->check_in_latitude,
+                    'check_in_longitude' => $request->check_in_longitude,
                 ]);
                 // return response()->json(['message' => $now->format('Y-m-d') . ' Check-in recorded successfully.']);
                 return $this->responseSuccess($now->format('Y-m-d') . ' Check-in recorded successfully.', new MerchandiserAttendanceResource(MerchandiserAttendance::findOrFail($attendance->id)));
@@ -108,6 +110,8 @@ class MerchandiserAttendanceController extends Controller
             'is_check_out' => true,
             'is_attendance' => true,
             'check_out_time' => $now,
+            'check_out_latitude' => $request->check_out_latitude,
+            'check_out_longitude' => $request->check_out_longitude,
         ]);
 
         // return response()->json(['message' => 'Check-out recorded successfully.']);
