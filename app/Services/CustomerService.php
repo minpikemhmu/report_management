@@ -42,6 +42,7 @@ class CustomerService
             'township_id'           => $request->township,
             'city_id'               => $request->city,
             'customer_type_id'      => $request->customer_type,
+            'outlet_brand'          => $request->outlet_brand,
         ]);
     }
 
@@ -70,6 +71,7 @@ class CustomerService
             'township_id'       => $request->township ?? $customer->township_id,
             'city_id'           => $request->city ?? $customer->city_id,
             'customer_type_id'  => $request->customer_type ?? $customer->customer_type_id,
+            'outlet_brand'      => $request->outlet_brand ?? $customer->outlet_brand,
         ]);
     }
 }

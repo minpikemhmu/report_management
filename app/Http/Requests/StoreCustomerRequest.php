@@ -37,6 +37,7 @@ class StoreCustomerRequest extends FormRequest
             'division'                 => "required|integer|exists:division_states,id",
             'township'                 => "required|integer|exists:townships,id",
             'city'                     => "required|integer|exists:cities,id",
+            'outlet_brand'             => "nullable|string",
         ];
     }
 }

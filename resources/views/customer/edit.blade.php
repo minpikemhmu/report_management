@@ -151,11 +151,17 @@
                         <div class="form-control-feedback text-danger"> {{$errors->first('township') }} </div>
                     </div>
 
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
+                    <div class="form-group">
+                        <label for="outlet_brand">Outlet Brand</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="outlet_brand"
+                            name="outlet_brand"
+                            value="{{$customer->outlet_brand}}"
+                        />
+                        <div class="form-control-feedback text-danger"> {{$errors->first('outlet_brand') }} </div>
+                    </div>
                     
                     <div class="row">
                         <div class="col-lg-2">&nbsp;</div>
