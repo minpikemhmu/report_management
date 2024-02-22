@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive" style="max-width: 1000px; overflow-x: auto;">
+                        <div class="table-responsive" style="max-width: 950px; overflow-x: auto;">
                             <table class="table table-bordered" id="merchandiserTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
