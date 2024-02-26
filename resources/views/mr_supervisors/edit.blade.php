@@ -61,6 +61,17 @@
                             <div class="form-control-feedback text-danger"> {{ $errors->first('executive_id') }} </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <select class="form-control js-example-basic-single3" id="brand" name="brand">
+                                <option selected value="">Choose Brand</option>
+                                <option {{ $supervisor->brand == "Nivea" ? 'selected' : '' }} value="Nivea">Nivea</option>
+                                <option {{ $supervisor->brand == "Hansaplast" ? 'selected' : '' }} value="Hansaplast">Hansaplast</option>
+                                <option {{ $supervisor->brand == "Other" ? 'selected' : '' }} value="Other">Other</option>
+                            </select>
+                            <div class="form-control-feedback text-danger"> {{ $errors->first('brand') }} </div>
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>

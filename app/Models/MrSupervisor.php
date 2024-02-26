@@ -12,7 +12,7 @@ class MrSupervisor extends Model
 {
     use HasFactory, HasApiTokens;
 
-    protected $fillable = ['name', 'code', 'password',  'executive_id'];
+    protected $fillable = ['name', 'code', 'password',  'executive_id', 'brand'];
 
 
     public function executive(): BelongsTo

@@ -28,6 +28,7 @@ class StoreMrSupervisorRequest extends FormRequest
             'code' => "required|string|unique:mr_supervisors",
             'password' => "required|string|between:8,50",
             'executive_id' => "required|integer|exists:mr_executives,id",
+            'brand' => "required|string",
         ];
     }
 }

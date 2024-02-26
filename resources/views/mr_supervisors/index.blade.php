@@ -56,6 +56,7 @@
                                         <th>Name</th>
                                         <th>Executive</th>
                                         <th>Manager</th>
+                                        <th>Brand</th>
                                         <th>Editor</th>
                                     </tr>
                                 </thead>
@@ -66,6 +67,7 @@
                                             <td>{{ $mr_supervisor->name}}</td>
                                             <td>{{ $mr_supervisor->executive->name}}</td>
                                             <td>{{ $mr_supervisor->executive->manager->name}}</td>
+                                            <td>{{ $mr_supervisor->brand}}</td>
                                             <td>
                                                 <div class="t-flex-center">
                                                     <a  class="btn" href="{{ route('mr_supervisors.edit', $mr_supervisor->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>

@@ -51,11 +51,22 @@
                             <select class="form-control js-example-basic-single3" id="executive_id" name="executive_id">
                                 <option selected value="">Choose the Executives</option>
                                 @foreach ($executives as $row)
-                                    <option {{ old('subchannel_id') ? 'selected' : '' }} value="{{ $row->id }}">
+                                    <option {{ old('executive_id') ? 'selected' : '' }} value="{{ $row->id }}">
                                         {{ $row->name }}</option>
                                 @endforeach
                             </select>
                             <div class="form-control-feedback text-danger"> {{ $errors->first('executive_id') }} </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <select class="form-control js-example-basic-single3" id="brand" name="brand">
+                                <option selected value="">Choose Brand</option>
+                                <option value="Nivea">Nivea</option>
+                                <option value="Hansaplast">Hansaplast</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="form-control-feedback text-danger"> {{ $errors->first('brand') }} </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save</button>

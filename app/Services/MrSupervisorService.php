@@ -33,6 +33,7 @@ class MrSupervisorService
       'code'       => $request->code,
       'password'   => Hash::make($request->password),
       'executive_id' => $request->executive_id,
+      'brand'   => $request->brand,
     ]);
   }
 
@@ -54,6 +55,7 @@ class MrSupervisorService
           'code' => $request->code ?? $supervisor->code,
           'password' => $request->password ? Hash::make($request->password) : $supervisor->password,
           'executive_id' => $request->executive_id ?? $supervisor->executive_id,
+          'brand' => $request->brand ?? $supervisor->brand,
       ]);
   }
 }
