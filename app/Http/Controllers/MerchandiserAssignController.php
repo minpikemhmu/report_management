@@ -30,7 +30,7 @@ class MerchandiserAssignController extends Controller
         ->whereDate('cm.created_at', '>=', $startDate)
         ->whereDate('cm.created_at', '<=', $endDate)
         ->orderBy('cm.created_at', 'desc')
-        ->get();
+        ->paginate(10);
         return view('assignMerchandiser.index',compact('merchandisers'));
     }
 
