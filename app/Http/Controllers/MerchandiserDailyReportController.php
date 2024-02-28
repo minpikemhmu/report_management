@@ -107,7 +107,7 @@ class MerchandiserDailyReportController extends Controller
                         $escapedAlias = "`$alias`";
                         $query->selectRaw("CASE WHEN {$value->identifier} = 1 THEN 'yes' ELSE 'no' END AS {$escapedAlias}");
                     } else {
-                        $querySubString = "{$db_name}{$value->identifier} AS {$value->display_name}";
+                        $querySubString = "{$db_name}.{$value->identifier} AS {$value->display_name}";
                     }
             
                     if (!empty($querySubString)) {
@@ -192,9 +192,10 @@ class MerchandiserDailyReportController extends Controller
                         $querySubString = "{$value->list_data}.name AS {$value->display_name}";
                     } elseif ($value->field_type == "radio_input") {
                         $alias = str_replace(' ', '_', $value->display_name); // Replace spaces with underscores
-                        $query->selectRaw("CASE WHEN {$value->identifier} = 1 THEN 'yes' ELSE 'no' END AS {$alias}");
+                        $escapedAlias = "`$alias`";
+                        $query->selectRaw("CASE WHEN {$value->identifier} = 1 THEN 'yes' ELSE 'no' END AS {$escapedAlias}");
                     } else {
-                        $querySubString = "{$db_name}{$value->identifier} AS {$value->display_name}";
+                        $querySubString = "{$db_name}.{$value->identifier} AS {$value->display_name}";
                     }
             
                     if (!empty($querySubString)) {
