@@ -112,7 +112,9 @@ class ReportController extends Controller
                         $query->leftJoin($value->list_data, "merchandise_reports.{$value->identifier}", '=', "{$value->list_data}.id");
                         $querySubString = "{$value->list_data}.name AS {$value->display_name}";
                     } elseif ($value->field_type == "radio_input") {
-                        $query->selectRaw("CASE WHEN {$value->active_status} = 1 THEN 'yes' ELSE 'no' END AS {$value->display_name}");
+                        $alias = str_replace(' ', '_', $value->display_name); // Replace spaces with underscores
+                        $escapedAlias = "`$alias`";
+                        $query->selectRaw("CASE WHEN {$value->active_status} = 1 THEN 'yes' ELSE 'no' END AS {$escapedAlias}");
                     } else {
                         $querySubString = "{$db_name}{$value->identifier} AS {$value->display_name}";
                     }

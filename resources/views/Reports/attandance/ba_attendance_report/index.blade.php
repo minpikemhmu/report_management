@@ -121,7 +121,9 @@
                                             <td>{{$baAttendance->check_in_longitude}}</td>
                                             <td>{{$baAttendance->check_out_latitude}}</td>
                                             <td>{{$baAttendance->check_out_longitude}}</td>
-                                            <td><a href="{{route('ba_attandence.unblock_ba_attandence',$baAttendance->id)}}" type="button" class="btn btn-primary">unblock</a></td>
+                                            <td>
+                                                <a href="{{route('ba_attandence.unblock_ba_attandence',$baAttendance->id)}}" type="button" class="btn {{ $baAttendance->check_out_latitude == 1 ? 'btn-danger disabled' : 'btn-primary' }}">unblock</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
