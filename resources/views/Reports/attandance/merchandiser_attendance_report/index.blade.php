@@ -121,7 +121,14 @@
                                             <td>{{$merchandiserAttendance->check_in_longitude}}</td>
                                             <td>{{$merchandiserAttendance->check_out_latitude}}</td>
                                             <td>{{$merchandiserAttendance->check_out_longitude}}</td>
-                                            <td><a href="{{route('merchandiser_attandence.unblockMerchandiserAttandence',$merchandiserAttendance->id)}}" type="button" class="btn {{ $merchandiserAttendance->check_out_latitude == 1 ? 'btn-danger disabled' : 'btn-primary' }}">unblock</a></td>
+                                            <td>
+                                            @if($merchandiserAttendance->is_check_out == '1')
+                                                <span class="btn btn-danger disabled">unblock</span>
+                                            @else
+                                                <a href="{{ route('ba_attandence.unblock_ba_attandence', $baAttendance->id) }}" class="btn btn-primary">unblock</a>
+                                            @endif
+                                            </td>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
