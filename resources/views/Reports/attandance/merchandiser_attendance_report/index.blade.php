@@ -125,7 +125,7 @@
                                             @if($merchandiserAttendance->is_check_out == '1')
                                                 <span class="btn btn-danger disabled">unblock</span>
                                             @else
-                                                <a href="{{ route('ba_attandence.unblock_ba_attandence', $baAttendance->id) }}" class="btn btn-primary">unblock</a>
+                                                <a href="{{route('merchandiser_attandence.unblockMerchandiserAttandence',$merchandiserAttendance->id)}}" class="btn btn-primary">unblock</a>
                                             @endif
                                             </td>
                                             </td>
