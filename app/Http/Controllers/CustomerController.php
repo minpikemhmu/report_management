@@ -14,6 +14,8 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Services\CustomerService;
 use App\Imports\customerImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CustomerReportExport;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -123,5 +125,20 @@ class CustomerController extends Controller
         } else {
             return redirect()->back()->with('successMsg', 'Excel file imported successfully.');
         }
+    }
+
+    public function customerExport(){
+        $customers = DB::table('customers')->select('customers.id','customers.name','customers.dksh_customer_id',
+                    DB::raw('CASE WHEN customers.is_ba = 1 THEN "yes" ELSE "no" END as is_ba_status'),'customers.address',
+                    'customers.phone_number','division_states.name as division_name','townships.name as township_name','cities.name as city_name',
+                    'customer_types.name as customer_type',
+                    'customers.total_frequency','customers.outlet_brand')
+            ->leftjoin('division_states', 'customers.division_state_id', '=', 'customers.id')
+            ->leftjoin('townships', 'customers.township_id', '=', 'townships.id')
+            ->leftjoin('cities', 'customers.city_id', '=', 'cities.id')
+            ->leftjoin('customer_types', 'customers.customer_type_id', '=', 'customer_types.id')
+            ->get();
+        $success_export = new CustomerReportExport(collect($customers));
+        return Excel::download($success_export, 'customers.csv');
     }
 }

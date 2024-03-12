@@ -22,6 +22,12 @@
     <div class="row mt-5">
         <div class="col-12">
             <div class="card shadow mb-4">
+            <div id="dt-buttons-gp" class="dt-buttons ml-3 mt-3">
+                            <a href="{{ route('customers.export') }}" type="button" class="btn dbtn_export " style="background-color: #72F573">
+                                <i class="fa-solid fa-file-export export-i-white mr-2"></i><span
+                                    class="txt-white">Export</span>
+                            </a>
+                </div>
                 <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <h6 class="mt-2 font-weight-bold float-left ut-title">Customer Table</h6>
                     @if(session('successMsg') != NULL)

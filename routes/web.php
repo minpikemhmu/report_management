@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('getTownshipByCity', [App\Http\Controllers\TownshipController::class, 'getTownshipByCity'])->name('getTownshipByCity');
     Route::get('merchandiserReportExport/{startDate}/{endDate}/{report_type}', [App\Http\Controllers\MerchandiserDailyReportController::class, 'merchandiserReportExport'])->name('merchandiserReportExport');
     Route::post('baDAilyReportExport', [App\Http\Controllers\BaDailyReportController::class, 'baDailyReportExport'])->name('baDAilyReportExport');
+    Route::get('customerExport', [App\Http\Controllers\CustomerController::class, 'customerExport'])->name('customers.export');
     Route::post('ba-daily-reports-filter', [App\Http\Controllers\BaDailyReportController::class, 'showFilterBaDailyReports'])->name('ba_daily_reports.showFilterBaDailyReports');
     Route::post('/baStaffImport', [App\Http\Controllers\BaStaffController::class, 'baStaffImport'])->name('baStaffImport');
     Route::post('/mrStaffImport', [App\Http\Controllers\MerchandiserController::class, 'mrStaffImport'])->name('mrStaffImport');
