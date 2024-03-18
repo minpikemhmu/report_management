@@ -31,7 +31,7 @@ class StoreCustomerRequest extends FormRequest
             'customer_id'              => "required|string",
             'is_ba'                    => "required|boolean",
             'address'                  => "required|string",
-            'phone_number'             => "required|numeric|unique:customers,phone_number,NULL,id,deleted_at,NULL|digits_between:8,11",
+            'phone_number'             => "nullable|numeric|unique:customers,phone_number,NULL,id,deleted_at,NULL|digits_between:8,11",
             'customer_type'            => "required|integer|exists:customer_types,id",
             'total_frequency'          => "required|integer",
             'division'                 => "required|integer|exists:division_states,id",
