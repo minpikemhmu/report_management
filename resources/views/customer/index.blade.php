@@ -75,7 +75,7 @@
                         </table>
                     </div> -->
                     <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered"  width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -118,6 +118,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="pagination">
+                                {!! $customers->withQueryString()->links('pagination::bootstrap-5') !!}
+                                </div>
                             </div>
                 </div>
             </div>

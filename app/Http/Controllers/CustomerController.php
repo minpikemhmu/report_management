@@ -35,7 +35,7 @@ class CustomerController extends Controller
             'township',
             'city',
             'customer_type'
-        ])->orderByDesc('updated_at')->get();
+        ])->orderByDesc('updated_at')->paginate(10);
         return view('customer.index', compact('customers'));
     }
 
