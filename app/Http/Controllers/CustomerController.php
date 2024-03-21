@@ -30,12 +30,18 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        // $customers = Customer::with([
+        //     'division_state',
+        //     'township',
+        //     'city',
+        //     'customer_type'
+        // ])->orderByDesc('updated_at')->paginate(10);
         $customers = Customer::with([
             'division_state',
             'township',
             'city',
             'customer_type'
-        ])->orderByDesc('updated_at')->paginate(10);
+        ])->orderByDesc('updated_at')->get();
         return view('customer.index', compact('customers'));
     }
 
