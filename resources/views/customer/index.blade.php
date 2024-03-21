@@ -19,7 +19,26 @@
             </form>
         </div>
     </div>
-    <div class="row mt-5">
+
+    <div class="row ml-2">
+        <div>
+            <form  method="get" action="{{route('getCustomer')}}">
+                @csrf
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="text" name="name" id="name" placeholder="Type Customer Name" required>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary btn-sm ml-5">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
             <div id="dt-buttons-gp" class="dt-buttons ml-3 mt-3">
@@ -75,7 +94,7 @@
                         </table>
                     </div> -->
                     <div class="table-responsive">
-                                <table class="table table-bordered" id="datatable"  width="100%" cellspacing="0">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -118,6 +137,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="pagination">
+                                {!! $customers->withQueryString()->links('pagination::bootstrap-5') !!}
+                                </div>
                             </div>
                 </div>
             </div>

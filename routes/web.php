@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('outlets', OutletController::class);
     Route::resource('bastaffs', BaStaffController::class);
     Route::resource('customers', CustomerController::class);
+    Route::get('getCustomer', [App\Http\Controllers\CustomerController::class, 'getCustomer'])->name('getCustomer');
     Route::resource('ba_supervisors', BaSupervisorController::class);
     Route::resource('mr_supervisors', MrSupervisorController::class);
     Route::resource('mr_leaders', MrLeaderController::class);

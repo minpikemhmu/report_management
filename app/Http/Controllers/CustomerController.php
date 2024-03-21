@@ -30,18 +30,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        // $customers = Customer::with([
-        //     'division_state',
-        //     'township',
-        //     'city',
-        //     'customer_type'
-        // ])->orderByDesc('updated_at')->paginate(10);
         $customers = Customer::with([
             'division_state',
             'township',
             'city',
             'customer_type'
-        ])->orderByDesc('updated_at')->get();
+        ])->orderByDesc('updated_at')->paginate(10);
         return view('customer.index', compact('customers'));
     }
 
@@ -146,5 +140,15 @@ class CustomerController extends Controller
             ->get();
         $success_export = new CustomerReportExport(collect($customers));
         return Excel::download($success_export, 'customers.csv');
+    }
+
+    public function getCustomer(Request $request){
+        $customers = Customer::with([
+            'division_state',
+            'township',
+            'city',
+            'customer_type'
+        ])->where('name', 'like', '%' . $request->name . '%')->orderByDesc('updated_at')->paginate(10);
+        return view('customer.index', compact('customers'));
     }
 }
